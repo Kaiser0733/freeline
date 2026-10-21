@@ -7,7 +7,678 @@
 <meta name="theme-color" content="#0b1210">
 <meta name="description" content="Freeline — the live map of free frontier AI. Every route carries a last-verified timestamp.">
 <title>FREELINE — free frontier AI, verified live</title>
-<link rel="stylesheet" href="styles.css">
+<style>
+:root {
+  --ground: #0b1210;
+  --panel: #0f1715;
+  --ink: #e9e3d4;
+  --ink-2: #b8af9c;
+  --ink-3: #948c7b;
+  --brass: #d2a869;
+  --flag: #e8a09a;
+
+  --rule: rgba(233, 227, 212, 0.13);
+  --rule-soft: rgba(233, 227, 212, 0.07);
+  --rule-strong: rgba(233, 227, 212, 0.32);
+  --shelf: rgba(233, 227, 212, 0.03);
+  --brass-soft: rgba(210, 168, 105, 0.28);
+
+  --serif: Georgia, "Iowan Old Style", "Palatino Linotype", "Times New Roman", serif;
+  --sans: "Helvetica Neue", "Segoe UI", system-ui, sans-serif;
+
+  --pad: clamp(16px, 4vw, 40px);
+  --e: cubic-bezier(0.2, 0, 0, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scrollbar-color: var(--rule) var(--ground);
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background: radial-gradient(120% 60% at 50% -10%, color-mix(in srgb, var(--brass) 5%, transparent), transparent 60%),
+    var(--ground);
+  color: var(--ink);
+  font: 400 14px/1.6 var(--sans);
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, p, dl, dd, ol { margin: 0; }
+button { font: inherit; color: inherit; }
+a { color: var(--brass); text-underline-offset: 2px; }
+
+.skip {
+  position: absolute;
+  left: 12px;
+  top: -52px;
+  z-index: 20;
+  padding: 10px 16px;
+  background: var(--ink);
+  color: var(--ground);
+  font-size: 13px;
+  text-decoration: none;
+  transition: top 160ms var(--e);
+}
+.skip:focus { top: 12px; }
+
+:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--ground), 0 0 0 4px var(--brass);
+}
+
+.shell {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--pad);
+}
+
+.label {
+  font: 600 11px/1 var(--sans);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* engraved divider: solid rule with a stepped inner rule under the centre */
+.frame {
+  position: relative;
+  height: 3px;
+  border-top: 1px solid var(--rule);
+  background: linear-gradient(var(--rule), var(--rule)) center bottom / 48px 1px no-repeat;
+  margin-top: 6px;
+}
+
+/* ---------- mast ---------- */
+
+.mast { padding-top: clamp(22px, 4vw, 40px); }
+
+.mast__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 28px;
+  flex-wrap: wrap;
+}
+
+.brand { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+
+.brand__word {
+  font: 400 clamp(24px, 4.6vw, 34px)/1 var(--serif);
+  letter-spacing: 0.2em;
+  color: var(--ink);
+}
+
+.brand__rule {
+  width: 28px;
+  height: 1px;
+  background: var(--brass);
+  align-self: center;
+  margin-right: -4px;
+}
+
+.brand__sub {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--ink-2);
+}
+
+.status {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+
+.status__label {
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  color: var(--ink-3);
+}
+
+.status__clock {
+  font: 500 14px/1 var(--sans);
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  min-width: 7ch;
+  text-align: right;
+  border-bottom: 1px solid var(--brass);
+  padding-bottom: 3px;
+}
+
+.status__sep { width: 1px; height: 11px; background: var(--rule); align-self: center; }
+
+.lede {
+  margin-top: clamp(20px, 3vw, 30px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 10px;
+}
+
+.tagline {
+  font: 400 clamp(22px, 3.6vw, 34px)/1.18 var(--serif);
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  max-width: 24ch;
+  text-wrap: balance;
+}
+
+.lede__note {
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  max-width: 54ch;
+}
+
+.stats {
+  margin-top: clamp(22px, 3vw, 30px);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+.stat {
+  padding: 16px 14px 18px;
+  border-left: 1px solid var(--rule-soft);
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: 8px;
+}
+.stat:first-child { border-left: 0; }
+
+.stat dd {
+  font: 400 clamp(32px, 5vw, 46px)/1 var(--serif);
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.stat dt {
+  font-size: 11px;
+  line-height: 1.3;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.stat--warn dd { color: var(--brass); }
+
+/* ---------- filters ---------- */
+
+.filters { margin-top: clamp(28px, 4vw, 44px); }
+
+.filters__row {
+  display: flex;
+  align-items: center;
+  gap: 12px 22px;
+  flex-wrap: wrap;
+}
+
+.filters__chips {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  flex: 1 1 260px;
+  min-width: 0;
+  margin-right: calc(-1 * var(--pad));
+  padding: 2px var(--pad) 2px 0;
+}
+.filters__chips::-webkit-scrollbar { display: none; }
+
+.chip {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+  padding: 0 14px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink-2);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: color 140ms var(--e), border-color 140ms var(--e), background-color 140ms var(--e), transform 100ms var(--e);
+}
+
+.chip:hover { color: var(--ink); border-color: var(--brass-soft); }
+.chip:active { transform: scale(0.97); }
+
+.chip__n {
+  font-size: 11px;
+  color: var(--ink-3);
+  letter-spacing: 0.04em;
+}
+
+.chip[aria-pressed="true"] {
+  color: var(--ground);
+  background: var(--ink);
+  border-color: var(--ink);
+}
+.chip[aria-pressed="true"] .chip__n { color: var(--ground); opacity: 0.75; }
+/* ---------- model rows ---------- */
+
+.models {
+  margin-top: 18px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.model {
+  padding: 20px 0 4px;
+  border-top: 1px solid var(--rule-soft);
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  column-gap: 16px;
+}
+.model:first-child { border-top: 0; }
+
+.model__num {
+  font: 400 12px/calc(clamp(19px, 2.8vw, 23px) * 1.15) var(--sans);
+  letter-spacing: 0.1em;
+  color: var(--ink-3);
+}
+
+.model__body { min-width: 0; }
+
+/* NAME PLINTH: name over a short rule, ruler out to the tier */
+.plinth {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.plinth__name {
+  font: 400 clamp(19px, 2.8vw, 23px)/1.15 var(--serif);
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.plinth__ruler {
+  flex: 1 1 24px;
+  min-width: 12px;
+  height: 7px;
+  border-bottom: 1px solid var(--rule);
+  background: repeating-linear-gradient(90deg, var(--rule) 0 1px, transparent 1px 6px) 0 100% / 100% 3px no-repeat;
+  align-self: center;
+}
+
+.tier {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  padding: 5px 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  white-space: nowrap;
+}
+
+.tier::before { content: "◆"; font-size: 7px; color: var(--ink-3); }
+
+.tier--frontier { color: var(--brass); border-color: var(--brass-soft); }
+.tier--frontier::before { color: var(--brass); }
+
+.under-name {
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+}
+
+.tally { color: var(--ink-2); }
+.tally b { font-weight: 500; color: var(--brass); }
+
+.disputed {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--flag);
+  border: 1px solid color-mix(in srgb, var(--flag) 40%, transparent);
+  padding: 2px 8px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+
+.disputed svg { width: 11px; height: 11px; flex: none; }
+
+.headline {
+  margin-top: 10px;
+  font: 400 clamp(15px, 2vw, 16.5px)/1.55 var(--serif);
+  color: var(--ink);
+  max-width: 52ch;
+  text-wrap: pretty;
+}
+
+.bench {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+  margin-top: 12px;
+}
+
+.bench__chip {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-left: 9px;
+  border-left: 1px solid var(--brass-soft);
+  min-width: 0;
+}
+
+.bench__k {
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  overflow-wrap: anywhere;
+}
+
+.bench__v { font-size: 15px; font-weight: 500; color: var(--ink); letter-spacing: 0.01em; }
+
+/* routes */
+
+.routes {
+  margin-top: 14px;
+  background: var(--panel);
+  border-top: 1px solid var(--rule-soft);
+  box-shadow: inset 0 1px 0 var(--shelf);
+}
+
+.route {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 14px;
+  row-gap: 2px;
+  align-items: baseline;
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.route:last-child { border-bottom: 0; }
+
+.route__who {
+  display: flex;
+  align-items: baseline;
+  gap: 6px 10px;
+  min-width: 0;
+  flex-wrap: wrap;
+}
+
+.route__provider {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: 0.01em;
+}
+
+.route__sep { color: var(--ink-3); font-size: 11px; }
+
+.route__slug {
+  font-size: 12.5px;
+  color: var(--ink-2);
+  min-width: 0;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: help;
+}
+
+.route__note {
+  grid-column: 1 / -1;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  max-width: 64ch;
+  text-wrap: pretty;
+}
+
+.route__verify {
+  grid-column: 1 / -1;
+  margin-top: 2px;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 3px 9px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  align-self: center;
+}
+
+.pill::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  background: currentColor;
+  transform: rotate(45deg);
+}
+
+.pill--live { color: var(--brass); border-color: var(--brass-soft); }
+.pill--expiring { color: var(--ink); border-color: var(--rule-strong); }
+.pill--dead { color: var(--ink-3); border-color: var(--rule); }
+
+/* disclosure for routes beyond the second */
+
+.more { margin-top: 2px; padding-bottom: 14px; }
+
+.more summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 40px;
+  padding: 8px 0;
+  cursor: pointer;
+  list-style: none;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  transition: color 140ms var(--e);
+}
+.more summary::-webkit-details-marker { display: none; }
+.more summary:hover { color: var(--brass); }
+.more summary::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: rotate(45deg) translateY(-2px);
+  transition: transform 180ms var(--e);
+  margin-left: 2px;
+}
+.more[open] summary::after { transform: rotate(225deg) translateY(-1px); }
+
+.more__rule { flex: 1 1 40px; height: 1px; background: var(--rule); }
+
+.more__list {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 200ms var(--e);
+}
+.more[open] .more__list { grid-template-rows: 1fr; }
+.more__list > div { overflow: hidden; }
+.more__list .routes { margin-top: 0; }
+
+/* skeleton + empty */
+
+.skel {
+  height: 168px;
+  margin: 4px 0;
+  background:
+    linear-gradient(var(--rule-soft) 0 0) 60px 26px / 38% 20px no-repeat,
+    linear-gradient(var(--rule-soft) 0 0) 60px 58px / 72% 10px no-repeat,
+    linear-gradient(var(--rule-soft) 0 0) 60px 96px / 100% 44px no-repeat;
+  animation: pulse 1.6s var(--e) infinite alternate;
+}
+.skel:nth-child(2) { animation-delay: 140ms; }
+.skel:nth-child(3) { animation-delay: 280ms; }
+
+@keyframes pulse { from { opacity: 0.4; } to { opacity: 1; } }
+
+.empty {
+  margin: 20px 0 0;
+  padding: 40px 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink-2);
+  font-size: 14px;
+  line-height: 1.6;
+  max-width: 60ch;
+}
+.empty b { display: block; font: 400 21px/1.3 var(--serif); color: var(--ink); margin-bottom: 8px; }
+
+/* ---------- graveyard ---------- */
+
+.grave { margin-top: clamp(64px, 9vw, 96px); }
+
+.grave__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 24px;
+  flex-wrap: wrap;
+}
+
+.grave__title {
+  font: 400 clamp(24px, 3.6vw, 34px)/1.1 var(--serif);
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+
+.grave__note { font-size: 13px; color: var(--ink-2); max-width: 46ch; }
+
+.grave__list {
+  list-style: none;
+  padding: 0;
+  margin-top: 14px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.grave__list li {
+  display: grid;
+  grid-template-columns: 132px minmax(0, 1fr);
+  column-gap: 24px;
+  padding: 18px 0;
+  border-top: 1px solid var(--rule-soft);
+}
+
+.grave__date {
+  font: 400 13px/1.5 var(--sans);
+  letter-spacing: 0.1em;
+  color: var(--ink-3);
+}
+.grave__date::before { content: "† "; color: var(--brass); }
+
+.grave__name {
+  font: 400 19px/1.3 var(--serif);
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+  text-decoration: line-through;
+  text-decoration-color: color-mix(in srgb, var(--ink-3) 70%, transparent);
+  text-decoration-thickness: 1px;
+}
+
+.grave__cause {
+  grid-column: 2;
+  margin-top: 4px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  max-width: 68ch;
+  text-wrap: pretty;
+}
+
+/* ---------- footer ---------- */
+
+.foot { margin-top: clamp(64px, 9vw, 96px); padding-bottom: calc(28px + env(safe-area-inset-bottom)); }
+.foot .frame { margin-top: 0; }
+
+.foot__line {
+  margin-top: 16px;
+  font: 400 clamp(16px, 2.2vw, 18px)/1.45 var(--serif);
+  color: var(--ink);
+  max-width: 40ch;
+}
+
+.foot__meta {
+  margin-top: 8px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* ---------- responsive ---------- */
+
+@media (min-width: 760px) {
+  .lede { grid-template-columns: minmax(0, 1fr) minmax(0, 30ch); align-items: end; }
+  .lede__note { text-align: right; justify-self: end; }
+  .route { grid-template-columns: minmax(0, 1fr) auto; }
+}
+
+@media (max-width: 640px) {
+  .model { grid-template-columns: minmax(0, 1fr); }
+  .model__num { display: none; }
+  .plinth { gap: 10px; }
+  .stat { padding: 14px 10px 16px; }
+  .stat dd { font-size: 30px; }
+  .stat dt { font-size: 10.5px; letter-spacing: 0.08em; }
+  .brand__sub { display: none; }
+  .route { padding: 11px 12px; }
+  .grave__list li { grid-template-columns: minmax(0, 1fr); row-gap: 4px; }
+  .grave__cause { grid-column: 1; }
+}
+
+@media (max-width: 430px) {
+  .plinth { flex-wrap: wrap; row-gap: 8px; }
+  .plinth__ruler { display: none; }
+  .route { grid-template-columns: minmax(0, 1fr); row-gap: 6px; }
+  .pill { justify-self: start; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+</style>
 </head>
 <body>
 <a class="skip" href="#board">Skip to the board</a>
@@ -81,6 +752,253 @@
   </footer>
 </div>
 
-<script src="app.js" defer></script>
+<script>window.__FREELINE_DATA__={"generatedAt":"2026-10-21T09:17:00+05:30","graveyard":[{"cause":"Removed from the llmroster free roster — Nous Portal free route appears delisted. Mystery coder, rumoured Kimi K3.1 in disguise, never confirmed.","died":"2026-10-17","name":"stealth/missingno"},{"cause":"Deprecated on OpenCode Zen and replaced by beam-free the same day. Measured LiveBench 60.8% before it died — competent, never frontier.","died":"2026-10-16","name":"cat-jam-free"},{"cause":"Free window on OpenCode ended. Now paid $1.00/$2.70 per 1M with a 4x usage promo.","died":"2026-10-16","name":"Step 5 Preview (free route)"},{"cause":"Deprecated in models.dev. Anonymous 23B-active MoE coder, identity never confirmed.","died":"2026-10-17","name":"ll-alpha-free"}],"models":[{"benchmarks":{"SWE-Bench Pro":"65.5","SWE-bench Verified":"80.9%","Terminal-Bench 2.1":"80.1"},"context":"1M","headline":"80.9% SWE-bench Verified — matches GLM-5.2, free and unlimited on OpenCode","id":"beam-free","lastVerified":"2026-10-21T09:17:00+05:30","name":"Reflection Beam 1.0","routes":[{"label":"beam-free","note":"Free, unlimited, limited time. 30-day retention, not used for training.","provider":"OpenCode Zen","status":"live"}],"tier":"frontier-grade"},{"benchmarks":{"Code Arena Elo":"1679","SWE-bench Verified":"93.4%","Terminal-Bench 2.1":"88.3%"},"context":"Long","headline":"Strongest free coding route today — #1 LMArena Frontend Code Arena","id":"kimi-k3","lastVerified":"2026-10-21T09:17:00+05:30","name":"Kimi K3","routes":[{"label":"hosted API","note":"Free hosted API. Phone verification needed, not all countries.","provider":"NVIDIA Build","status":"live"}],"tier":"frontier-grade"},{"benchmarks":{"Arena WebDev":"1670 pts","DeepSWE v1.1":"77.0%","Terminal-Bench 4.0":"42.3"},"context":"1M","headline":"#1 open model on Arena WebDev (1,670 pts) — the 20261017 checkpoint","id":"deepseek-v4.1-flash-1017","lastVerified":"2026-10-21T09:17:00+05:30","name":"DeepSeek V4.1 Flash 1017","routes":[{"label":"hosted API","note":"Free via NVIDIA Build. OpenRouter free endpoints are gone.","provider":"NVIDIA Build","status":"live"}],"tier":"frontier-grade"},{"benchmarks":{"AutomationBench-AA":"72.5%","Code Arena WebDev":"1588 pts","DeepSWE":"73.67%"},"context":"1M","headline":"The unmasked Space Bunny — five free routes, two windows closing 22 Oct","id":"minimax-m3.1-flash","lastVerified":"2026-10-21T09:17:00+05:30","name":"MiniMax M3.1 Flash","routes":[{"label":"minimax-m3.1-flash-free","note":"Free in/out/cache, unlimited monthly, limited time.","provider":"OpenCode Go","status":"live"},{"label":"free listing","note":"$0.00/$0.00 at 1M context.","provider":"Command Code","status":"live"},{"label":"free on account","note":"Free confirmed on a real user account; public page shows paid.","provider":"TokenRouter","status":"live"},{"label":"minimax/minimax-m3.1-flash:free","note":"72h launch window ends ~22 Oct, 08:42 IST. Then $0.15/$0.60 per 1M.","provider":"OpenRouter","status":"expiring"},{"label":"minimax/minimax-m3.1-flash","note":"Free until 22 Oct.","provider":"Vercel AI Gateway","status":"expiring"}],"tier":"promising"},{"benchmarks":{"SWE-bench Pro":"GLM-5.2 > GPT-5.5"},"context":"Long","headline":"Z.ai flagship flash — GLM-5.2 beats GPT-5.5 on SWE-bench Pro","id":"glm-5.3-flash","lastVerified":"2026-10-21T09:17:00+05:30","name":"GLM 5.3 Flash","routes":[{"label":"hosted API","note":"Free via NVIDIA Build. OpenRouter free endpoints are gone.","provider":"NVIDIA Build","status":"live"}],"tier":"frontier-grade"},{"benchmarks":{"Terminal-Bench 2.1":"89.4%"},"context":"Long","headline":"Google AI Studio free tier — 89.4% Terminal-Bench 2.1","id":"gemini-3.8-flash","lastVerified":"2026-10-21T09:17:00+05:30","name":"Gemini 3.8 Flash","routes":[{"label":"free tier","note":"Free tier in AI Studio. Intro pricing $0.75/$3.75 per 1M through 31 Dec 2026.","provider":"Google AI Studio","status":"live"}],"tier":"frontier-grade"},{"benchmarks":{"SWE-bench Verified (vendor)":"84.5%","TerminalBench 2.1 (vendor)":"81.2%"},"context":"Long","flags":["disputed"],"headline":"Vendor claims 84.5% SWE-bench Verified — identity disputed, treat with care","id":"ornith-1.5-122b","lastVerified":"2026-10-21T09:17:00+05:30","name":"Ornith 1.5 122B","routes":[{"label":"free listing","note":"Free until ~22 Oct, 11:30 IST. Model-washing dispute: suspected Qwen3.5 repack — unverified claims, no secrets.","provider":"Command Code","status":"expiring"}],"tier":"promising"},{"benchmarks":{},"context":"Long","headline":"Poolside free window with a hard expiry date — 31 Oct","id":"laguna-s-2.1","lastVerified":"2026-10-21T09:17:00+05:30","name":"Laguna S 2.1","routes":[{"label":"poolside/laguna-s-2.1:free","note":"Catalogue carries expiration_date 2026-10-31.","provider":"OpenRouter","status":"expiring"},{"label":"free listing","note":"Listed free on Command Code.","provider":"Command Code","status":"live"}],"tier":"promising"},{"benchmarks":{},"context":"Long","headline":"Standing free row on OpenCode Go","id":"longcat-2.5-preview","lastVerified":"2026-10-21T09:17:00+05:30","name":"LongCat 2.5 Preview","routes":[{"label":"longcat-2.5-preview-free","note":"Free row on the Go pricing page.","provider":"OpenCode Go","status":"live"}],"tier":"promising"}],"probeNote":"Seed snapshot from the daily stealth-model watch, 21 Oct 2026, 09:17 IST. Live probing replaces this file in v2."};</script>
+<script>
+const IST = "Asia/Kolkata";
+const CLOSING_MS = 24 * 60 * 60 * 1000;
+const WEEK_MS = 7 * CLOSING_MS;
+const SHOWN_ROUTES = 2;
+
+const $ = (id) => document.getElementById(id);
+
+const dateFmt = new Intl.DateTimeFormat("en-GB", {
+  timeZone: IST, day: "2-digit", month: "short", year: "numeric",
+});
+const clockFmt = new Intl.DateTimeFormat("en-GB", {
+  timeZone: IST, hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false,
+});
+
+const dateIST = (iso) => dateFmt.format(new Date(iso));
+const part = (parts, type) => parts.find((p) => p.type === type).value;
+const hmIST = (iso) => {
+  const p = clockFmt.formatToParts(new Date(iso));
+  return `${part(p, "hour")}:${part(p, "minute")}`;
+};
+
+function tick() {
+  const el = $("clock");
+  if (el) el.textContent = clockFmt.format(new Date());
+}
+
+const isLive = (m) => m.routes.some((r) => r.status === "live");
+const isExpiring = (m) => m.routes.some((r) => r.status === "expiring");
+
+const FILTERS = {
+  all: () => true,
+  live: isLive,
+  closing: isExpiring,
+  frontier: (m) => m.tier === "frontier-grade",
+};
+
+const esc = (s) =>
+  String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+
+const TIER = {
+  "frontier-grade": { cls: "tier--frontier", label: "Frontier-grade" },
+  promising: { cls: "tier--promising", label: "Promising" },
+};
+
+const STATUS = { live: "Live", expiring: "Expiring", dead: "Dead" };
+
+const pad2 = (n) => String(n).padStart(2, "0");
+
+function disputedBadge() {
+  return `<span class="disputed">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true">
+      <path d="M12 3.5 22 20.5H2z"/><path d="M12 10v4.5"/><path d="M12 17.6v.1"/>
+    </svg>Disputed</span>`;
+}
+
+function routeHTML(route, lastVerified) {
+  const status = STATUS[route.status] || "Dead";
+  return `<div class="route">
+    <div class="route__who">
+      <span class="route__provider">${esc(route.provider)}</span>
+      <span class="route__sep" aria-hidden="true">·</span>
+      <span class="route__slug" title="${esc(route.label)}">${esc(route.label)}</span>
+    </div>
+    <span class="pill pill--${esc(route.status)}">${status}</span>
+    <p class="route__note">${esc(route.note)}</p>
+    <span class="route__verify">verified ${esc(hmIST(lastVerified))} IST</span>
+  </div>`;
+}
+
+function routesHTML(routes, lastVerified) {
+  return `<div class="routes">${routes.map((r) => routeHTML(r, lastVerified)).join("")}</div>`;
+}
+
+function cardHTML(m, index) {
+  const tier = TIER[m.tier] || TIER.promising;
+  const disputed = Array.isArray(m.flags) && m.flags.includes("disputed");
+  const bench = Object.entries(m.benchmarks || {});
+  const total = m.routes.length;
+  const liveRoutes = m.routes.filter((r) => r.status === "live").length;
+  const head = m.routes.slice(0, SHOWN_ROUTES);
+  const rest = m.routes.slice(SHOWN_ROUTES);
+
+  return `<article class="model"${disputed ? ' data-flags="disputed"' : ""}>
+    <div class="model__num" aria-hidden="true">${pad2(index + 1)}</div>
+    <div class="model__body">
+      <div class="plinth">
+        <h3 class="plinth__name">${esc(m.name)}</h3>
+        <span class="plinth__ruler" aria-hidden="true"></span>
+        <span class="tier ${tier.cls}">${tier.label}</span>
+      </div>
+      <div class="under-name">
+        <span>context <b>${esc(m.context)}</b></span>
+        <span aria-hidden="true">·</span>
+        <span class="tally">${total} route${total === 1 ? "" : "s"} <b>${liveRoutes}/${total}</b> live</span>
+        ${disputed ? disputedBadge() : ""}
+      </div>
+      <p class="headline">${esc(m.headline)}</p>
+      ${bench.length ? `<div class="bench">${bench
+        .map(([k, v]) => `<span class="bench__chip"><span class="bench__k">${esc(k)}</span><span class="bench__v">${esc(v)}</span></span>`)
+        .join("")}</div>` : ""}
+      ${routesHTML(head, m.lastVerified)}
+      ${rest.length ? `<details class="more">
+        <summary><span class="more__rule" aria-hidden="true"></span><span>+${rest.length} more route${rest.length === 1 ? "" : "s"}</span><span class="more__rule" aria-hidden="true"></span></summary>
+        <div class="more__list"><div>${routesHTML(rest, m.lastVerified)}</div></div>
+      </details>` : ""}
+    </div>
+  </article>`;
+}
+
+function renderStats(data) {
+  const models = data.models;
+  const live = models.filter(isLive).length;
+  const routes = models.reduce((n, m) => n + m.routes.filter((r) => r.status === "live").length, 0);
+  const closing = models.filter(isExpiring).length;
+
+  const now = new Date(data.generatedAt).getTime();
+  const died = (data.graveyard || []).filter((g) => {
+    const t = new Date(g.died + "T00:00:00+05:30").getTime();
+    return t <= now + CLOSING_MS && t > now - WEEK_MS;
+  }).length;
+
+  $("stats").querySelectorAll("dd").forEach((dd, i) => {
+    dd.textContent = pad2([live, routes, closing, died][i]);
+  });
+
+  $("snapTime").textContent = `${dateIST(data.generatedAt)} · ${hmIST(data.generatedAt)}`;
+  if (data.probeNote) $("probe-note").textContent = data.probeNote;
+  document.title = `FREELINE — ${live} models free, ${closing} closing`;
+}
+
+function renderFilters(data) {
+  Object.keys(FILTERS).forEach((key) => {
+    const el = document.querySelector(`[data-count="${key}"]`);
+    if (el) el.textContent = pad2(data.models.filter(FILTERS[key]).length);
+  });
+}
+
+function renderGrave(graveyard) {
+  const list = $("grave-list");
+  if (!graveyard || !graveyard.length) {
+    list.innerHTML = `<li><span class="grave__date">—</span><span class="grave__name">Nothing has died yet.</span><span class="grave__cause">Every free route on the board is still holding its window.</span></li>`;
+    return;
+  }
+  list.innerHTML = graveyard
+    .slice()
+    .sort((a, b) => b.died.localeCompare(a.died))
+    .map((g) => `<li>
+      <span class="grave__date">${esc(dateIST(g.died + "T00:00:00+05:30"))}</span>
+      <span class="grave__name">${esc(g.name)}</span>
+      <span class="grave__cause">${esc(g.cause)}</span>
+    </li>`)
+    .join("");
+}
+
+function filterLabel(filter) {
+  const btn = document.querySelector(`button[data-filter="${filter}"]`);
+  return btn ? btn.textContent.replace(/\s*\d+\s*$/, "").trim().toLowerCase() : filter;
+}
+
+function renderEmpty(n, filter) {
+  const el = $("empty");
+  el.hidden = n > 0;
+  $("models").hidden = n === 0;
+  if (n > 0) return;
+  el.innerHTML = filter === "all"
+    ? `<b>The register came back empty.</b>data.json loaded but carried no models. Re-run the probe, or check the file is the snapshot you meant to publish.`
+    : `<b>Nothing on the register is ${esc(filterLabel(filter))} right now.</b>Try <a href="#board" data-reset>the full register</a> — the rest is still verified.`;
+}
+
+function applyFilter(data, filter) {
+  const keep = FILTERS[filter] || FILTERS.all;
+  const shown = data.models.filter(keep);
+  $("models").innerHTML = shown.map(cardHTML).join("");
+  $("models").setAttribute("aria-busy", "false");
+  document.querySelectorAll("button[data-filter]").forEach((b) => {
+    b.setAttribute("aria-pressed", String(b.dataset.filter === filter));
+  });
+  renderEmpty(shown.length, filter);
+}
+
+function fail(err) {
+  if (!$("empty")) return;
+  $("models").hidden = true;
+  const el = $("empty");
+  el.hidden = false;
+  el.innerHTML = `<b>The register could not load.</b>data.json did not come back (${esc(
+    err && err.message ? err.message : "unknown error"
+  )}). If you opened this file directly, serve the folder over http — a file:// page is blocked from reading data.json.`;
+}
+
+function start(data) {
+  // Each region renders on its own: a mismatched shell (stale HTML + new JS) costs that
+  // region, never the board — that skew is what took production down while fetching.
+  const region = (fn) => {
+    try { fn(); } catch (err) { if (window.__FREELINE_DEBUG__) throw err; }
+  };
+
+  region(() => {
+    renderStats(data);
+    renderFilters(data);
+  });
+  region(() => renderGrave(data.graveyard));
+  region(() => applyFilter(data, "all"));
+  region(() => $("models").setAttribute("aria-busy", "false"));
+
+  region(() => {
+    const routes = data.models.reduce((n, m) => n + m.routes.length, 0);
+    $("foot")?.insertAdjacentHTML(
+      "beforeend",
+      `<p class="foot__meta">${data.models.length} models · ${routes} routes · ${data.graveyard.length} dead · snapshot ${esc(
+        hmIST(data.generatedAt)
+      )} IST</p>`
+    );
+  });
+
+  $("filters")?.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-filter]");
+    if (btn) applyFilter(data, btn.dataset.filter);
+  });
+  $("empty")?.addEventListener("click", (e) => {
+    if (e.target.closest("[data-reset]")) {
+      e.preventDefault();
+      applyFilter(data, "all");
+    }
+  });
+}
+
+// ponytail: ONE yield before the first paint — <!--app:start--> is a second hand <script src> and
+// evaluates while <body> is still parsing, so paint after the parse rather than coupling to it.
+function loadData(done) {
+  if (window.__FREELINE_DATA__) return setTimeout(() => done(window.__FREELINE_DATA__), 0);
+  fetch("data.json", { cache: "no-store" })
+    .then((r) => {
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      return r.json();
+    })
+    .then(done)
+    .catch(fail);
+}
+
+tick();
+setInterval(tick, 1000);
+
+loadData(start);
+
+</script>
 </body>
 </html>
