@@ -306,28 +306,35 @@ a { color: var(--brass); text-underline-offset: 2px; }
 .model > .model__num,
 .model > .model__body { position: relative; z-index: 1; }
 
+/* Goes to another page: brass plus a trailing arrow, never the body-text colour. */
 .plinth__link {
-  color: inherit;
+  color: var(--brass);
   text-decoration: none;
   border-bottom: 1px solid transparent;
-  transition: border-color 160ms var(--e);
+  transition: border-color 160ms var(--e), color 160ms var(--e);
 }
-.plinth__link:hover { border-bottom-color: var(--brass-soft); }
+.plinth__link:hover { border-bottom-color: var(--brass); }
+.plinth__link:focus-visible { border-bottom-color: var(--brass); }
+
+.go { font-size: 0.95em; display: inline-block; transition: transform 160ms var(--e); }
+a:hover > .go, a:focus-visible > .go { transform: translateX(3px); }
 
 .full-page {
   display: inline-flex;
   align-items: center;
+  gap: 0.45em;
   min-height: 44px;
   margin-top: 2px;
   font-size: 11.5px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--ink-2);
+  color: var(--brass);
   text-decoration: none;
-  border-bottom: 1px solid var(--rule);
-  transition: color 160ms var(--e), border-color 160ms var(--e);
+  border-bottom: 1px solid transparent;
+  transition: border-color 160ms var(--e);
+  align-self: flex-start;
 }
-.full-page:hover { color: var(--brass); border-bottom-color: var(--brass-soft); }
+.full-page:hover, .full-page:focus-visible { border-bottom-color: var(--brass); }
 
 @media (hover: hover) {
   .model:hover::before { opacity: 1; }
@@ -528,29 +535,30 @@ a { color: var(--brass); text-underline-offset: 2px; }
 
 /* opener + panel: one expander per card */
 
+/* Opens in place: a bordered chip, deliberately not a link. */
 .opener {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
   width: 100%;
-  min-height: 44px;
+  min-height: 46px;
   margin-top: 14px;
-  padding: 10px 0;
-  border: 0;
-  border-top: 1px solid var(--rule-soft);
-  background: none;
-  color: var(--ink-2);
-  font-size: 12px;
-  letter-spacing: 0.1em;
+  padding: 10px 14px;
+  border: 1px solid var(--rule-strong);
+  background: color-mix(in srgb, var(--ink) 3%, transparent);
+  color: var(--ink);
+  font-size: 11.5px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   text-align: left;
   cursor: pointer;
-  transition: color 160ms var(--e);
+  transition: border-color 160ms var(--e), background-color 160ms var(--e), color 160ms var(--e);
 }
 
-.opener:hover { color: var(--brass); }
+.opener:hover { color: var(--ink); border-color: color-mix(in srgb, var(--ink) 45%, transparent); background: color-mix(in srgb, var(--ink) 7%, transparent); }
 .opener:active { transform: scale(0.995); }
+.model.is-open .opener { border-color: var(--brass-soft); }
 
 .opener__chev {
   width: 7px;
@@ -854,22 +862,25 @@ a { color: var(--brass); text-underline-offset: 2px; }
 }
 
 .back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
   font-size: 12px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--ink-2);
+  color: var(--brass);
   text-decoration: none;
-  border-bottom: 1px solid var(--rule);
-  padding: 8px 0;
+  border-bottom: 1px solid transparent;
+  padding: 10px 0;
 }
-.back:hover { color: var(--brass); border-bottom-color: var(--brass-soft); }
+.back:hover, .back:focus-visible { border-bottom-color: var(--brass); }
 
 .mpage { padding-top: clamp(28px, 5vw, 48px); }
 .mpage .plinth__name { font-size: clamp(24px, 4.5vw, 38px); }
 .mpage .headline { font-size: clamp(16px, 2.4vw, 19px); }
 
 .mpage__h {
-  margin-top: clamp(36px, 5vw, 52px);
+  margin-top: clamp(28px, 3.6vw, 38px);
   padding-bottom: 8px;
   border-bottom: 1px solid var(--rule);
   font-size: 11px;
@@ -880,7 +891,7 @@ a { color: var(--brass); text-underline-offset: 2px; }
 }
 
 .mroute {
-  padding: 18px 0 4px;
+  padding: 16px 0 4px;
   border-bottom: 1px solid var(--rule-soft);
 }
 
@@ -895,7 +906,7 @@ a { color: var(--brass); text-underline-offset: 2px; }
 .mroute__stamp { margin-top: 6px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); }
 
 .use {
-  margin: 12px 0 16px;
+  margin: 12px 0 12px;
   padding: 14px 16px;
   background: var(--panel);
   border: 1px solid var(--rule-soft);
@@ -916,30 +927,63 @@ a { color: var(--brass); text-underline-offset: 2px; }
 .use__steps { margin: 0; padding-left: 1.2em; font-size: 13.5px; line-height: 1.7; color: var(--ink-2); }
 
 .hist { margin-top: 4px; }
-.hist__lead { font-size: 14px; line-height: 1.6; color: var(--ink); max-width: 60ch; }
+
+.hist__track {
+  height: 4px;
+  margin: 12px 0 10px;
+  background: var(--rule-soft);
+  overflow: hidden;
+}
+.hist__bar {
+  display: block;
+  height: 100%;
+  width: var(--fill, 0%);
+  background: var(--brass);
+}
+
+.hist__trackline { font-size: 14px; line-height: 1.5; color: var(--ink-2); }
+.hist__trackline b { color: var(--ink); font-weight: 500; }
+
 .hist__empty { font-size: 14px; color: var(--ink-2); }
-.hist__note { margin-top: 8px; font-size: 12.5px; color: var(--ink-3); }
+.hist__note { margin-top: 10px; font-size: 12.5px; color: var(--ink-3); }
 
 .hist__marks {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 8px 12px;
   list-style: none;
-  margin: 12px 0 0;
+  margin: 14px 0 0;
   padding: 0;
 }
+
 .hist__mark {
-  width: 14px;
-  height: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+}
+.hist__mark::before {
+  content: "";
+  width: 13px;
+  height: 13px;
   border: 1px solid var(--rule-strong);
   transform: rotate(45deg);
+  transition: background-color 160ms var(--e);
 }
-.hist__mark--ok { background: var(--brass); border-color: var(--brass); }
-.hist__mark--bad { background: transparent; border-color: var(--flag); }
+.hist__mark--ok::before { background: var(--brass); border-color: var(--brass); }
+.hist__mark--bad::before { background: transparent; border-color: var(--flag); }
+.hist__mark--bad .hist__time { color: var(--flag); }
+.hist__time { font-variant-numeric: tabular-nums; }
 
 @media (max-width: 640px) {
   .use__code { font-size: 11.5px; }
 }
+
+.mpage .hist { margin-bottom: 0; }
+.mpage ~ .foot { margin-top: clamp(36px, 4.5vw, 56px); }
 
 
 </style>
@@ -953,7 +997,7 @@ a { color: var(--brass); text-underline-offset: 2px; }
         <span class="brand__rule" aria-hidden="true"></span>
         <span class="brand__sub">free AI models, checked live</span>
       </div>
-      <a class="back" href="../index.html">All models</a>
+      <a class="back" href="../index.html">All models <span class="go" aria-hidden="true">→</span></a>
     </div>
     <div class="frame" aria-hidden="true"></div>
   </header>
@@ -980,7 +1024,7 @@ a { color: var(--brass); text-underline-offset: 2px; }
           <span class="pill pill--expiring">Expiring</span>
         </div>
         <p class="mroute__note">Free on OpenRouter right now. The listing says it ends on 31 Oct.</p>
-        <p class="mroute__stamp">Checked by listing · last checked 21 Oct 2026 at 18:02 IST</p>
+        <p class="mroute__stamp">Last checked 21 Oct 2026 at 18:02 IST</p>
         <div class="use" data-kind="curl">
           <h4 class="use__title">Use it free in 1 minute</h4>
           <pre class="use__code"><code>curl https://openrouter.ai/api/v1/chat/completions \
@@ -996,7 +1040,7 @@ a { color: var(--brass); text-underline-offset: 2px; }
           <span class="pill pill--live">Live</span>
         </div>
         <p class="mroute__note">Listed as free on Command Code.</p>
-        <p class="mroute__stamp">Checked by listing · last checked 21 Oct 2026 at 18:02 IST</p>
+        <p class="mroute__stamp">Last checked 21 Oct 2026 at 18:02 IST</p>
         <div class="use" data-kind="steps">
           <h4 class="use__title">Use it free in 1 minute</h4>
           <ol class="use__steps"><li>Open Command Code.</li><li>Sign in, or ask us and we will walk you through it.</li><li>Pick the model and send a test message.</li><li>If it asks for a key, add yours in place of YOUR_KEY.</li></ol>
@@ -1004,15 +1048,40 @@ a { color: var(--brass); text-underline-offset: 2px; }
         </div>
       </section>
     <h2 class="mpage__h">History</h2>
-    <section class="hist" data-model="laguna-s-2.1" data-checks="11"><p class="hist__lead">From 11 checks since 21 Oct 2026: 11 passed, 0 failed. Last check 21 Oct, 18:02 IST.</p>
-      <ol class="hist__marks" aria-label="Recent checks, oldest first"><li class="hist__mark hist__mark--ok" title="21 Oct 2026 12:01 IST"><span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" title="21 Oct 2026 12:01 IST"><span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" title="21 Oct 2026 12:02 IST"><span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" title="21 Oct 2026 12:33 IST"><span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" title="21 Oct 2026 12:33 IST"><span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" title="21 Oct 2026 12:34 IST"><span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" title="21 Oct 2026 13:01 IST"><span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" title="21 Oct 2026 13:01 IST"><span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" title="21 Oct 2026 15:02 IST"><span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" title="21 Oct 2026 16:34 IST"><span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" title="21 Oct 2026 18:02 IST"><span class="visually-hidden">passed</span></li></ol>
-      <p class="hist__note">Each mark is one listing check we actually ran. No mark means we have no check in the log.</p></section>
+    <section class="hist" data-model="laguna-s-2.1" data-checks="11"><div class="hist__track" role="img" aria-label="11 of 11 checks passed">
+        <span class="hist__bar" style="--fill: 100%"></span>
+      </div>
+      <p class="hist__trackline"><b>11 of 11 checks passed</b> · listing checks, first one 21 Oct 2026</p>
+      <ol class="hist__marks" aria-label="Recent checks, oldest first"><li class="hist__mark hist__mark--ok" data-at="12:01 IST" title="21 Oct 2026 12:01 IST">
+          <time class="hist__time" datetime="2026-10-21T12:01:41+05:30">12:01</time>
+          <span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" data-at="12:01 IST" title="21 Oct 2026 12:01 IST">
+          <time class="hist__time" datetime="2026-10-21T12:01:57+05:30">12:01</time>
+          <span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" data-at="12:02 IST" title="21 Oct 2026 12:02 IST">
+          <time class="hist__time" datetime="2026-10-21T12:02:00+05:30">12:02</time>
+          <span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" data-at="12:33 IST" title="21 Oct 2026 12:33 IST">
+          <time class="hist__time" datetime="2026-10-21T12:33:38+05:30">12:33</time>
+          <span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" data-at="12:33 IST" title="21 Oct 2026 12:33 IST">
+          <time class="hist__time" datetime="2026-10-21T12:33:56+05:30">12:33</time>
+          <span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" data-at="12:34 IST" title="21 Oct 2026 12:34 IST">
+          <time class="hist__time" datetime="2026-10-21T12:34:02+05:30">12:34</time>
+          <span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" data-at="13:01 IST" title="21 Oct 2026 13:01 IST">
+          <time class="hist__time" datetime="2026-10-21T13:01:00+05:30">13:01</time>
+          <span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" data-at="13:01 IST" title="21 Oct 2026 13:01 IST">
+          <time class="hist__time" datetime="2026-10-21T13:01:08+05:30">13:01</time>
+          <span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" data-at="15:02 IST" title="21 Oct 2026 15:02 IST">
+          <time class="hist__time" datetime="2026-10-21T15:02:26+05:30">15:02</time>
+          <span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" data-at="16:34 IST" title="21 Oct 2026 16:34 IST">
+          <time class="hist__time" datetime="2026-10-21T16:34:16+05:30">16:34</time>
+          <span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" data-at="18:02 IST" title="21 Oct 2026 18:02 IST">
+          <time class="hist__time" datetime="2026-10-21T18:02:21+05:30">18:02</time>
+          <span class="visually-hidden">passed</span></li></ol>
+      <p class="hist__note">Each mark is one check we actually ran; the time is when it ran. A hollow mark is a failed check. No mark means no check in the log.</p></section>
   </main>
   <footer class="foot">
     <div class="frame" aria-hidden="true"></div>
     <p class="foot__line">Every status shows when we last checked it. A checked fact beats a listing.</p>
     <p class="foot__legend">History comes from our own check log, starting 21 Oct 2026. We do not show uptime we did not measure.</p>
-    <p class="foot__meta"><a href="../index.html">Back to all 9 models</a></p>
+    <p class="foot__meta"><a class="back" href="../index.html">Back to all 9 models <span class="go" aria-hidden="true">→</span></a></p>
   </footer>
 </div>
 </body>
