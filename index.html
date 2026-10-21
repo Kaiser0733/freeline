@@ -314,15 +314,17 @@ a { color: var(--brass); text-underline-offset: 2px; }
   transform: none;
 }
 
-/* Incoming rows after a filter change: shorter, tighter stagger. */
-.models.is-swapping .model {
-  animation: row-in 520ms var(--e-soft) both;
-  animation-delay: calc(var(--i, 0) * 40ms);
+/* Incoming rows after a filter change: explicit enter state, 420ms ease-out, 45ms stagger.
+   transform + opacity only. Scroll reveal above is untouched. */
+.models .model.is-entering {
+  opacity: 0;
+  transform: translate3d(0, 10px, 0);
 }
-
-@keyframes row-in {
-  from { opacity: 0; transform: translate3d(0, 8px, 0); }
-  to { opacity: 1; transform: none; }
+.models .model.is-entering.is-entered {
+  opacity: 1;
+  transform: none;
+  transition: opacity 420ms var(--e-soft), transform 420ms var(--e-soft);
+  transition-delay: calc(var(--i, 0) * 45ms);
 }
 
 .model__num {
@@ -771,9 +773,9 @@ a { color: var(--brass); text-underline-offset: 2px; }
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
   }
-  /* never hide content waiting for motion: reveals resolve to their final state */
+  /* never hide content waiting for motion: reveals and filter entries resolve instantly */
   .reveal-armed .model,
-  .models.is-swapping .model {
+  .models .model.is-entering {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
@@ -941,7 +943,7 @@ function cardHTML(m, index) {
   const liveRoutes = m.routes.filter((r) => r.status === "live").length;
   const panelId = `panel-${m.id.replace(/[^a-z0-9-]/gi, "")}`;
 
-  return `<article class="model" data-id="${esc(m.id)}"${disputed ? ' data-flags="disputed"' : ""}${m.routes.slice(SHOWN_ROUTES).some((r) => r.status === "expiring") ? ' data-hidden-expiring="true"' : ""}>
+  return `<article class="model${m.routes.slice(SHOWN_ROUTES).some((r) => r.status === "expiring") ? " has-hidden-expiring" : ""}" data-id="${esc(m.id)}"${disputed ? ' data-flags="disputed"' : ""}>
     <div class="model__num" aria-hidden="true">${pad2(index + 1)}</div>
     <div class="model__body">
       <div class="plinth">
@@ -1045,11 +1047,23 @@ function applyFilter(data, filter, fromClick) {
     b.setAttribute("aria-pressed", String(b.dataset.filter === filter));
   });
   renderEmpty(shown.length, filter);
-  revealBoard($("models"));
   const board = $("models");
-  board.classList.remove("is-swapping");
-  void board.offsetWidth;
-  if (fromClick && !calm()) board.classList.add("is-swapping");
+  if (fromClick && !calm()) {
+    // Incoming rows start hidden in a dedicated class, then transition to their final
+    // state after a forced reflow. Explicitly removes the scroll-reveal classes so the
+    // two mechanisms can never both own opacity.
+    board.classList.remove("reveal-armed");
+    const rows = [...board.querySelectorAll(".model")];
+    rows.forEach((r, i) => {
+      r.style.setProperty("--i", i);
+      r.classList.remove("is-in", "is-entering");
+      r.classList.add("is-entering");
+    });
+    void board.offsetWidth;
+    rows.forEach((r) => r.classList.add("is-entered"));
+    return;
+  }
+  revealBoard(board);
 }
 
 function fail(err) {
@@ -1113,7 +1127,6 @@ function revealBoard(board) {
   const rows = [...board.querySelectorAll("article.model")];
   rows.forEach((r, i) => {
     r.style.setProperty("--i", i);
-    if (r.dataset.hiddenExpiring === "true") r.classList.add("has-hidden-expiring");
   });
   if (calm() || !("IntersectionObserver" in window)) {
     board.classList.add("is-ready");
