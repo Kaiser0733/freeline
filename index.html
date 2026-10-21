@@ -276,15 +276,40 @@ a { color: var(--brass); text-underline-offset: 2px; }
 }
 
 .model {
+  position: relative;
   padding: 20px 0 4px;
   border-top: 1px solid var(--rule-soft);
   display: grid;
   grid-template-columns: 44px minmax(0, 1fr);
   column-gap: 16px;
-  transition: background-color 200ms var(--e);
 }
 .model:first-child { border-top: 0; }
-.model:hover { background-color: color-mix(in srgb, var(--ink) 2.2%, transparent); }
+
+/* One highlight box for the whole card, spanning the full row width (number column
+   included) and flush with the rule lines. Same box for hover and open. Drawn on the
+   article as a pseudo-element so it can bleed to the container edges without touching
+   layout or adding an inset layer. */
+.model::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(-1 * var(--pad));
+  right: calc(-1 * var(--pad));
+  background-color: color-mix(in srgb, var(--ink) 2.6%, transparent);
+  box-shadow: inset 0 1px 0 var(--rule-soft), inset 0 -1px 0 var(--rule-soft);
+  opacity: 0;
+  transition: opacity 200ms var(--e);
+  pointer-events: none;
+  z-index: 0;
+}
+.model > .model__num,
+.model > .model__body { position: relative; z-index: 1; }
+
+@media (hover: hover) {
+  .model:hover::before { opacity: 1; }
+}
+.model.is-open::before { opacity: 1; background-color: color-mix(in srgb, var(--ink) 3.4%, transparent); }
 
 /* The MiniMax-style case: the 2-route preview can hide an ending deal.
    If a hidden route is expiring, surface its pill on the closed card instead. */
@@ -301,21 +326,29 @@ a { color: var(--brass); text-underline-offset: 2px; }
 }
 .model.has-hidden-expiring .opener { color: var(--brass); border-top-color: var(--brass-soft); }
 
-/* Scroll reveal: armed by JS, played once on first sight, then left alone.
-   transform + opacity only, so nothing reflows while rows come in. */
+/* Scroll reveal: one wave. Cards in the same batch stagger by their position INSIDE that
+   batch (60ms apart, capped at 150ms total), never by their global list index — otherwise
+   a card far down the page sits invisible for over a second after it scrolls into view. */
 .reveal-armed .model {
   opacity: 0;
   transform: translate3d(0, 10px, 0);
-  transition: opacity 620ms var(--e-soft), transform 620ms var(--e-soft);
-  transition-delay: calc(var(--i, 0) * 70ms);
+  transition: opacity 500ms var(--e-soft), transform 500ms var(--e-soft);
+  transition-delay: var(--d, 0ms);
 }
 .reveal-armed .model.is-in {
   opacity: 1;
   transform: none;
+  transition-delay: 0ms;
 }
 
-/* Incoming rows after a filter change: explicit enter state, 420ms ease-out, 45ms stagger.
-   transform + opacity only. Scroll reveal above is untouched. */
+/* Covered filter swap: fade the whole board down fast so the row swap (and its height
+   jump) happens while it is invisible, then the new rows rise in. */
+.models {
+  transition: opacity 120ms var(--e);
+}
+.models.is-swapping { opacity: 0; }
+
+/* Incoming rows after a filter change: 350ms ease-out, 30ms stagger, transform + opacity only. */
 .models .model.is-entering {
   opacity: 0;
   transform: translate3d(0, 10px, 0);
@@ -323,8 +356,8 @@ a { color: var(--brass); text-underline-offset: 2px; }
 .models .model.is-entering.is-entered {
   opacity: 1;
   transform: none;
-  transition: opacity 420ms var(--e-soft), transform 420ms var(--e-soft);
-  transition-delay: calc(var(--i, 0) * 45ms);
+  transition: opacity 350ms var(--e-soft), transform 350ms var(--e-soft);
+  transition-delay: calc(var(--i, 0) * 30ms);
 }
 
 .model__num {
@@ -782,6 +815,8 @@ a { color: var(--brass); text-underline-offset: 2px; }
     animation: none !important;
   }
   .panel { opacity: 1 !important; transform: none !important; }
+  /* reduced motion gets the instant swap: never fade the board out */
+  .models, .models.is-swapping { opacity: 1 !important; transition: none !important; }
 }
 
 </style>
@@ -1041,28 +1076,44 @@ function renderEmpty(n, filter) {
 function applyFilter(data, filter, fromClick) {
   const keep = FILTERS[filter] || FILTERS.all;
   const shown = data.models.filter(keep);
-  $("models").innerHTML = shown.map(cardHTML).join("");
-  $("models").setAttribute("aria-busy", "false");
-  document.querySelectorAll("button[data-filter]").forEach((b) => {
-    b.setAttribute("aria-pressed", String(b.dataset.filter === filter));
-  });
-  renderEmpty(shown.length, filter);
   const board = $("models");
-  if (fromClick && !calm()) {
-    // Incoming rows start hidden in a dedicated class, then transition to their final
-    // state after a forced reflow. Explicitly removes the scroll-reveal classes so the
-    // two mechanisms can never both own opacity.
-    board.classList.remove("reveal-armed");
-    const rows = [...board.querySelectorAll(".model")];
-    rows.forEach((r, i) => {
-      r.style.setProperty("--i", i);
-      r.classList.remove("is-in", "is-entering");
-      r.classList.add("is-entering");
+
+  const swap = () => {
+    board.innerHTML = shown.map(cardHTML).join("");
+    board.setAttribute("aria-busy", "false");
+    document.querySelectorAll("button[data-filter]").forEach((b) => {
+      b.setAttribute("aria-pressed", String(b.dataset.filter === filter));
     });
+    renderEmpty(shown.length, filter);
+  };
+
+  const ack = () => {
+    if (!fromClick || calm()) return;
+    // Covered swap: the board fades out fast (120ms), the rows are replaced while it is
+    // invisible, then the new rows rise in (350ms, 30ms apart). The height jump happens
+    // behind the fade instead of in front of the user.
+    board.classList.remove("is-swapping");
     void board.offsetWidth;
-    rows.forEach((r) => r.classList.add("is-entered"));
+    board.classList.add("is-swapping");
+    setTimeout(() => {
+      swap();
+      board.classList.remove("is-swapping");
+      const rows = [...board.querySelectorAll(".model")];
+      rows.forEach((r, i) => {
+        r.style.setProperty("--i", i);
+        r.classList.remove("is-in", "is-entering");
+        r.classList.add("is-entering");
+      });
+      void board.offsetWidth;
+      rows.forEach((r) => r.classList.add("is-entered"));
+    }, 120);
+  };
+
+  if (fromClick && !calm()) {
+    ack();
     return;
   }
+  swap();
   revealBoard(board);
 }
 
@@ -1125,21 +1176,23 @@ function wireCards(board) {
 // Reveal once, on first sight. Cards already on screen at load get no stagger.
 function revealBoard(board) {
   const rows = [...board.querySelectorAll("article.model")];
-  rows.forEach((r, i) => {
-    r.style.setProperty("--i", i);
-  });
   if (calm() || !("IntersectionObserver" in window)) {
     board.classList.add("is-ready");
     return;
   }
   board.classList.add("reveal-armed");
+  // One observer callback = one batch. Delay is computed per batch, so a card never
+  // waits on rows that scrolled into view long before it.
   const io = new IntersectionObserver(
     (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add("is-in");
-        io.unobserve(entry.target);
-      });
+      const arriving = entries.filter((e) => e.isIntersecting);
+      arriving
+        .sort((a, b) => rows.indexOf(a.target) - rows.indexOf(b.target))
+        .forEach((entry, i) => {
+          entry.target.style.setProperty("--d", `${Math.min(i * 60, 150)}ms`);
+          entry.target.classList.add("is-in");
+          io.unobserve(entry.target);
+        });
     },
     { rootMargin: "0px 0px -8% 0px", threshold: 0.08 }
   );
