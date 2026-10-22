@@ -200,14 +200,6 @@ a { color: var(--brass); text-underline-offset: 2px; }
   font: 400 clamp(32px, 5vw, 46px)/1 var(--serif);
   letter-spacing: -0.01em;
   color: var(--ink);
-  display: block;
-  position: relative;
-}
-
-.stat dd.has-count .stat__count {
-  position: absolute;
-  inset: 0;
-  display: block;
 }
 
 .stats__note {
@@ -1614,42 +1606,6 @@ function revealBoard(board) {
   board.classList.add("is-ready");
 }
 
-function countStats() {
-  const cells = [...$("stats").querySelectorAll("dd")];
-  const run = (dd) => {
-    const target = dd.textContent;
-    if (calm() || !/^\d{2}$/.test(target)) return;
-    const value = dd.cloneNode(true);
-    value.setAttribute("aria-hidden", "true");
-    value.className = "stat__count";
-    dd.dataset.value = target;
-    dd.classList.add("has-count");
-    dd.textContent = "";
-    dd.append(value);
-    const from = performance.now();
-    const step = (now) => {
-      const t = Math.min(1, (now - from) / 700);
-      value.textContent = pad2(Math.round(Number(target) * (1 - Math.pow(1 - t, 3))));
-      if (t < 1) requestAnimationFrame(step);
-      else {
-        dd.textContent = target;
-        dd.classList.remove("has-count");
-      }
-    };
-    requestAnimationFrame(step);
-  };
-  if (calm() || !("IntersectionObserver" in window)) return;
-  const io = new IntersectionObserver(
-    (entries) => {
-      if (!entries.some((e) => e.isIntersecting)) return;
-      cells.forEach(run);
-      io.disconnect();
-    },
-    { threshold: 0.4 }
-  );
-  io.observe($("stats"));
-}
-
 function start(data) {
   const region = (fn) => {
     try { fn(); } catch (err) { if (window.__FREELINE_DEBUG__) throw err; }
@@ -1666,7 +1622,6 @@ function start(data) {
   });
   region(wirePicker);
   region(() => revealBoard($("models")));
-  region(countStats);
   region(() => $("models").setAttribute("aria-busy", "false"));
 
   region(() => {
