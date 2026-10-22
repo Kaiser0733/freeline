@@ -985,6 +985,186 @@ a:hover > .go, a:focus-visible > .go { transform: translateX(3px); }
 .mpage .hist { margin-bottom: 0; }
 .mpage ~ .foot { margin-top: clamp(36px, 4.5vw, 56px); }
 
+/* ---------- best pick ---------- */
+
+.pick { margin-top: clamp(22px, 3vw, 30px); }
+
+.pick__head {
+  display: flex;
+  align-items: baseline;
+  gap: 6px 24px;
+  flex-wrap: wrap;
+}
+
+.pick__title {
+  font: 400 clamp(18px, 2.6vw, 22px)/1.25 var(--serif);
+  letter-spacing: 0.01em;
+  color: var(--ink);
+}
+
+.pick__note { font-size: 12.5px; line-height: 1.5; color: var(--ink-2); max-width: 52ch; }
+
+.pick__jobs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.pick__job {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink-2);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 140ms var(--e), border-color 140ms var(--e), background-color 140ms var(--e), transform 100ms var(--e);
+}
+.pick__job:hover { color: var(--ink); border-color: var(--brass-soft); }
+.pick__job:active { transform: scale(0.97); }
+
+.pick__job[aria-pressed="true"] {
+  color: var(--ground);
+  background: var(--ink);
+  border-color: var(--ink);
+}
+
+.pick__job.is-off { opacity: 0.5; cursor: not-allowed; }
+
+.pick__result {
+  display: grid;
+  justify-items: start;
+  gap: 4px;
+  margin-top: 14px;
+  padding: 12px 16px 10px;
+  border-left: 1px solid var(--brass-soft);
+  background: var(--panel);
+  min-height: 44px;
+}
+.pick__result > :empty + * { margin-top: 0; }
+.pick__result:has(.pick__pick:only-child) { display: none; }
+
+.pick__pick { font: 400 clamp(19px, 2.8vw, 23px)/1.15 var(--serif); color: var(--ink); }
+.pick__why { font-size: 13.5px; line-height: 1.5; color: var(--ink-2); max-width: 60ch; text-wrap: pretty; }
+.pick__page { margin-top: 2px; }
+
+/* ---------- pages: graveyard, how we check ---------- */
+
+.gpage, .hpage { padding-top: clamp(28px, 5vw, 48px); }
+
+.mpage__title {
+  font: 400 clamp(30px, 5vw, 44px)/1.05 var(--serif);
+  letter-spacing: 0.01em;
+  color: var(--ink);
+}
+
+.gpage__head {
+  display: grid;
+  gap: 12px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--rule-strong);
+}
+
+.gpage__lede { font-size: clamp(15px, 2vw, 16.5px); line-height: 1.6; color: var(--ink-2); max-width: 58ch; text-wrap: pretty; }
+
+.glist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.glist > .grave {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  column-gap: 16px;
+  padding: 20px 0 18px;
+  border-top: 1px solid var(--rule-soft);
+}
+.glist > .grave:first-child { border-top: 0; }
+
+.grave__num { font-size: 12px; letter-spacing: 0.1em; color: var(--ink-3); line-height: 1.75; }
+
+.grave__top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.glist .grave__name {
+  font: 400 clamp(19px, 2.8vw, 23px)/1.2 var(--serif);
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+  text-decoration: line-through;
+  text-decoration-color: color-mix(in srgb, var(--ink-3) 70%, transparent);
+  text-decoration-thickness: 1px;
+}
+
+.grave__ruler {
+  flex: 1 1 24px;
+  min-width: 12px;
+  height: 7px;
+  align-self: center;
+  border-bottom: 1px solid var(--rule);
+  background: repeating-linear-gradient(90deg, var(--rule) 0 1px, transparent 1px 6px) 0 100% / 100% 3px no-repeat;
+}
+
+.glist .grave__date { flex: none; white-space: nowrap; }
+
+.glist .grave__cause { margin-top: 6px; }
+
+.gpage__count { margin-top: 14px; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); }
+
+.how {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.how__step {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  column-gap: 16px;
+  padding: 18px 0 20px;
+  border-top: 1px solid var(--rule-soft);
+}
+.how__step:first-child { border-top: 0; }
+
+.how__num { font-size: 12px; letter-spacing: 0.1em; color: var(--ink-3); line-height: 1.6; }
+.how__title { font: 400 clamp(18px, 2.4vw, 21px)/1.25 var(--serif); color: var(--ink); }
+.how__text { margin-top: 6px; font-size: 14.5px; line-height: 1.6; color: var(--ink-2); max-width: 62ch; text-wrap: pretty; }
+
+.how__claim {
+  margin-top: 22px;
+  font: 400 clamp(22px, 3.4vw, 30px)/1.15 var(--serif);
+  letter-spacing: 0.005em;
+  color: var(--ink);
+  max-width: 24ch;
+  text-wrap: balance;
+}
+
+.how__kinds { margin-top: 16px; font-size: 13px; line-height: 1.6; color: var(--ink-2); max-width: 62ch; }
+
+.grave__head .back { align-self: center; }
+
+@media (max-width: 430px) {
+  .pick__job { padding: 0 14px; }
+  .glist > .grave, .how__step { grid-template-columns: minmax(0, 1fr); row-gap: 4px; }
+  .grave__ruler, .grave__num { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pick__result, .pick__job { transition: none !important; }
+}
+
 
 </style>
 </head>
@@ -1032,13 +1212,16 @@ a:hover > .go, a:focus-visible > .go { transform: translateX(3px); }
         </div>
       </section>
     <h2 class="mpage__h">History</h2>
-    <section class="hist" data-model="gemini-3.8-flash" data-checks="0"><p class="hist__empty">We have not run a check on this model yet. The first check will appear here.</p></section>
+    <section class="hist" data-model="gemini-3.8-flash" data-checks="0"><p class="hist__empty"><b>No probe checks yet.</b> No checks have run on this model, so there is nothing to show here. For now this model is checked by hand.</p></section>
   </main>
   <footer class="foot">
     <div class="frame" aria-hidden="true"></div>
     <p class="foot__line">Every status shows when we last checked it. A checked fact beats a listing.</p>
-    <p class="foot__legend">History comes from our own check log, starting 22 Oct 2026. We do not show uptime we did not measure.</p>
+    <p class="foot__legend">History comes from our own check log, starting 21 Oct 2026. We do not show uptime we did not measure.</p>
+    <p class="foot__meta">This history only shows checks our probe makes. For now this model is checked by hand.</p>
     <p class="foot__meta"><a class="back" href="../index.html">Back to all 9 models <span class="go" aria-hidden="true">→</span></a></p>
+    <p class="foot__meta"><a class="back" href="../how-we-check.html">How we check <span class="go" aria-hidden="true">→</span></a></p>
+    <p class="foot__meta"><a class="back" href="../graveyard.html">The graveyard <span class="go" aria-hidden="true">→</span></a></p>
   </footer>
 </div>
 </body>
