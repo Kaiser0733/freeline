@@ -200,6 +200,22 @@ a { color: var(--brass); text-underline-offset: 2px; }
   font: 400 clamp(32px, 5vw, 46px)/1 var(--serif);
   letter-spacing: -0.01em;
   color: var(--ink);
+  display: block;
+  position: relative;
+}
+
+.stat dd.has-count .stat__count {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.stats__note {
+  margin-top: 10px;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  max-width: 78ch;
 }
 
 .stat dt {
@@ -1200,11 +1216,12 @@ a:hover > .go, a:focus-visible > .go { transform: translateX(3px); }
       <div class="stat stat--warn"><dt>Ending in the next 24h</dt><dd>—</dd></div>
       <div class="stat"><dt>Free routes died this week</dt><dd>—</dd></div>
     </dl>
+    <p class="stats__note" id="stats-note"></p>
 
 <section class="pick" id="pick" aria-labelledby="pick-title">
     <div class="pick__head">
       <h2 class="pick__title" id="pick-title">Best free model for your job, right now</h2>
-      <p class="pick__note">Picked from the list above, and only a model with a live route can win.</p>
+      <p class="pick__note">Picked from the list below, and only a model with a live route can win.</p>
     </div>
     <nav class="pick__jobs" aria-label="Choose your job"><a class="pick__job" href="?job=code" data-pick="code" data-name="Kimi K3" data-reason="Top coding scores on record, with a live free route (1 of 1 route is live)." data-href="model/kimi-k3.html">Writing code</a><a class="pick__job" href="?job=long" data-pick="long" data-name="Reflection Beam 1.0" data-reason="1M context, the largest on the board, with a live free route (1 of 1 route is live)." data-href="model/beam-free.html">Long documents</a><a class="pick__job" href="?job=quick" data-pick="quick" data-name="Gemini 3.8 Flash" data-reason="Fast mid-size class, with a live free route (1 of 1 route is live)." data-href="model/gemini-3-8-flash.html">Quick answers</a></nav>
     <div class="pick__result" aria-live="polite"><p class="pick__why">No model on the board fits this job with a live route right now. Check the list above.</p></div>
@@ -1387,6 +1404,14 @@ function renderStats(data) {
   $("stats").querySelectorAll("dd").forEach((dd, i) => {
     dd.textContent = pad2([live, routes, closing, died][i]);
   });
+
+  const endingOnly = models.filter((m) => isExpiring(m) && !isLive(m));
+  const note = $("stats-note");
+  if (note) {
+    note.textContent = endingOnly.length
+      ? `${models.length} models are listed. ${live} have a free route working right now. ${endingOnly.map((m) => m.name).join(" and ")} only ${endingOnly.length === 1 ? "has" : "have"} a free route that is ending, so ${endingOnly.length === 1 ? "it is" : "they are"} not counted above.`
+      : `${models.length} models are listed, and all of them have a free route working right now.`;
+  }
 
   $("snapTime").textContent = `${dateIST(data.generatedAt)} · ${hmIST(data.generatedAt)}`;
   if (data.probeNote) $("probe-note").textContent = data.probeNote;
@@ -1594,12 +1619,22 @@ function countStats() {
   const run = (dd) => {
     const target = dd.textContent;
     if (calm() || !/^\d{2}$/.test(target)) return;
-    dd.textContent = "00";
+    const value = dd.cloneNode(true);
+    value.setAttribute("aria-hidden", "true");
+    value.className = "stat__count";
+    dd.dataset.value = target;
+    dd.classList.add("has-count");
+    dd.textContent = "";
+    dd.append(value);
     const from = performance.now();
     const step = (now) => {
       const t = Math.min(1, (now - from) / 700);
-      dd.textContent = pad2(Math.round(Number(target) * (1 - Math.pow(1 - t, 3))));
+      value.textContent = pad2(Math.round(Number(target) * (1 - Math.pow(1 - t, 3))));
       if (t < 1) requestAnimationFrame(step);
+      else {
+        dd.textContent = target;
+        dd.classList.remove("has-count");
+      }
     };
     requestAnimationFrame(step);
   };
