@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#0b1210">
+<link rel="alternate" type="application/rss+xml" title="Freeline changes" href="https://kaiser0733.github.io/freeline/feed.xml">
 <meta name="description" content="Free AI offers that ended, with the date each one died and what happened.">
 <title>The graveyard — FREELINE</title>
 <style>
@@ -326,6 +327,22 @@ a { color: var(--brass); text-underline-offset: 2px; }
 
 .go { font-size: 0.95em; display: inline-block; transition: transform 160ms var(--e); }
 a:hover > .go, a:focus-visible > .go { transform: translateX(3px); }
+
+.foot__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  min-height: 44px;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--brass);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 160ms var(--e);
+}
+.foot__link:hover, .foot__link:focus-visible { border-bottom-color: var(--brass); }
+.foot__alerts { margin-top: 6px; }
 
 .full-page {
   display: inline-flex;
@@ -1248,6 +1265,7 @@ a:hover > .go, a:focus-visible > .go { transform: translateX(3px); }
   <footer class="foot">
     <div class="frame" aria-hidden="true"></div>
     <p class="foot__line">A free offer that ends still matters. It tells you what to stop counting on.</p>
+    <p class="foot__alerts"><a class="foot__link" href="feed.xml">Get alerts for new free models and dead routes <span class="go" aria-hidden="true">→</span></a></p>
     <p class="foot__meta"><a class="back" href="index.html">Back to the live board <span class="go" aria-hidden="true">→</span></a></p>
     <p class="foot__meta"><a class="back" href="how-we-check.html">How we check <span class="go" aria-hidden="true">→</span></a></p>
   </footer>
