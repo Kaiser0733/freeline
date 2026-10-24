@@ -30,6 +30,11 @@
   --pad: clamp(16px, 4vw, 40px);
   --e: cubic-bezier(0.2, 0, 0, 1);
   --e-soft: cubic-bezier(0.16, 0.84, 0.24, 1);
+  --e-rise: cubic-bezier(0.2, 0.6, 0.2, 1);
+  --e-hover: cubic-bezier(0.2, 0.6, 0.2, 1);
+  --plate-top: color-mix(in srgb, #fff 6%, transparent);
+  --plate-lift: color-mix(in srgb, var(--ink) 5%, transparent);
+  --plate-inner: color-mix(in srgb, #fff 5%, transparent);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -64,7 +69,6 @@ a { color: var(--brass); text-underline-offset: 2px; }
   color: var(--ground);
   font-size: 13px;
   text-decoration: none;
-  transition: top 160ms var(--e);
 }
 .skip:focus { top: 12px; }
 
@@ -728,12 +732,7 @@ a:hover > .go, a:focus-visible > .go { transform: translateX(3px); }
     linear-gradient(var(--rule-soft) 0 0) 60px 26px / 38% 20px no-repeat,
     linear-gradient(var(--rule-soft) 0 0) 60px 58px / 72% 10px no-repeat,
     linear-gradient(var(--rule-soft) 0 0) 60px 96px / 100% 44px no-repeat;
-  animation: pulse 1.6s var(--e) infinite alternate;
 }
-.skel:nth-child(2) { animation-delay: 140ms; }
-.skel:nth-child(3) { animation-delay: 280ms; }
-
-@keyframes pulse { from { opacity: 0.4; } to { opacity: 1; } }
 
 .empty {
   margin: 20px 0 0;
@@ -869,6 +868,7 @@ a:hover > .go, a:focus-visible > .go { transform: translateX(3px); }
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
+    will-change: auto !important;
   }
   /* never hide content waiting for motion: reveals and filter entries resolve instantly */
   .reveal-armed .model,
@@ -1387,6 +1387,219 @@ a:hover > .go, a:focus-visible > .go { transform: translateX(3px); }
   .nvrow__ruler { display: none; }
   .nvrow__maker { order: 3; }
 }
+/* ---- Step 15: finish and motion. Append-only; nothing above changes meaning. ---- */
+
+
+
+html { scrollbar-color: var(--brass-soft) var(--ground); scrollbar-width: thin; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--ground); }
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--brass) 26%, transparent);
+  border: 2px solid var(--ground);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover { background: color-mix(in srgb, var(--brass) 44%, transparent); }
+
+::selection { background: var(--brass); color: var(--ground); }
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 3px;
+  box-shadow: none;
+}
+
+.skip:focus { top: 12px; }
+
+/* ---- A. clickables read as clickable at rest ---- */
+
+.foot__link,
+.back,
+.full-page,
+.alertrow__title,
+.how__link {
+  border-bottom-color: color-mix(in srgb, var(--brass) 40%, transparent);
+  transition: border-color 200ms var(--e-hover), color 200ms var(--e-hover);
+}
+.foot__link:hover,
+.foot__link:focus-visible,
+.back:hover,
+.back:focus-visible,
+.full-page:hover,
+.full-page:focus-visible,
+.alertrow__title:hover,
+.alertrow__title:focus-visible {
+  border-bottom-color: var(--brass);
+}
+.go { transition: transform 200ms var(--e-hover); }
+a:hover > .go, a:focus-visible > .go { transform: translateX(2px); }
+
+.foot__meta .back, .foot__meta .foot__link { min-height: 44px; align-items: center; }
+
+.chip {
+  background: var(--panel);
+  border-color: var(--rule-strong);
+  color: var(--ink-2);
+  min-height: 44px;
+  height: auto;
+  padding: 0 16px;
+  transition: color 200ms var(--e-hover), border-color 200ms var(--e-hover),
+    background-color 200ms var(--e-hover), transform 120ms var(--e-hover);
+}
+.chip:hover { color: var(--ink); border-color: var(--brass); background: var(--plate-lift); }
+.chip:active { transform: scale(0.98); }
+.chip[aria-pressed="true"] { border-color: var(--brass); }
+
+.copy {
+  min-height: 44px;
+  border-color: var(--rule-strong);
+  background: var(--panel);
+  transition: border-color 200ms var(--e-hover), background-color 200ms var(--e-hover), transform 120ms var(--e-hover);
+}
+.copy:hover { border-color: var(--brass); background: var(--plate-lift); }
+.copy:active { transform: scale(0.98); }
+
+.model { cursor: pointer; }
+.model::before { transition: opacity 200ms var(--e-hover), background-color 200ms var(--e-hover), box-shadow 200ms var(--e-hover); }
+.model:hover::before,
+.model:focus-within::before { box-shadow: inset 1px 0 0 var(--brass-soft), inset -1px 0 0 var(--brass-soft); }
+.full-page .go { opacity: 0.55; transition: opacity 200ms var(--e-hover), transform 200ms var(--e-hover); }
+.model:hover .full-page .go,
+.model:focus-within .full-page .go { opacity: 1; transform: translateX(2px); }
+
+.nvrow { cursor: pointer; }
+.nvrow { transition: background-color 200ms var(--e-hover), box-shadow 200ms var(--e-hover); }
+.nvrow:hover, .nvrow:focus-within {
+  background-color: var(--plate-lift);
+  box-shadow: inset 1px 0 0 var(--brass-soft), inset -1px 0 0 var(--brass-soft);
+}
+.nvrow__link { border-bottom-color: color-mix(in srgb, var(--brass) 40%, transparent); }
+.nvrow__link:hover, .nvrow__link:focus-visible { border-bottom-color: var(--brass); }
+
+.alertrow { min-height: 44px; align-items: center; transition: background-color 200ms var(--e-hover); }
+.alertrow:hover, .alertrow:focus-within { background-color: var(--plate-lift); }
+
+/* ---- B. premium finish ---- */
+
+body {
+  background:
+    radial-gradient(90% 55% at 50% -8%, color-mix(in srgb, var(--brass) 3.6%, transparent), transparent 62%),
+    var(--ground);
+  background-attachment: scroll;
+}
+
+.plinth__name, .mpage__title, .grave__name, .nvrow__name, .brand__word { letter-spacing: -0.012em; }
+.label, .nvrow__maker, .nvstamp, .alertrow__date, .hist__time { letter-spacing: 0.18em; }
+
+.bench__v { font-size: 17px; font-variant-numeric: tabular-nums; }
+.bench__k { font-size: 10px; }
+
+.panel,
+.feedbox,
+.use,
+.noroute,
+.mroute .use {
+  border: 1px solid var(--plate-top);
+  box-shadow: inset 0 1px 0 var(--plate-inner);
+}
+
+.models > .model::after,
+.glist > .grave::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--brass) 25%, transparent), transparent);
+  pointer-events: none;
+}
+.models > .model, .glist > .grave { position: relative; }
+
+.frame {
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--brass) 25%, transparent) 18%,
+    color-mix(in srgb, var(--brass) 25%, transparent) 82%, transparent);
+}
+
+/* ---- C. motion ---- */
+
+@keyframes livePulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.55; transform: scale(0.82); }
+}
+.pill--live::before { animation: livePulse 2.4s ease-in-out infinite; }
+
+@keyframes riseIn {
+  from { opacity: 0; transform: translate3d(0, 12px, 0); }
+  to { opacity: 1; transform: none; }
+}
+
+.mast__row, .mpage > h1, .mpage > .plinth, .hero {
+  animation: riseIn 440ms var(--e-rise) both;
+}
+.mast__row { animation-delay: 0ms; }
+.mpage > h1, .mpage > .plinth, .hero { animation-delay: 60ms; }
+
+.reveal-armed .model {
+  transition: opacity 460ms var(--e-rise), transform 460ms var(--e-rise);
+  will-change: transform, opacity;
+}
+.reveal-armed .model.is-in { will-change: auto; }
+
+[data-reveal] { opacity: 1; transform: none; }
+.reveal-armed [data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 12px, 0);
+  transition: opacity 460ms var(--e-rise), transform 460ms var(--e-rise);
+  transition-delay: var(--d, 0ms);
+  will-change: transform, opacity;
+}
+.reveal-armed [data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+  transition-delay: var(--d, 0ms);
+  will-change: auto;
+}
+
+.reveal-armed .hist__mark { transform-origin: bottom center; }
+.reveal-armed .hist__mark::before {
+  transition: transform 420ms var(--e-rise), opacity 420ms var(--e-rise);
+  transition-delay: var(--d, 0ms);
+}
+.reveal-armed .hist__mark.is-pending::before { transform: scaleY(0); opacity: 0; }
+.reveal-armed .hist__mark.is-in::before { transform: scaleY(1); opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    will-change: auto !important;
+  }
+  .skip { transform: none !important; top: 0 !important; }
+  .reveal-armed [data-reveal],
+  .reveal-armed .hist__mark::before,
+  .reveal-armed .hist__mark.is-pending::before {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+.nvrow__go { opacity: 0.4; margin-left: 2px; font-size: 0.8em; transition: opacity 200ms var(--e-hover), transform 200ms var(--e-hover); }
+.nvrow:hover .nvrow__go,
+.nvrow:focus-within .nvrow__go,
+.nvrow__link:focus-visible .nvrow__go { opacity: 1; transform: translateX(2px); }
+.nvrow__link { text-decoration: none; }
+
+.nvrow__link { display: inline-flex; align-items: center; min-height: 44px; letter-spacing: 0; }
+.alertrow__title { display: inline-flex; align-items: center; min-height: 44px; }
+.full-page, .back, .foot__link { letter-spacing: 0.1em; }
+
+.back { min-height: 44px; }
+.foot__link.back, .foot__meta .back { min-height: 44px; }
 
 
 </style>
@@ -1409,7 +1622,7 @@ a:hover > .go, a:focus-visible > .go { transform: translateX(3px); }
       <h1 class="mpage__title">The graveyard</h1>
       <p class="gpage__lede">Free offers that have ended. We keep every one here, with the date it died and what happened, so you know what is gone and why.</p>
     </div>
-    <ol class="glist" aria-label="Ended free offers, newest first"><li class="grave">
+    <ol class="glist" aria-label="Ended free offers, newest first"><li class="grave" data-reveal>
       <span class="grave__num" aria-hidden="true">01</span>
       <div class="grave__body">
         <div class="grave__top">
@@ -1419,7 +1632,7 @@ a:hover > .go, a:focus-visible > .go { transform: translateX(3px); }
         </div>
         <p class="grave__cause">Removed from the llmroster free list. The Nous Portal free route looks delisted. People guessed it was Kimi K3.1, but nobody confirmed it.</p>
       </div>
-    </li><li class="grave">
+    </li><li class="grave" data-reveal>
       <span class="grave__num" aria-hidden="true">02</span>
       <div class="grave__body">
         <div class="grave__top">
@@ -1429,7 +1642,7 @@ a:hover > .go, a:focus-visible > .go { transform: translateX(3px); }
         </div>
         <p class="grave__cause">Marked deprecated on models.dev. A small 23B model with no confirmed name.</p>
       </div>
-    </li><li class="grave">
+    </li><li class="grave" data-reveal>
       <span class="grave__num" aria-hidden="true">03</span>
       <div class="grave__body">
         <div class="grave__top">
@@ -1439,7 +1652,7 @@ a:hover > .go, a:focus-visible > .go { transform: translateX(3px); }
         </div>
         <p class="grave__cause">Removed from OpenCode Zen and replaced by beam-free the same day. It scored 60.8% on LiveBench: good, but not top tier.</p>
       </div>
-    </li><li class="grave">
+    </li><li class="grave" data-reveal>
       <span class="grave__num" aria-hidden="true">04</span>
       <div class="grave__body">
         <div class="grave__top">
@@ -1461,5 +1674,44 @@ a:hover > .go, a:focus-visible > .go { transform: translateX(3px); }
     <p class="foot__meta"><a class="foot__link" href="nvidia.html">Free on NVIDIA Build <span class="go" aria-hidden="true">→</span></a></p>
   </footer>
 </div>
+<script>
+(function () {
+  var calm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (calm || !("IntersectionObserver" in window)) return;
+  var targets = document.querySelectorAll("[data-reveal]");
+  if (!targets.length) return;
+  var groups = new Map();
+  Array.prototype.forEach.call(targets, function (el) {
+    var parent = el.parentElement;
+    if (!groups.has(parent)) groups.set(parent, []);
+    groups.get(parent).push(el);
+    el.classList.add("is-pending");
+  });
+  document.documentElement.classList.add("reveal-armed");
+  var ticks = document.querySelectorAll(".hist__mark");
+  Array.prototype.forEach.call(ticks, function (t) { t.classList.add("is-pending"); });
+  var io = new IntersectionObserver(function (entries) {
+    entries
+      .filter(function (e) { return e.isIntersecting; })
+      .forEach(function (entry) {
+        var el = entry.target;
+        var batch = groups.get(el.parentElement) || [];
+        var index = batch.indexOf(el);
+        el.style.setProperty("--d", Math.round(Math.min(index * 40, 150)) + "ms");
+        el.classList.remove("is-pending");
+        el.classList.add("is-in");
+        if (el.classList.contains("hist")) {
+          Array.prototype.forEach.call(el.querySelectorAll(".hist__mark"), function (t, i) {
+            t.style.setProperty("--d", Math.round(Math.min(i * 40, 150)) + "ms");
+            t.classList.remove("is-pending");
+            t.classList.add("is-in");
+          });
+        }
+        io.unobserve(el);
+      });
+  }, { threshold: 0.15 });
+  Array.prototype.forEach.call(targets, function (el) { io.observe(el); });
+})();
+</script>
 </body>
 </html>
