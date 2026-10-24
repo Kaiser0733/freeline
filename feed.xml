@@ -6,7 +6,63 @@
     <atom:link href="https://kaiser0733.github.io/freeline/feed.xml" rel="self" type="application/rss+xml"/>
     <description>New free AI models, and free routes that ended. Only changes we recorded ourselves.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 23 Oct 2026 09:34:47 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 24 Oct 2026 13:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Kimi K3&apos;s free route on NVIDIA Build ended</title>
+      <link>https://kaiser0733.github.io/freeline/model/kimi-k3.html</link>
+      <guid isPermaLink="false">freeline-death-2026-10-24T18:30:00+05:30-model/kimi-k3.html</guid>
+      <pubDate>Sat, 24 Oct 2026 13:00:00 GMT</pubDate>
+      <description>Moonshot is delisted from the NVIDIA Build catalog, found 24 Oct 2026. No free route remains for Kimi K3.</description>
+    </item>
+    <item>
+      <title>Ornith 1.5 122B&apos;s free route on Command Code ended</title>
+      <link>https://kaiser0733.github.io/freeline/model/ornith-1-5-122b.html</link>
+      <guid isPermaLink="false">freeline-death-2026-10-24T18:30:00+05:30-model/ornith-1-5-122b.html</guid>
+      <pubDate>Sat, 24 Oct 2026 13:00:00 GMT</pubDate>
+      <description>It now costs $0.16 in and $0.64 out per 1M.</description>
+    </item>
+    <item>
+      <title>Ornith 1.5 122B is free on Nous Portal</title>
+      <link>https://kaiser0733.github.io/freeline/model/ornith-1-5-122b.html</link>
+      <guid isPermaLink="false">freeline-added-2026-10-24T18:30:00+05:30-model/ornith-1-5-122b.html</guid>
+      <pubDate>Sat, 24 Oct 2026 13:00:00 GMT</pubDate>
+      <description>Listed on the free roster tracked by llmroster.dev.</description>
+    </item>
+    <item>
+      <title>MiniMax M3.1 Flash&apos;s free route on Command Code ended</title>
+      <link>https://kaiser0733.github.io/freeline/model/minimax-m3-1-flash.html</link>
+      <guid isPermaLink="false">freeline-death-2026-10-24T18:30:00+05:30-model/minimax-m3-1-flash.html</guid>
+      <pubDate>Sat, 24 Oct 2026 13:00:00 GMT</pubDate>
+      <description>It now costs $0.15 in and $0.60 out per 1M.</description>
+    </item>
+    <item>
+      <title>MiniMax M3.1 Flash is free on NVIDIA Build</title>
+      <link>https://kaiser0733.github.io/freeline/model/minimax-m3-1-flash.html</link>
+      <guid isPermaLink="false">freeline-added-2026-10-24T18:30:00+05:30-model/minimax-m3-1-flash.html</guid>
+      <pubDate>Sat, 24 Oct 2026 13:00:00 GMT</pubDate>
+      <description>Needs an NVIDIA account with a verified phone number.</description>
+    </item>
+    <item>
+      <title>Beam 1.0 is free on Command Code</title>
+      <link>https://kaiser0733.github.io/freeline/model/beam-free.html</link>
+      <guid isPermaLink="false">freeline-added-2026-10-24T18:30:00+05:30-model/beam-free.html</guid>
+      <pubDate>Sat, 24 Oct 2026 13:00:00 GMT</pubDate>
+      <description>Free while capacity lasts. Every request is billed $0.</description>
+    </item>
+    <item>
+      <title>DeepSeek V4.1 Flash 1017 is free on OpenCode Zen</title>
+      <link>https://kaiser0733.github.io/freeline/model/deepseek-v4-1-flash-1017.html</link>
+      <guid isPermaLink="false">freeline-added-2026-10-24T18:30:00+05:30-model/deepseek-v4-1-flash-1017.html</guid>
+      <pubDate>Sat, 24 Oct 2026 13:00:00 GMT</pubDate>
+      <description>Listed as deepseek-v4.1-flash-free.</description>
+    </item>
+    <item>
+      <title>GLM 5.3 Flash is free on OpenCode Zen</title>
+      <link>https://kaiser0733.github.io/freeline/model/glm-5-3-flash.html</link>
+      <guid isPermaLink="false">freeline-added-2026-10-24T18:30:00+05:30-model/glm-5-3-flash.html</guid>
+      <pubDate>Sat, 24 Oct 2026 13:00:00 GMT</pubDate>
+      <description>Listed as glm-5.3-flash-free.</description>
+    </item>
     <item>
       <title>minimax-m3.1-flash-free dropped off the free list</title>
       <link>https://kaiser0733.github.io/freeline/model/minimax-m3-1-flash.html</link>

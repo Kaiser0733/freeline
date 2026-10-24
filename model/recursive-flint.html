@@ -1342,6 +1342,52 @@ a:hover > .go, a:focus-visible > .go { transform: translateX(3px); }
   .bmarks { max-width: none; }
 }
 
+.noroute {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-left: 2px solid var(--brass-soft);
+  background: var(--panel);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink);
+  max-width: 62ch;
+}
+.noroute-line { color: var(--ink-2); }
+
+.nvstamp { margin-top: 12px; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); max-width: 75ch; }
+.nvlist { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--rule); }
+.nvrow {
+  display: flex;
+  gap: 18px;
+  padding: 18px 0;
+  border-top: 1px solid var(--rule-soft);
+}
+.nvrow:first-child { border-top: 1px solid var(--rule); }
+.nvrow__num {
+  flex: none;
+  width: 2ch;
+  font: 400 11px/1.9 var(--sans);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.1em;
+  color: var(--ink-3);
+}
+.nvrow__body { flex: 1 1 auto; min-width: 0; }
+.nvrow__top { display: flex; align-items: baseline; gap: 14px; }
+.nvrow__name { font: 400 20px/1.25 var(--serif); letter-spacing: 0.01em; }
+.nvrow__link { color: var(--ink); text-decoration: none; border-bottom: 1px solid transparent; }
+.nvrow__link:hover, .nvrow__link:focus-visible { border-bottom-color: var(--rule-strong); }
+.nvrow__ruler { flex: 1 1 auto; height: 1px; background: var(--rule); align-self: center; }
+.nvrow__maker { flex: none; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); }
+.nvrow__line { margin-top: 6px; font-size: 13.5px; line-height: 1.6; color: var(--ink-2); max-width: 75ch; }
+.nvnote { margin-top: 20px; font-size: 13px; line-height: 1.6; color: var(--ink-2); max-width: 75ch; }
+
+@media (max-width: 640px) {
+  .nvrow { gap: 12px; padding: 16px 0; }
+  .nvrow__top { flex-wrap: wrap; gap: 2px 10px; }
+  .nvrow__ruler { display: none; }
+  .nvrow__maker { order: 3; }
+}
+
 
 </style>
 </head>
@@ -1370,6 +1416,7 @@ a:hover > .go, a:focus-visible > .go { transform: translateX(3px); }
       <span class="meta__item tally">free on <b>2</b> of 2 routes</span>
       <span class="check-kind">Checked by listing</span>
     </div>
+    
     <p class="headline">Maker reports 74.2% on SWE-bench Verified. No outside tests yet.</p>
     <p class="equals"><span class="equals__key">Same as</span> <span class="equals__val">Strong coder class, not yet tested outside</span></p>
     <p class="identity">May be the model once listed as ll-alpha-free. Not confirmed.</p>
@@ -1386,7 +1433,7 @@ a:hover > .go, a:focus-visible > .go { transform: translateX(3px); }
           <span class="pill pill--live">Live</span>
         </div>
         <p class="mroute__note">Free on OpenRouter at $0.00 in and $0.00 out.</p>
-        <p class="mroute__stamp">Last checked 24 Oct 2026 at 09:02 IST</p>
+        <p class="mroute__stamp">Last checked 24 Oct 2026 at 18:30 IST</p>
         <ul class="rroute__facts"><li>Up to 262K tokens in</li><li>65K tokens out</li></ul>
         <div class="use" data-kind="curl">
           <h4 class="use__title">Use it free in 1 minute</h4>
@@ -1403,7 +1450,7 @@ a:hover > .go, a:focus-visible > .go { transform: translateX(3px); }
           <span class="pill pill--live">Live</span>
         </div>
         <p class="mroute__note">Listed as free on the OpenCode console models page.</p>
-        <p class="mroute__stamp">Last checked 24 Oct 2026 at 09:02 IST</p>
+        <p class="mroute__stamp">Last checked 24 Oct 2026 at 18:30 IST</p>
         <ul class="rroute__facts"><li>Up to 262K tokens in</li><li>65K tokens out</li></ul>
         <div class="use" data-kind="opencode">
           <h4 class="use__title">Use it free in 1 minute</h4>
@@ -1465,6 +1512,7 @@ model: flint-40b-free</code></pre>
     <p class="foot__line">Every status shows when we last checked it. A checked fact beats a listing.</p>
     <p class="foot__legend">History comes from our own check log, starting 21 Oct 2026. We do not show uptime we did not measure.</p>
     
+    <p class="foot__meta"><a class="foot__link" href="../nvidia.html">Free on NVIDIA Build <span class="go" aria-hidden="true">→</span></a></p>
     <p class="foot__alerts"><a class="foot__link" href="../alerts.html">Get alerts for new free models and dead routes <span class="go" aria-hidden="true">→</span></a></p>
     <p class="foot__meta"><a class="back" href="../index.html">Back to all 10 models <span class="go" aria-hidden="true">→</span></a></p>
     <p class="foot__meta"><a class="back" href="../how-we-check.html">How we check <span class="go" aria-hidden="true">→</span></a></p>
