@@ -1318,7 +1318,7 @@ a:hover > .go, a:focus-visible > .go { transform: translateX(3px); }
 .copy:active { transform: scale(0.98); }
 
 .steps { margin: 12px 0 0; padding-left: 1.2em; font-size: 14px; line-height: 1.7; color: var(--ink-2); max-width: 62ch; }
-.rawlink { margin-top: 14px; }
+.feednote { margin-top: 10px; font-size: 13px; line-height: 1.6; color: var(--ink-2); max-width: 75ch; }
 
 .alertlist { list-style: none; margin: 12px 0 0; padding: 0; border-bottom: 1px solid var(--rule); }
 .alertrow {
@@ -1367,6 +1367,7 @@ a:hover > .go, a:focus-visible > .go { transform: translateX(3px); }
       <code class="feedbox__url" id="feed-url">https://kaiser0733.github.io/freeline/feed.xml</code>
       <button class="copy" type="button" data-copy="https://kaiser0733.github.io/freeline/feed.xml" aria-describedby="feed-url">Copy</button>
     </div>
+    <p class="feednote">This address is for reader apps. Opening it in a browser shows raw code — that is normal.</p>
 
     <h2 class="mpage__h">How to use it</h2>
     <ol class="steps">
@@ -1374,7 +1375,6 @@ a:hover > .go, a:focus-visible > .go { transform: translateX(3px); }
       <li>Paste the address above where it asks for a feed.</li>
       <li>New alerts show up there, without coming back to this page.</li>
     </ol>
-    <p class="rawlink"><a class="foot__link" href="feed.xml">Open the feed in your browser <span class="go" aria-hidden="true">→</span></a></p>
 
     <h2 class="mpage__h">Latest alerts</h2>
     <ol class="alertlist"><li class="alertrow">
