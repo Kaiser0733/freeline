@@ -464,10 +464,10 @@ a:hover > .go, a:focus-visible > .go { transform: translateX(3px); }
   white-space: nowrap;
 }
 
-.tier::before { content: "◆"; font-size: 7px; color: var(--ink-3); }
+.tier::before { content: ""; width: 5px; height: 5px; background: currentColor; opacity: 0.55; }
 
 .tier--frontier { color: var(--brass); border-color: var(--brass-soft); }
-.tier--frontier::before { color: var(--brass); }
+.tier--frontier::before { color: var(--brass); opacity: 0.8; }
 
 .under-name {
   margin-top: 6px;
@@ -1057,7 +1057,10 @@ a:hover > .go, a:focus-visible > .go { transform: translateX(3px); }
 .hist__marks {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 12px;
+  align-items: flex-end;
+  gap: 6px 12px;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 8px;
   list-style: none;
   margin: 14px 0 0;
   padding: 0;
@@ -1067,22 +1070,23 @@ a:hover > .go, a:focus-visible > .go { transform: translateX(3px); }
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   font-size: 10px;
   letter-spacing: 0.04em;
   color: var(--ink-3);
 }
 .hist__mark::before {
   content: "";
-  width: 13px;
-  height: 13px;
-  border: 1px solid var(--rule-strong);
-  transform: rotate(45deg);
-  transition: background-color 160ms var(--e);
+  width: 3px;
+  height: 22px;
+  background: var(--brass);
+  transition: opacity 160ms var(--e);
 }
-.hist__mark--ok::before { background: var(--brass); border-color: var(--brass); }
-.hist__mark--bad::before { background: transparent; border-color: var(--flag); }
-.hist__mark--bad .hist__time { color: var(--flag); }
+.hist__mark--bad::before {
+  background: transparent;
+  box-shadow: inset 0 0 0 1px var(--brass);
+}
+.hist__mark--bad .hist__time { color: var(--ink-2); }
 .hist__time { font-variant-numeric: tabular-nums; }
 
 @media (max-width: 640px) {
@@ -1272,6 +1276,72 @@ a:hover > .go, a:focus-visible > .go { transform: translateX(3px); }
   .pick__result, .pick__job { transition: none !important; }
 }
 
+.mpage__title {
+  font: 400 clamp(26px, 4vw, 36px)/1.1 var(--serif);
+  letter-spacing: 0.01em;
+  color: var(--ink);
+}
+.mpage__lede { margin-top: 10px; font-size: 15px; line-height: 1.6; color: var(--ink-2); max-width: 62ch; }
+
+.feedbox {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--rule-strong);
+  background: var(--panel);
+}
+.feedbox__url {
+  flex: 1 1 260px;
+  min-width: 0;
+  font: 400 12.5px/1.5 var(--sans);
+  color: var(--ink);
+  overflow-wrap: anywhere;
+  user-select: all;
+}
+.copy {
+  flex: none;
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1px solid var(--rule-strong);
+  background: none;
+  color: var(--ink);
+  font-size: 11.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 160ms var(--e), background-color 160ms var(--e);
+}
+.copy:hover { border-color: color-mix(in srgb, var(--ink) 45%, transparent); background: color-mix(in srgb, var(--ink) 6%, transparent); }
+.copy:active { transform: scale(0.98); }
+
+.steps { margin: 12px 0 0; padding-left: 1.2em; font-size: 14px; line-height: 1.7; color: var(--ink-2); max-width: 62ch; }
+.rawlink { margin-top: 14px; }
+
+.alertlist { list-style: none; margin: 12px 0 0; padding: 0; border-bottom: 1px solid var(--rule); }
+.alertrow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 18px;
+  padding: 12px 0;
+  border-top: 1px solid var(--rule-soft);
+}
+.alertrow__date { font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); min-width: 8.5em; }
+.alertrow__title { color: var(--brass); text-decoration: none; border-bottom: 1px solid transparent; font-size: 14px; }
+.alertrow__title:hover, .alertrow__title:focus-visible { border-bottom-color: var(--brass); }
+
+@media (min-width: 768px) {
+  .mpage__h, .mroute, .use, .bmarks, .alertlist { max-width: none; }
+  .bmark__name { flex: 1 1 auto; }
+  .bmark__value { margin-left: auto; }
+  .use { width: 100%; }
+  .depth__about, .mroute__note, .depth__none, .watch, .mpage__lede, .steps { max-width: 75ch; }
+  .bmarks { max-width: none; }
+}
+
 
 </style>
 </head>
@@ -1395,7 +1465,7 @@ model: flint-40b-free</code></pre>
     <p class="foot__line">Every status shows when we last checked it. A checked fact beats a listing.</p>
     <p class="foot__legend">History comes from our own check log, starting 21 Oct 2026. We do not show uptime we did not measure.</p>
     
-    <p class="foot__alerts"><a class="foot__link" href="../feed.xml">Get alerts for new free models and dead routes <span class="go" aria-hidden="true">→</span></a></p>
+    <p class="foot__alerts"><a class="foot__link" href="../alerts.html">Get alerts for new free models and dead routes <span class="go" aria-hidden="true">→</span></a></p>
     <p class="foot__meta"><a class="back" href="../index.html">Back to all 10 models <span class="go" aria-hidden="true">→</span></a></p>
     <p class="foot__meta"><a class="back" href="../how-we-check.html">How we check <span class="go" aria-hidden="true">→</span></a></p>
     <p class="foot__meta"><a class="back" href="../graveyard.html">The graveyard <span class="go" aria-hidden="true">→</span></a></p>
