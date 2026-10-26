@@ -809,7 +809,7 @@ a:hover > .go, a:focus-visible > .go { transform: translateX(3px); }
 
 /* ---------- footer ---------- */
 
-.foot { margin-top: clamp(64px, 9vw, 96px); padding-bottom: calc(28px + env(safe-area-inset-bottom)); }
+.foot { margin-top: clamp(48px, 7vw, 72px); padding-bottom: calc(28px + env(safe-area-inset-bottom)); }
 .foot .frame { margin-top: 0; }
 
 .foot__line {
@@ -1318,6 +1318,7 @@ a:hover > .go, a:focus-visible > .go { transform: translateX(3px); }
 .copy:active { transform: scale(0.98); }
 
 .steps { margin: 12px 0 0; padding-left: 1.2em; font-size: 14px; line-height: 1.7; color: var(--ink-2); max-width: 62ch; }
+.webhookp { margin: 12px 0 0; font-size: 14px; line-height: 1.7; color: var(--ink-2); max-width: 62ch; }
 .feednote { margin-top: 10px; font-size: 13px; line-height: 1.6; color: var(--ink-2); max-width: 75ch; }
 
 .alertlist { list-style: none; margin: 12px 0 0; padding: 0; border-bottom: 1px solid var(--rule); }
@@ -1601,7 +1602,7 @@ body {
 .back { min-height: 44px; }
 .foot__link.back, .foot__meta .back { min-height: 44px; }
 
-.ask { margin-top: clamp(40px, 6vw, 64px); }
+.ask { margin-top: clamp(48px, 7vw, 72px); }
 .ask__head {
   display: flex;
   align-items: baseline;
@@ -1688,7 +1689,7 @@ body {
 }
 
 .briefing {
-  margin-top: clamp(32px, 5vw, 48px);
+  margin-top: clamp(48px, 7vw, 72px);
   padding: 16px 18px 14px;
   background: var(--panel);
   border-top: 1px solid var(--rule);
@@ -1759,8 +1760,11 @@ body {
 
     <section class="webhooks">
       <h2 class="mpage__h">Want a webhook or a phone ping?</h2>
-      <p class="steps">The feed can also drive a webhook. Paste the address below into a free bridge like IFTTT or Zapier, and each new alert can be sent on to a webhook, Slack, or a phone.</p>
-      <div class="feedbox"><code class="feedbox__url" id="feed-url-webhook">https://kaiser0733.github.io/freeline/feed.xml</code></div>
+      <p class="webhookp">The feed can also drive a webhook. Paste the address below into a free bridge like IFTTT or Zapier, and each new alert can be sent on to a webhook, Slack, or a phone.</p>
+      <div class="feedbox">
+        <code class="feedbox__url" id="feed-url-webhook">https://kaiser0733.github.io/freeline/feed.xml</code>
+        <button class="copy" type="button" data-copy="https://kaiser0733.github.io/freeline/feed.xml" aria-describedby="feed-url-webhook">Copy</button>
+      </div>
       <p class="feednote">Freeline takes no signups and stores nothing.</p>
     </section>
 
@@ -1801,12 +1805,13 @@ body {
   </footer>
   <script>
   (function () {
-    var btn = document.querySelector(".copy");
-    if (!btn || !navigator.clipboard) return;
-    btn.addEventListener("click", function () {
-      navigator.clipboard.writeText(btn.getAttribute("data-copy")).then(function () {
-        btn.textContent = "Copied";
-        setTimeout(function () { btn.textContent = "Copy"; }, 1500);
+    if (!navigator.clipboard) return;
+    Array.prototype.forEach.call(document.querySelectorAll(".copy"), function (btn) {
+      btn.addEventListener("click", function () {
+        navigator.clipboard.writeText(btn.getAttribute("data-copy")).then(function () {
+          btn.textContent = "Copied";
+          setTimeout(function () { btn.textContent = "Copy"; }, 1500);
+        });
       });
     });
   })();
