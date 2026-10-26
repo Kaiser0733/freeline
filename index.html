@@ -1687,6 +1687,42 @@ body {
   to { opacity: 1; transform: none; }
 }
 
+.briefing {
+  margin-top: clamp(32px, 5vw, 48px);
+  padding: 16px 18px 14px;
+  background: var(--panel);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  border-left: 1px solid var(--brass-soft);
+}
+.briefing__head {
+  display: flex;
+  align-items: baseline;
+  gap: 6px 24px;
+  flex-wrap: wrap;
+}
+.briefing__title {
+  font: 400 clamp(18px, 2.6vw, 22px)/1.25 var(--serif);
+  letter-spacing: 0.01em;
+  color: var(--ink);
+}
+.briefing__line {
+  margin-top: 8px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  max-width: 68ch;
+}
+.briefing__line:first-of-type { color: var(--ink); }
+.briefing__stamp {
+  margin-top: 10px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  max-width: 75ch;
+}
+
 </style>
 </head>
 <body>
@@ -1765,6 +1801,17 @@ body {
       <ol class="grave__list" id="grave-list"></ol>
     </section>
   </main>
+
+<section class="briefing" aria-labelledby="briefing-title">
+    <div class="briefing__head">
+      <h2 class="briefing__title" id="briefing-title">Board briefing</h2>
+    </div>
+    <p class="briefing__line">8 models have a free route.</p>
+    <p class="briefing__line">Reflection Beam 1.0 is free on OpenCode Zen and Command Code.</p>
+    <p class="briefing__line">Kimi K3 and LongCat 2.5 Preview have no live free route.</p>
+    <p class="briefing__line">Latest: longcat-2.5-preview-free dropped off the free list — OpenCode Go, on longcat-2.5-preview.</p>
+    <p class="briefing__stamp">Written by Muse Spark from the live board · 26 Oct 2026</p>
+  </section>
 
   <section class="ask" id="ask" aria-labelledby="ask-title">
     <div class="ask__head">
