@@ -45,6 +45,7 @@
   --scene-5c: #7c4a4a;
   --night: #150f24;
   --scene-glow: rgb(232 163 124 / .20);
+  --scene-glow-soft: rgb(232 163 124 / .12);
   --plate-calm: rgb(26 17 44 / .62);
   --plate-deep: rgb(18 12 32 / .80);
   --plate-top: color-mix(in srgb, #fff 6%, transparent);
@@ -1781,7 +1782,7 @@ body.home::before {
   height: 600px;
   z-index: -1;
   background:
-    radial-gradient(70% 40% at 50% 52%, var(--scene-glow), transparent 60%),
+    radial-gradient(60% 30% at 50% 34%, var(--scene-glow-soft), transparent 60%),
     linear-gradient(to bottom, var(--scene-1) 0%, var(--scene-2b) 26%, var(--scene-3b) 42%, var(--scene-4b) 54%, var(--scene-5c) 66%, var(--night) 80%, transparent 94%);
 }
 
@@ -1887,7 +1888,7 @@ body.home .foot {
           <span class="pill pill--ended">Ended</span>
         </div>
         <p class="mroute__note">Free on OpenCode Go until it dropped off the free list on 23 Oct.</p>
-        <p class="mroute__stamp">Last checked 27 Oct 2026 at 14:44 IST by the probe</p>
+        <p class="mroute__stamp">Last checked 27 Oct 2026 at 14:46 IST by the probe</p>
         
         
       </section><section class="mroute" data-reveal data-provider="OpenRouter">
@@ -1897,7 +1898,7 @@ body.home .foot {
           <span class="pill pill--ended">Ended</span>
         </div>
         <p class="mroute__note">Free until 22 Oct. Now $0.15 per 1M input tokens and $0.60 per 1M output.</p>
-        <p class="mroute__stamp">Last checked 27 Oct 2026 at 14:44 IST by the probe</p>
+        <p class="mroute__stamp">Last checked 27 Oct 2026 at 14:46 IST by the probe</p>
         
         
       </section><section class="mroute" data-reveal data-provider="Vercel AI Gateway">
@@ -1907,7 +1908,7 @@ body.home .foot {
           <span class="pill pill--ended">Ended</span>
         </div>
         <p class="mroute__note">Free until 22 Oct. Now a paid route.</p>
-        <p class="mroute__stamp">Last checked 27 Oct 2026 at 14:44 IST by the probe</p>
+        <p class="mroute__stamp">Last checked 27 Oct 2026 at 14:46 IST by the probe</p>
         
         
       </section><section class="mroute" data-reveal data-provider="Command Code">
@@ -1922,17 +1923,11 @@ body.home .foot {
         
       </section>
     <h2 class="mpage__h">History</h2>
-    <section class="hist" data-reveal data-model="minimax-m3.1-flash" data-checks="183"><div class="hist__track" role="img" aria-label="183 listing checks since 21 Oct 2026 across its 6 routes; 51 found it on the free list, 132 did not">
-        <span class="hist__bar" style="--fill: 28%"></span>
+    <section class="hist" data-reveal data-model="minimax-m3.1-flash" data-checks="186"><div class="hist__track" role="img" aria-label="186 listing checks since 21 Oct 2026 across its 6 routes; 51 found it on the free list, 135 did not">
+        <span class="hist__bar" style="--fill: 27%"></span>
       </div>
-      <p class="hist__trackline"><b>183 listing checks since 21 Oct 2026 across its 6 routes</b> — 51 found it on the free list, 132 did not · last 20 shown</p>
-      <ol class="hist__marks" aria-label="Recent checks, oldest first"><li class="hist__mark hist__mark--bad" data-at="13:56 IST" title="27 Oct 2026 13:56 IST">
-          <time class="hist__time" datetime="2026-10-27T13:56:41+05:30">13:56</time>
-          <span class="visually-hidden">failed</span></li><li class="hist__mark hist__mark--bad" data-at="13:56 IST" title="27 Oct 2026 13:56 IST">
-          <time class="hist__time" datetime="2026-10-27T13:56:41+05:30">13:56</time>
-          <span class="visually-hidden">failed</span></li><li class="hist__mark hist__mark--bad" data-at="14:25 IST" title="27 Oct 2026 14:25 IST">
-          <time class="hist__time" datetime="2026-10-27T14:25:12+05:30">14:25</time>
-          <span class="visually-hidden">failed</span></li><li class="hist__mark hist__mark--bad" data-at="14:25 IST" title="27 Oct 2026 14:25 IST">
+      <p class="hist__trackline"><b>186 listing checks since 21 Oct 2026 across its 6 routes</b> — 51 found it on the free list, 135 did not · last 20 shown</p>
+      <ol class="hist__marks" aria-label="Recent checks, oldest first"><li class="hist__mark hist__mark--bad" data-at="14:25 IST" title="27 Oct 2026 14:25 IST">
           <time class="hist__time" datetime="2026-10-27T14:25:12+05:30">14:25</time>
           <span class="visually-hidden">failed</span></li><li class="hist__mark hist__mark--bad" data-at="14:25 IST" title="27 Oct 2026 14:25 IST">
           <time class="hist__time" datetime="2026-10-27T14:25:12+05:30">14:25</time>
@@ -1966,6 +1961,12 @@ body.home .foot {
           <time class="hist__time" datetime="2026-10-27T14:44:40+05:30">14:44</time>
           <span class="visually-hidden">failed</span></li><li class="hist__mark hist__mark--bad" data-at="14:44 IST" title="27 Oct 2026 14:44 IST">
           <time class="hist__time" datetime="2026-10-27T14:44:40+05:30">14:44</time>
+          <span class="visually-hidden">failed</span></li><li class="hist__mark hist__mark--bad" data-at="14:46 IST" title="27 Oct 2026 14:46 IST">
+          <time class="hist__time" datetime="2026-10-27T14:46:40+05:30">14:46</time>
+          <span class="visually-hidden">failed</span></li><li class="hist__mark hist__mark--bad" data-at="14:46 IST" title="27 Oct 2026 14:46 IST">
+          <time class="hist__time" datetime="2026-10-27T14:46:40+05:30">14:46</time>
+          <span class="visually-hidden">failed</span></li><li class="hist__mark hist__mark--bad" data-at="14:46 IST" title="27 Oct 2026 14:46 IST">
+          <time class="hist__time" datetime="2026-10-27T14:46:40+05:30">14:46</time>
           <span class="visually-hidden">failed</span></li></ol>
       <p class="hist__note">Each mark is a check we ran, at the time shown. A hollow mark is a failed check. No mark means no check logged.</p></section>
   </main>
