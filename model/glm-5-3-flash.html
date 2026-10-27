@@ -1777,11 +1777,11 @@ body.home::before {
   top: 0;
   left: 0;
   right: 0;
-  height: min(150vh, 1600px);
+  height: min(92vh, 980px);
   z-index: -1;
   background:
-    radial-gradient(90% 55% at 50% 62%, var(--scene-glow), transparent 60%),
-    linear-gradient(to bottom, var(--scene-1) 0%, var(--scene-2b) 26%, var(--scene-3b) 44%, var(--scene-4b) 58%, var(--scene-5b) 66%, var(--night) 84%, transparent 100%);
+    radial-gradient(90% 55% at 50% 56%, var(--scene-glow), transparent 60%),
+    linear-gradient(to bottom, var(--scene-1) 0%, var(--scene-2b) 30%, var(--scene-3b) 46%, var(--scene-4b) 56%, var(--scene-5b) 64%, var(--night) 82%, transparent 100%);
 }
 
 body.home .stats,
@@ -1793,9 +1793,12 @@ body.home .ask {
 
 body.home .chip:not([aria-pressed="true"]),
 body.home .pick__job:not([aria-pressed="true"]),
-body.home .ask__chip,
-body.home .routes {
+body.home .ask__chip {
   background: var(--plate-calm);
+}
+
+body.home .routes {
+  background: transparent;
 }
 
 body.home .grave,
@@ -1873,7 +1876,7 @@ body.home .foot {
           <span class="pill pill--live">Live</span>
         </div>
         <p class="mroute__note">Free on OpenCode Zen. On NVIDIA Build the free endpoint retires around 29 Oct.</p>
-        <p class="mroute__stamp">Last checked 27 Oct 2026 at 14:35 IST by the probe</p>
+        <p class="mroute__stamp">Last checked 27 Oct 2026 at 14:39 IST by the probe</p>
         
         <div class="use" data-kind="opencode">
           <h4 class="use__title">Use it free in 1 minute</h4>
@@ -1883,13 +1886,11 @@ model: glm-5.3-flash-free</code></pre>
         </div>
       </section>
     <h2 class="mpage__h">History</h2>
-    <section class="hist" data-reveal data-model="glm-5.3-flash" data-checks="34"><div class="hist__track" role="img" aria-label="34 listing checks since 24 Oct 2026 across its 2 routes; 34 found it on the free list, 0 did not">
+    <section class="hist" data-reveal data-model="glm-5.3-flash" data-checks="35"><div class="hist__track" role="img" aria-label="35 listing checks since 24 Oct 2026 across its 2 routes; 35 found it on the free list, 0 did not">
         <span class="hist__bar" style="--fill: 100%"></span>
       </div>
-      <p class="hist__trackline"><b>34 listing checks since 24 Oct 2026 across its 2 routes</b> — 34 found it on the free list · last 20 shown</p>
-      <ol class="hist__marks" aria-label="Recent checks, oldest first"><li class="hist__mark hist__mark--ok" data-at="06:02 IST" title="26 Oct 2026 06:02 IST">
-          <time class="hist__time" datetime="2026-10-26T06:02:26+05:30">06:02</time>
-          <span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" data-at="09:02 IST" title="26 Oct 2026 09:02 IST">
+      <p class="hist__trackline"><b>35 listing checks since 24 Oct 2026 across its 2 routes</b> — 35 found it on the free list · last 20 shown</p>
+      <ol class="hist__marks" aria-label="Recent checks, oldest first"><li class="hist__mark hist__mark--ok" data-at="09:02 IST" title="26 Oct 2026 09:02 IST">
           <time class="hist__time" datetime="2026-10-26T09:02:22+05:30">09:02</time>
           <span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" data-at="12:02 IST" title="26 Oct 2026 12:02 IST">
           <time class="hist__time" datetime="2026-10-26T12:02:47+05:30">12:02</time>
@@ -1927,6 +1928,8 @@ model: glm-5.3-flash-free</code></pre>
           <time class="hist__time" datetime="2026-10-27T14:27:51+05:30">14:27</time>
           <span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" data-at="14:35 IST" title="27 Oct 2026 14:35 IST">
           <time class="hist__time" datetime="2026-10-27T14:35:51+05:30">14:35</time>
+          <span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" data-at="14:39 IST" title="27 Oct 2026 14:39 IST">
+          <time class="hist__time" datetime="2026-10-27T14:39:02+05:30">14:39</time>
           <span class="visually-hidden">passed</span></li></ol>
       <p class="hist__note">Each mark is a check we ran, at the time shown. A hollow mark is a failed check. No mark means no check logged.</p></section>
   </main>

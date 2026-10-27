@@ -1777,11 +1777,11 @@ body.home::before {
   top: 0;
   left: 0;
   right: 0;
-  height: min(150vh, 1600px);
+  height: min(92vh, 980px);
   z-index: -1;
   background:
-    radial-gradient(90% 55% at 50% 62%, var(--scene-glow), transparent 60%),
-    linear-gradient(to bottom, var(--scene-1) 0%, var(--scene-2b) 26%, var(--scene-3b) 44%, var(--scene-4b) 58%, var(--scene-5b) 66%, var(--night) 84%, transparent 100%);
+    radial-gradient(90% 55% at 50% 56%, var(--scene-glow), transparent 60%),
+    linear-gradient(to bottom, var(--scene-1) 0%, var(--scene-2b) 30%, var(--scene-3b) 46%, var(--scene-4b) 56%, var(--scene-5b) 64%, var(--night) 82%, transparent 100%);
 }
 
 body.home .stats,
@@ -1793,9 +1793,12 @@ body.home .ask {
 
 body.home .chip:not([aria-pressed="true"]),
 body.home .pick__job:not([aria-pressed="true"]),
-body.home .ask__chip,
-body.home .routes {
+body.home .ask__chip {
   background: var(--plate-calm);
+}
+
+body.home .routes {
+  background: transparent;
 }
 
 body.home .grave,
@@ -1859,18 +1862,16 @@ body.home .foot {
           <span class="pill pill--ended">Ended</span>
         </div>
         <p class="mroute__note">Dropped off the OpenCode Go free list on 25 Oct 2026, between 09:02 and 12:02 IST.</p>
-        <p class="mroute__stamp">Last checked 27 Oct 2026 at 14:35 IST by the probe</p>
+        <p class="mroute__stamp">Last checked 27 Oct 2026 at 14:39 IST by the probe</p>
         
         
       </section>
     <h2 class="mpage__h">History</h2>
-    <section class="hist" data-reveal data-model="longcat-2.5-preview" data-checks="55"><div class="hist__track" role="img" aria-label="55 listing checks since 21 Oct 2026 across its 1 route; 29 found it on the free list, 26 did not">
-        <span class="hist__bar" style="--fill: 53%"></span>
+    <section class="hist" data-reveal data-model="longcat-2.5-preview" data-checks="56"><div class="hist__track" role="img" aria-label="56 listing checks since 21 Oct 2026 across its 1 route; 29 found it on the free list, 27 did not">
+        <span class="hist__bar" style="--fill: 52%"></span>
       </div>
-      <p class="hist__trackline"><b>55 listing checks since 21 Oct 2026 across its 1 route</b> — 29 found it on the free list, 26 did not · last 20 shown</p>
-      <ol class="hist__marks" aria-label="Recent checks, oldest first"><li class="hist__mark hist__mark--bad" data-at="06:02 IST" title="26 Oct 2026 06:02 IST">
-          <time class="hist__time" datetime="2026-10-26T06:02:26+05:30">06:02</time>
-          <span class="visually-hidden">failed</span></li><li class="hist__mark hist__mark--bad" data-at="09:02 IST" title="26 Oct 2026 09:02 IST">
+      <p class="hist__trackline"><b>56 listing checks since 21 Oct 2026 across its 1 route</b> — 29 found it on the free list, 27 did not · last 20 shown</p>
+      <ol class="hist__marks" aria-label="Recent checks, oldest first"><li class="hist__mark hist__mark--bad" data-at="09:02 IST" title="26 Oct 2026 09:02 IST">
           <time class="hist__time" datetime="2026-10-26T09:02:22+05:30">09:02</time>
           <span class="visually-hidden">failed</span></li><li class="hist__mark hist__mark--bad" data-at="12:02 IST" title="26 Oct 2026 12:02 IST">
           <time class="hist__time" datetime="2026-10-26T12:02:47+05:30">12:02</time>
@@ -1908,6 +1909,8 @@ body.home .foot {
           <time class="hist__time" datetime="2026-10-27T14:27:51+05:30">14:27</time>
           <span class="visually-hidden">failed</span></li><li class="hist__mark hist__mark--bad" data-at="14:35 IST" title="27 Oct 2026 14:35 IST">
           <time class="hist__time" datetime="2026-10-27T14:35:51+05:30">14:35</time>
+          <span class="visually-hidden">failed</span></li><li class="hist__mark hist__mark--bad" data-at="14:39 IST" title="27 Oct 2026 14:39 IST">
+          <time class="hist__time" datetime="2026-10-27T14:39:02+05:30">14:39</time>
           <span class="visually-hidden">failed</span></li></ol>
       <p class="hist__note">Each mark is a check we ran, at the time shown. A hollow mark is a failed check. No mark means no check logged.</p></section>
   </main>
