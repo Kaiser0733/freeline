@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="dark">
-<meta name="theme-color" content="#0b1210">
+<meta name="theme-color" content="#14102a">
 <link rel="alternate" type="application/rss+xml" title="Freeline changes" href="https://freeline.vastraalabs.online/feed.xml">
 <meta name="description" content="The free NVIDIA Build endpoints worth using for chat and code, checked by hand on 24 Oct 2026.">
 <title>Free on NVIDIA Build — FREELINE</title>
@@ -1651,9 +1651,9 @@ body {
   flex: none;
   min-height: 44px;
   padding: 0 22px;
-  background: var(--ink);
-  border: 1px solid var(--ink);
-  color: var(--ground);
+  background: var(--brass-soft);
+  border: 1px solid var(--brass);
+  color: var(--ink);
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -1661,6 +1661,7 @@ body {
   cursor: pointer;
   transition: opacity 160ms var(--e), transform 120ms var(--e);
 }
+.ask__btn:hover { background: color-mix(in srgb, var(--brass) 42%, transparent); }
 .ask__btn:active { transform: scale(0.97); }
 .ask__chips {
   display: flex;
@@ -1763,9 +1764,9 @@ body {
 
 .briefing__since { margin: 8px 0 0; font-size: 13px; line-height: 1.6; color: var(--ink-2); max-width: 75ch; }
 
-/* ---------- step 25: home calm scene (scoped to the home page only) ---------- */
+/* ---------- calm scene (site-wide, step 33; home keeps its wider rhythm) ---------- */
 
-body.home {
+body {
   position: relative;
   background: var(--night);
   --panel: var(--plate-calm);
@@ -1773,7 +1774,7 @@ body.home {
   --rule-soft: color-mix(in srgb, var(--ink) 5%, transparent);
 }
 
-body.home::before {
+body::before {
   content: "";
   position: absolute;
   top: 0;
@@ -1786,22 +1787,24 @@ body.home::before {
     linear-gradient(to bottom, var(--scene-1) 0%, var(--scene-2b) 30%, var(--scene-3b) 55%, var(--night) 90%, transparent 100%);
 }
 
-body.home .stats,
-body.home .pick__result,
-body.home .briefing,
-body.home .ask {
+.stats,
+.pick__result,
+.briefing,
+.ask {
   background: var(--plate-deep);
 }
 
-body.home .chip:not([aria-pressed="true"]),
-body.home .pick__job:not([aria-pressed="true"]),
-body.home .ask__chip {
+.chip:not([aria-pressed="true"]),
+.pick__job:not([aria-pressed="true"]),
+.ask__chip {
   background: var(--plate-calm);
 }
 
-body.home .routes {
+.routes {
   background: transparent;
 }
+
+.use__code { background: var(--plate-deep); }
 
 body.home .grave,
 body.home .briefing,

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="dark">
-<meta name="theme-color" content="#0b1210">
+<meta name="theme-color" content="#14102a">
 <link rel="alternate" type="application/rss+xml" title="Freeline changes" href="https://freeline.vastraalabs.online/feed.xml">
 <meta name="description" content="MiniMax M3.1 Flash. Strong coder class, a step under top tier. Every free route, checked live.">
 <title>MiniMax M3.1 Flash — FREELINE</title>
@@ -1651,9 +1651,9 @@ body {
   flex: none;
   min-height: 44px;
   padding: 0 22px;
-  background: var(--ink);
-  border: 1px solid var(--ink);
-  color: var(--ground);
+  background: var(--brass-soft);
+  border: 1px solid var(--brass);
+  color: var(--ink);
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -1661,6 +1661,7 @@ body {
   cursor: pointer;
   transition: opacity 160ms var(--e), transform 120ms var(--e);
 }
+.ask__btn:hover { background: color-mix(in srgb, var(--brass) 42%, transparent); }
 .ask__btn:active { transform: scale(0.97); }
 .ask__chips {
   display: flex;
@@ -1763,9 +1764,9 @@ body {
 
 .briefing__since { margin: 8px 0 0; font-size: 13px; line-height: 1.6; color: var(--ink-2); max-width: 75ch; }
 
-/* ---------- step 25: home calm scene (scoped to the home page only) ---------- */
+/* ---------- calm scene (site-wide, step 33; home keeps its wider rhythm) ---------- */
 
-body.home {
+body {
   position: relative;
   background: var(--night);
   --panel: var(--plate-calm);
@@ -1773,7 +1774,7 @@ body.home {
   --rule-soft: color-mix(in srgb, var(--ink) 5%, transparent);
 }
 
-body.home::before {
+body::before {
   content: "";
   position: absolute;
   top: 0;
@@ -1786,22 +1787,24 @@ body.home::before {
     linear-gradient(to bottom, var(--scene-1) 0%, var(--scene-2b) 30%, var(--scene-3b) 55%, var(--night) 90%, transparent 100%);
 }
 
-body.home .stats,
-body.home .pick__result,
-body.home .briefing,
-body.home .ask {
+.stats,
+.pick__result,
+.briefing,
+.ask {
   background: var(--plate-deep);
 }
 
-body.home .chip:not([aria-pressed="true"]),
-body.home .pick__job:not([aria-pressed="true"]),
-body.home .ask__chip {
+.chip:not([aria-pressed="true"]),
+.pick__job:not([aria-pressed="true"]),
+.ask__chip {
   background: var(--plate-calm);
 }
 
-body.home .routes {
+.routes {
   background: transparent;
 }
+
+.use__code { background: var(--plate-deep); }
 
 body.home .grave,
 body.home .briefing,
@@ -1888,7 +1891,7 @@ body.home .foot {
           <span class="pill pill--ended">Ended</span>
         </div>
         <p class="mroute__note">Free on OpenCode Go until it dropped off the free list on 23 Oct.</p>
-        <p class="mroute__stamp">Last checked 27 Oct 2026 at 15:02 IST by the probe</p>
+        <p class="mroute__stamp">Last checked 27 Oct 2026 at 15:53 IST by the probe</p>
         
         
       </section><section class="mroute" data-reveal data-provider="OpenRouter">
@@ -1898,7 +1901,7 @@ body.home .foot {
           <span class="pill pill--ended">Ended</span>
         </div>
         <p class="mroute__note">Free until 22 Oct. Now $0.15 per 1M input tokens and $0.60 per 1M output.</p>
-        <p class="mroute__stamp">Last checked 27 Oct 2026 at 15:02 IST by the probe</p>
+        <p class="mroute__stamp">Last checked 27 Oct 2026 at 15:53 IST by the probe</p>
         
         
       </section><section class="mroute" data-reveal data-provider="Vercel AI Gateway">
@@ -1908,7 +1911,7 @@ body.home .foot {
           <span class="pill pill--ended">Ended</span>
         </div>
         <p class="mroute__note">Free until 22 Oct. Now a paid route.</p>
-        <p class="mroute__stamp">Last checked 27 Oct 2026 at 15:02 IST by the probe</p>
+        <p class="mroute__stamp">Last checked 27 Oct 2026 at 15:53 IST by the probe</p>
         
         
       </section><section class="mroute" data-reveal data-provider="Command Code">
@@ -1923,17 +1926,11 @@ body.home .foot {
         
       </section>
     <h2 class="mpage__h">History</h2>
-    <section class="hist" data-reveal data-model="minimax-m3.1-flash" data-checks="195"><div class="hist__track" role="img" aria-label="195 listing checks since 21 Oct 2026 across its 6 routes; 51 found it on the free list, 144 did not">
+    <section class="hist" data-reveal data-model="minimax-m3.1-flash" data-checks="198"><div class="hist__track" role="img" aria-label="198 listing checks since 21 Oct 2026 across its 6 routes; 51 found it on the free list, 147 did not">
         <span class="hist__bar" style="--fill: 26%"></span>
       </div>
-      <p class="hist__trackline"><b>195 listing checks since 21 Oct 2026 across its 6 routes</b> — 51 found it on the free list, 144 did not · last 20 shown</p>
-      <ol class="hist__marks" aria-label="Recent checks, oldest first"><li class="hist__mark hist__mark--bad" data-at="14:39 IST" title="27 Oct 2026 14:39 IST">
-          <time class="hist__time" datetime="2026-10-27T14:39:02+05:30">14:39</time>
-          <span class="visually-hidden">failed</span></li><li class="hist__mark hist__mark--bad" data-at="14:39 IST" title="27 Oct 2026 14:39 IST">
-          <time class="hist__time" datetime="2026-10-27T14:39:02+05:30">14:39</time>
-          <span class="visually-hidden">failed</span></li><li class="hist__mark hist__mark--bad" data-at="14:42 IST" title="27 Oct 2026 14:42 IST">
-          <time class="hist__time" datetime="2026-10-27T14:42:11+05:30">14:42</time>
-          <span class="visually-hidden">failed</span></li><li class="hist__mark hist__mark--bad" data-at="14:42 IST" title="27 Oct 2026 14:42 IST">
+      <p class="hist__trackline"><b>198 listing checks since 21 Oct 2026 across its 6 routes</b> — 51 found it on the free list, 147 did not · last 20 shown</p>
+      <ol class="hist__marks" aria-label="Recent checks, oldest first"><li class="hist__mark hist__mark--bad" data-at="14:42 IST" title="27 Oct 2026 14:42 IST">
           <time class="hist__time" datetime="2026-10-27T14:42:11+05:30">14:42</time>
           <span class="visually-hidden">failed</span></li><li class="hist__mark hist__mark--bad" data-at="14:42 IST" title="27 Oct 2026 14:42 IST">
           <time class="hist__time" datetime="2026-10-27T14:42:11+05:30">14:42</time>
@@ -1967,6 +1964,12 @@ body.home .foot {
           <time class="hist__time" datetime="2026-10-27T15:02:22+05:30">15:02</time>
           <span class="visually-hidden">failed</span></li><li class="hist__mark hist__mark--bad" data-at="15:02 IST" title="27 Oct 2026 15:02 IST">
           <time class="hist__time" datetime="2026-10-27T15:02:22+05:30">15:02</time>
+          <span class="visually-hidden">failed</span></li><li class="hist__mark hist__mark--bad" data-at="15:53 IST" title="27 Oct 2026 15:53 IST">
+          <time class="hist__time" datetime="2026-10-27T15:53:33+05:30">15:53</time>
+          <span class="visually-hidden">failed</span></li><li class="hist__mark hist__mark--bad" data-at="15:53 IST" title="27 Oct 2026 15:53 IST">
+          <time class="hist__time" datetime="2026-10-27T15:53:33+05:30">15:53</time>
+          <span class="visually-hidden">failed</span></li><li class="hist__mark hist__mark--bad" data-at="15:53 IST" title="27 Oct 2026 15:53 IST">
+          <time class="hist__time" datetime="2026-10-27T15:53:33+05:30">15:53</time>
           <span class="visually-hidden">failed</span></li></ol>
       <p class="hist__note">Each mark is a check we ran, at the time shown. A hollow mark is a failed check. No mark means no check logged.</p></section>
   </main>
