@@ -1724,6 +1724,29 @@ body {
   max-width: 75ch;
 }
 
+.signpost { margin: 14px 0 0; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; font-size: 12px; }
+.signpost__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  min-height: 44px;
+  font-size: 11.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brass);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--brass) 40%, transparent);
+  transition: border-color 200ms var(--e-hover);
+}
+.signpost__link:hover, .signpost__link:focus-visible { border-bottom-color: var(--brass); }
+.signpost__sep { color: var(--ink-3); }
+
+.use__id { margin: 0 0 8px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.use__idkey { font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-3); }
+.use__id code { font: 400 13px/1.5 var(--sans); color: var(--ink); user-select: all; }
+
+.briefing__since { margin: 8px 0 0; font-size: 13px; line-height: 1.6; color: var(--ink-2); max-width: 75ch; }
+
 
 </style>
 </head>
@@ -1769,11 +1792,11 @@ body {
           <span class="pill pill--live">Live</span>
         </div>
         <p class="mroute__note">Free on Nous Portal. Listed on the free roster tracked by llmroster.dev.</p>
-        <p class="mroute__stamp">Last checked 24 Oct 2026 at 18:30 IST</p>
+        <p class="mroute__stamp">Checked by hand · 24 Oct 2026</p>
         
         <div class="use" data-kind="steps">
           <h4 class="use__title">Use it free in 1 minute</h4>
-          <ol class="use__steps"><li>Open Nous Portal.</li><li>Sign in, or ask us and we will walk you through it.</li><li>Pick the model and send a test message.</li><li>If it asks for a key, add yours in place of YOUR_KEY.</li></ol>
+          <ol class="use__steps"><li>Open Nous Portal.</li><li>Sign in.</li><li>Pick the model and send a test message.</li><li>If it asks for a key, add yours in place of YOUR_KEY.</li></ol>
           
         </div>
       </section><section class="mroute" data-reveal data-provider="Command Code">
@@ -1783,7 +1806,7 @@ body {
           <span class="pill pill--ended">Ended</span>
         </div>
         <p class="mroute__note">Free until 22 Oct, about 11:30 IST. Now $0.16 in and $0.64 out per 1M. People think this is a renamed Qwen3.5, but nobody has checked. Do not send it secrets.</p>
-        <p class="mroute__stamp">Last checked 24 Oct 2026 at 18:30 IST</p>
+        <p class="mroute__stamp">Checked by hand · 24 Oct 2026</p>
         
         
       </section>
