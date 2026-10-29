@@ -1860,7 +1860,7 @@ body.home .foot {
   <header class="mast">
     <div class="mast__row">
       <div class="brand">
-        <span class="brand__word">FREELINE</span>
+        <h1 class="brand__word">FREELINE</h1>
         <span class="brand__rule" aria-hidden="true"></span>
         <span class="brand__sub">free AI models, checked live</span>
       </div>
@@ -1883,7 +1883,7 @@ body.home .foot {
     <dl class="stats" id="stats">
       <div class="stat"><dt>Free models now</dt><dd>08</dd></div>
       <div class="stat"><dt>Free routes checked</dt><dd>12</dd></div>
-      <div class="stat stat--warn"><dt>Ending in the next 24h</dt><dd>01</dd></div>
+      <div class="stat stat--warn"><dt>Ending soon</dt><dd>01</dd></div>
       <div class="stat"><dt>Free routes died this week</dt><dd>00</dd></div>
     </dl>
     <p class="stats__note" id="stats-note"></p>
@@ -2389,6 +2389,42 @@ function askLiveList(models) {
   return (models || []).filter(askHasLive).map((m) => `${m.name} on ${askLiveRoutes(m)[0].provider}. Checked ${dateIST(m.lastVerified)}.`);
 }
 
+const ASK_PROVIDER_ALIASES = { nvidia: "NVIDIA Build", nous: "Nous Portal", vercel: "Vercel AI Gateway", "ai studio": "Google AI Studio" };
+
+function askFindProvider(models, q) {
+  const providers = [...new Set((models || []).flatMap((m) => (m.routes || []).map((r) => r.provider)))];
+  const nq = ` ${askNorm(q)} `;
+  let best = null;
+  let bestLen = 0;
+  for (const p of providers) {
+    const cands = [askNorm(p), ...Object.keys(ASK_PROVIDER_ALIASES).filter((a) => ASK_PROVIDER_ALIASES[a] === p)];
+    for (const nc of cands) {
+      if (!nc || nc.length < 4) continue;
+      if (nq.indexOf(` ${nc} `) > -1 && nc.length > bestLen) {
+        best = p;
+        bestLen = nc.length;
+      }
+    }
+  }
+  return best;
+}
+
+function askIsFreeOn(m, p) {
+  const live = askLiveRoutes(m);
+  const checked = `Checked ${dateIST(m.lastVerified)}.`;
+  const names = live.map((r) => r.provider);
+  const where = names.length > 1 ? `${names.slice(0, -1).join(", ")} and ${names[names.length - 1]}` : names[0];
+  const route = (m.routes || []).find((r) => r.provider === p);
+  if (!route) {
+    if (!live.length) return askIsFree(m);
+    return [`The board has no ${p} route for ${m.name}.`, `It is free on ${where}.`, checked];
+  }
+  if (route.status === "live") return [`Yes. ${m.name} is free on ${p}.`, checked];
+  if (route.status === "expiring") return [`Yes, for now. ${m.name} is free on ${p}, but that free route is ending.`, checked];
+  if (!live.length) return askIsFree(m);
+  return [`No. ${m.name} is not free on ${p} any more.`, `It is free on ${where}.`, checked];
+}
+
 function askIsFree(m) {
   const live = askLiveRoutes(m);
   if (live.length) {
@@ -2460,11 +2496,17 @@ function askAnswer(models, changes, generatedAt, q) {
   if (!query.trim()) return [`Ask me about the board below.`];
   const ql = query.toLowerCase();
   const m = askFindModel(models, query);
-  if (m && /(free|live|route|cost|price|paid|end)/.test(ql)) return askIsFree(m);
+  if (m && /(free|live|route|cost|price|paid|end)/.test(ql)) {
+    const p = askFindProvider(models, query);
+    return p ? askIsFreeOn(m, p) : askIsFree(m);
+  }
   if (/(what changed|changed|this week|latest|recent|happen)/.test(ql)) return askChanges(changes, generatedAt);
   if (/(longest|context)/.test(ql)) return askLongest(models);
   if (/(best|which|code|cod|writ|image|picture|photo|document|job|pick|fast|quick)/.test(ql)) return askBest(models, ql, generatedAt);
-  if (m) return askIsFree(m);
+  if (m) {
+    const p = askFindProvider(models, query);
+    return p ? askIsFreeOn(m, p) : askIsFree(m);
+  }
   return askFallback(models, generatedAt);
 }
 
