@@ -1731,6 +1731,29 @@ body {
   color: var(--ink-2);
   max-width: 68ch;
 }
+.sparknotes {
+  margin-top: clamp(28px, 3.6vw, 38px);
+  padding: 16px 18px 14px;
+  background: var(--panel);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  border-left: 1px solid var(--brass-soft);
+}
+.sparknotes__line {
+  margin-top: 8px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  max-width: 68ch;
+}
+.sparknotes__stamp {
+  margin-top: 10px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  max-width: 75ch;
+}
 .briefing__line:first-of-type { color: var(--ink); }
 .briefing__stamp {
   margin-top: 10px;
@@ -1790,7 +1813,8 @@ body::before {
 .stats,
 .pick__result,
 .briefing,
-.ask {
+.ask,
+.sparknotes {
   background: var(--plate-deep);
 }
 

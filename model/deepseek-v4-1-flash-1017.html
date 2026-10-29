@@ -1731,6 +1731,29 @@ body {
   color: var(--ink-2);
   max-width: 68ch;
 }
+.sparknotes {
+  margin-top: clamp(28px, 3.6vw, 38px);
+  padding: 16px 18px 14px;
+  background: var(--panel);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  border-left: 1px solid var(--brass-soft);
+}
+.sparknotes__line {
+  margin-top: 8px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  max-width: 68ch;
+}
+.sparknotes__stamp {
+  margin-top: 10px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  max-width: 75ch;
+}
 .briefing__line:first-of-type { color: var(--ink); }
 .briefing__stamp {
   margin-top: 10px;
@@ -1790,7 +1813,8 @@ body::before {
 .stats,
 .pick__result,
 .briefing,
-.ask {
+.ask,
+.sparknotes {
   background: var(--plate-deep);
 }
 
@@ -1859,6 +1883,14 @@ body.home .foot {
           <h2 class="mpage__h">About</h2><p class="depth__about">DeepSeek V4.1 Flash 1017 is DeepSeek&#39;s checkpoint from 17 Oct 2026, released under the MIT license. It ranks first among open models on the Arena Code Arena WebDev board with 1,670 points, twelfth overall. It is ahead of Kimi K3 Max on that board. The free route is NVIDIA Build.</p>
           <h2 class="mpage__h">Best for</h2><ul class="bestfor"><li>Writing code</li><li>Web and front-end builds</li><li>Working to tight token budgets</li></ul>
         </section><h2 class="mpage__h">Scores on record</h2><ul class="bmarks"><li class="bmark"><span class="bmark__name">Arena WebDev</span><span class="bmark__value">1670 pts</span></li><li class="bmark"><span class="bmark__name">DeepSWE v1.1</span><span class="bmark__value">77.0%</span></li><li class="bmark"><span class="bmark__name">Terminal-Bench 4.0</span><span class="bmark__value">42.3</span></li></ul>
+    <section class="sparknotes" data-reveal>
+    <h2 class="mpage__h">Spark notes</h2>
+    <p class="sparknotes__line">DeepSeek V4.1 Flash 1017 by DeepSeek is live free on NVIDIA Build and OpenCode Zen.</p>
+    <p class="sparknotes__line">Since 2026-10-24T18:30:00+05:30 it is free on OpenCode Zen as deepseek-v4.1-flash-free.</p>
+    <p class="sparknotes__line">NVIDIA lists the base V4.1 Flash; the 1017 build is not listed on its own.</p>
+    <p class="sparknotes__line">Best for Writing code, Web and front-end builds, and Working to tight token budgets.</p>
+    <p class="sparknotes__stamp">Written by Muse Spark · 29 Oct 2026 · from this model's board record only</p>
+  </section>
     <h2 class="mpage__h">All routes</h2>
     <section class="mroute" data-reveal data-provider="NVIDIA Build">
         <div class="mroute__head">

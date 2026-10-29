@@ -1731,6 +1731,29 @@ body {
   color: var(--ink-2);
   max-width: 68ch;
 }
+.sparknotes {
+  margin-top: clamp(28px, 3.6vw, 38px);
+  padding: 16px 18px 14px;
+  background: var(--panel);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  border-left: 1px solid var(--brass-soft);
+}
+.sparknotes__line {
+  margin-top: 8px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  max-width: 68ch;
+}
+.sparknotes__stamp {
+  margin-top: 10px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  max-width: 75ch;
+}
 .briefing__line:first-of-type { color: var(--ink); }
 .briefing__stamp {
   margin-top: 10px;
@@ -1790,7 +1813,8 @@ body::before {
 .stats,
 .pick__result,
 .briefing,
-.ask {
+.ask,
+.sparknotes {
   background: var(--plate-deep);
 }
 
@@ -1859,6 +1883,14 @@ body.home .foot {
           <h2 class="mpage__h">About</h2><p class="depth__about">Ornith 1.5 122B is a 122B coding model released around 20 Oct 2026 under a license the maker calls MIT. The maker publishes it on Hugging Face and Ollama. Every coding score it shows comes from the maker&#39;s own chart, and no outside test has confirmed them.</p>
           <h2 class="mpage__h">Best for</h2><ul class="bestfor"><li>Writing code</li><li>Coding agents</li></ul>
         </section><h2 class="mpage__h">Scores on record</h2><ul class="bmarks"><li class="bmark"><span class="bmark__name">SWE-bench Verified (vendor)</span><span class="bmark__value">84.5%</span></li><li class="bmark"><span class="bmark__name">TerminalBench 2.1 (vendor)</span><span class="bmark__value">81.2%</span></li></ul><h2 class="mpage__h">Watch out</h2><ul class="watch"><li>People have accused the maker of renaming an Alibaba model. They point to the same architecture and tokenizer as Qwen3.5-122B-A10B. The maker has not confirmed or denied it.</li><li>Every score is the maker&#39;s own and no outside test has confirmed it. Treat the numbers with care.</li><li>The company that hosts it does not say what it keeps of your data, so do not send it secrets.</li></ul>
+    <section class="sparknotes" data-reveal>
+    <h2 class="mpage__h">Spark notes</h2>
+    <p class="sparknotes__line">Ornith 1.5 122B by ornith-ai is best for Writing code and Coding agents.</p>
+    <p class="sparknotes__line">It is live and free on Nous Portal through free roster.</p>
+    <p class="sparknotes__line">Its free listing on Command Code ended after 22 Oct, about 11:30 IST.</p>
+    <p class="sparknotes__line">Change on 2026-10-24T18:30:00+05:30: Command Code now costs $0.16 in and $0.64 out per 1M. Scores are SWE-bench Verified (vendor) 84.5% and TerminalBench 2.1 (vendor) 81.2%.</p>
+    <p class="sparknotes__stamp">Written by Muse Spark · 29 Oct 2026 · from this model's board record only</p>
+  </section>
     <h2 class="mpage__h">All routes</h2>
     <section class="mroute" data-reveal data-provider="Nous Portal">
         <div class="mroute__head">

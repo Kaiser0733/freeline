@@ -1731,6 +1731,29 @@ body {
   color: var(--ink-2);
   max-width: 68ch;
 }
+.sparknotes {
+  margin-top: clamp(28px, 3.6vw, 38px);
+  padding: 16px 18px 14px;
+  background: var(--panel);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  border-left: 1px solid var(--brass-soft);
+}
+.sparknotes__line {
+  margin-top: 8px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  max-width: 68ch;
+}
+.sparknotes__stamp {
+  margin-top: 10px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  max-width: 75ch;
+}
 .briefing__line:first-of-type { color: var(--ink); }
 .briefing__stamp {
   margin-top: 10px;
@@ -1790,7 +1813,8 @@ body::before {
 .stats,
 .pick__result,
 .briefing,
-.ask {
+.ask,
+.sparknotes {
   background: var(--plate-deep);
 }
 
@@ -1859,6 +1883,14 @@ body.home .foot {
           <h2 class="mpage__h">About</h2><p class="depth__about">LongCat 2.5 Preview comes from Meituan. It was free on OpenCode Go with no end date listed, until that row dropped off the list on 25 Oct 2026. There is no score and no outside test for it on the record.</p>
           <h2 class="mpage__h">Best for</h2><ul class="bestfor"><li>Quick answers</li></ul>
         </section><h2 class="mpage__h">Scores on record</h2><p class="depth__none">No scores on record for this model. We never use numbers from other models.</p>
+    <section class="sparknotes" data-reveal>
+    <h2 class="mpage__h">Spark notes</h2>
+    <p class="sparknotes__line">LongCat 2.5 Preview by Meituan is best for Quick answers.</p>
+    <p class="sparknotes__line">No free route is live now.</p>
+    <p class="sparknotes__line">OpenCode Go | longcat-2.5-preview-free ended. It dropped off the OpenCode Go free list on 25 Oct 2026, between 09:02 and 12:02 IST.</p>
+    <p class="sparknotes__line">No scores on record. Last checked 2026-10-25T12:02:22+05:30.</p>
+    <p class="sparknotes__stamp">Written by Muse Spark · 29 Oct 2026 · from this model's board record only</p>
+  </section>
     <h2 class="mpage__h">All routes</h2>
     <section class="mroute" data-reveal data-provider="OpenCode Go">
         <div class="mroute__head">
