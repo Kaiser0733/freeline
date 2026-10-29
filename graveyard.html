@@ -953,6 +953,11 @@ a:hover > .go, a:focus-visible > .go { transform: translateX(3px); }
 .mroute__provider { font: 400 18px/1.3 var(--serif); color: var(--ink); margin: 0; }
 .mroute__note { margin-top: 6px; font-size: 13.5px; line-height: 1.6; color: var(--ink-2); max-width: 64ch; }
 .mroute__stamp { margin-top: 6px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); }
+.mroute__life { margin-top: 4px; font-size: 12.5px; color: var(--ink-2); }
+.routehist { list-style: none; margin: 0 0 26px; padding: 0; }
+.routehist__item { padding: 8px 0; border-bottom: 1px solid var(--rule-soft); font-size: 13.5px; color: var(--ink-2); }
+.routehist__date { color: var(--ink); margin-right: 10px; white-space: nowrap; }
+.hist__span { margin: 0 0 10px; font-size: 12.5px; color: var(--ink-3); }
 
 .use {
   margin: 12px 0 12px;
@@ -1867,6 +1872,8 @@ body.home .foot {
       <h1 class="mpage__title">The graveyard</h1>
       <p class="gpage__lede">Free offers that have ended. We keep every one here, with the date it died and what happened, so you know what is gone and why.</p>
     </div>
+    <h2 class="mpage__h">Models with no free route left</h2>
+    <ol class="glist"><li class="grave"><span class="grave__num">01</span><div class="grave__body"><div class="grave__top"><h2 class="grave__name">LongCat 2.5 Preview</h2><time class="grave__date">† 25 Oct 2026</time></div><p class="grave__cause">By Meituan. The last free route ended on 25 Oct 2026. <a class="foot__link" href="model/longcat-2-5-preview.html">Full page →</a></p></div></li><li class="grave"><span class="grave__num">02</span><div class="grave__body"><div class="grave__top"><h2 class="grave__name">Kimi K3</h2><time class="grave__date">† 24 Oct 2026</time></div><p class="grave__cause">By Moonshot. The last free route ended on 24 Oct 2026. <a class="foot__link" href="model/kimi-k3.html">Full page →</a></p></div></li></ol>
     <ol class="glist" aria-label="Ended free offers, newest first"><li class="grave" data-reveal>
       <span class="grave__num" aria-hidden="true">01</span>
       <div class="grave__body">
@@ -1908,7 +1915,7 @@ body.home .foot {
         <p class="grave__cause">Its free run on OpenCode ended. It now costs $1.00 per 1M input tokens and $2.70 per 1M output tokens, with a 4x usage bonus.</p>
       </div>
     </li></ol>
-    <p class="gpage__count">4 ended so far · 10 models on the board</p>
+    <p class="gpage__count">6 ended so far · 8 models on the board</p>
   </main>
   <footer class="foot">
     <div class="frame" aria-hidden="true"></div>

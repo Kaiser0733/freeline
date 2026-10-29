@@ -953,6 +953,11 @@ a:hover > .go, a:focus-visible > .go { transform: translateX(3px); }
 .mroute__provider { font: 400 18px/1.3 var(--serif); color: var(--ink); margin: 0; }
 .mroute__note { margin-top: 6px; font-size: 13.5px; line-height: 1.6; color: var(--ink-2); max-width: 64ch; }
 .mroute__stamp { margin-top: 6px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); }
+.mroute__life { margin-top: 4px; font-size: 12.5px; color: var(--ink-2); }
+.routehist { list-style: none; margin: 0 0 26px; padding: 0; }
+.routehist__item { padding: 8px 0; border-bottom: 1px solid var(--rule-soft); font-size: 13.5px; color: var(--ink-2); }
+.routehist__date { color: var(--ink); margin-right: 10px; white-space: nowrap; }
+.hist__span { margin: 0 0 10px; font-size: 12.5px; color: var(--ink-3); }
 
 .use {
   margin: 12px 0 12px;
@@ -1894,6 +1899,13 @@ body.home .foot {
         <div>
           <h2 class="how__title">Checks run every 3 hours</h2>
           <p class="how__text">Each model page shows when its checks ran and which of them passed. Ideas, guesses and old articles never change a status.</p>
+        </div>
+      </li>
+      <li class="how__step">
+        <span class="how__num" aria-hidden="true">05</span>
+        <div>
+          <h2 class="how__title">A note written from the record</h2>
+          <p class="how__text">Each model page carries a short note written by Muse Spark from that model's own board record only. A note is rewritten only when that record changes.</p>
         </div>
       </li>
     </ol>
