@@ -733,6 +733,10 @@ a:hover > .go, a:focus-visible > .go { transform: translateX(3px); }
   background: currentColor;
 }
 
+.risk { margin-top: 6px; }
+.risk__tag { font-size: 10.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); white-space: nowrap; }
+.risk__tag--ending-soon { color: var(--flag); }
+.risk__reason { margin-top: 4px; font-size: 12.5px; line-height: 1.5; color: var(--ink-3); }
 .pill--live { color: var(--brass); border-color: var(--brass-soft); }
 .pill--expiring { color: var(--ink); border-color: var(--rule-strong); }
 .pill--dead { color: var(--ink-3); border-color: var(--rule); }
@@ -1906,6 +1910,7 @@ body.home .foot {
         </div>
         <p class="mroute__note">Free through NVIDIA Build. NVIDIA lists the base V4.1 Flash; the 1017 build is not listed on its own.</p>
         <p class="mroute__stamp">Checked by hand · 30 Oct 2026</p>
+        <p class="risk"><span class="risk__tag risk__tag--steady">Steady</span></p><p class="risk__reason">Steady last checked 30 Oct 2026</p>
         
         <div class="use" data-kind="steps">
           <h4 class="use__title">Use it free in 1 minute</h4>
@@ -1919,8 +1924,9 @@ body.home .foot {
           <span class="pill pill--live">Live</span>
         </div>
         <p class="mroute__note">Free on OpenCode Zen for a limited time.</p>
-        <p class="mroute__stamp">Last checked 30 Oct 2026 at 10:17 IST by the probe</p>
+        <p class="mroute__stamp">Last checked 30 Oct 2026 at 11:01 IST by the probe</p>
         <p class="mroute__life">Live since 24 Oct 2026</p>
+        <p class="risk"><span class="risk__tag risk__tag--steady">Steady</span></p><p class="risk__reason">Steady route age 6 days last checked 30 Oct 2026</p>
         
         <div class="use" data-kind="opencode">
           <h4 class="use__title">Use it free in 1 minute</h4>
@@ -1932,15 +1938,11 @@ model: deepseek-v4.1-flash-free</code></pre>
     <h2 class="mpage__h">Route history</h2>
     <ol class="routehist"><li class="routehist__item"><span class="routehist__date">24 Oct 2026</span>DeepSeek V4.1 Flash 1017 is free on OpenCode Zen</li></ol>
     <h2 class="mpage__h">History</h2>
-    <section class="hist" data-reveal data-model="deepseek-v4.1-flash-1017" data-checks="158"><p class="hist__span">Checked since 21 Oct 2026</p><div class="hist__track" role="img" aria-label="158 live call checks since 21 Oct 2026 across its 2 routes; 157 found it on the free list, 1 did not">
+    <section class="hist" data-reveal data-model="deepseek-v4.1-flash-1017" data-checks="160"><p class="hist__span">Checked since 21 Oct 2026</p><div class="hist__track" role="img" aria-label="160 live call checks since 21 Oct 2026 across its 2 routes; 159 found it on the free list, 1 did not">
         <span class="hist__bar" style="--fill: 99%"></span>
       </div>
-      <p class="hist__trackline"><b>158 live call checks since 21 Oct 2026 across its 2 routes</b> — 157 found it on the free list, 1 did not · last 20 shown</p>
-      <ol class="hist__marks" aria-label="Recent checks, oldest first"><li class="hist__mark hist__mark--ok" data-at="15:02 IST" title="29 Oct 2026 15:02 IST">
-          <time class="hist__time" datetime="2026-10-29T15:02:24+05:30">15:02</time>
-          <span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" data-at="15:02 IST" title="29 Oct 2026 15:02 IST">
-          <time class="hist__time" datetime="2026-10-29T15:02:24+05:30">15:02</time>
-          <span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" data-at="18:02 IST" title="29 Oct 2026 18:02 IST">
+      <p class="hist__trackline"><b>160 live call checks since 21 Oct 2026 across its 2 routes</b> — 159 found it on the free list, 1 did not · last 20 shown</p>
+      <ol class="hist__marks" aria-label="Recent checks, oldest first"><li class="hist__mark hist__mark--ok" data-at="18:02 IST" title="29 Oct 2026 18:02 IST">
           <time class="hist__time" datetime="2026-10-29T18:02:21+05:30">18:02</time>
           <span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" data-at="18:02 IST" title="29 Oct 2026 18:02 IST">
           <time class="hist__time" datetime="2026-10-29T18:02:21+05:30">18:02</time>
@@ -1976,6 +1978,10 @@ model: deepseek-v4.1-flash-free</code></pre>
           <time class="hist__time" datetime="2026-10-30T10:17:41+05:30">10:17</time>
           <span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" data-at="10:17 IST" title="30 Oct 2026 10:17 IST">
           <time class="hist__time" datetime="2026-10-30T10:17:41+05:30">10:17</time>
+          <span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" data-at="11:01 IST" title="30 Oct 2026 11:01 IST">
+          <time class="hist__time" datetime="2026-10-30T11:01:55+05:30">11:01</time>
+          <span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" data-at="11:01 IST" title="30 Oct 2026 11:01 IST">
+          <time class="hist__time" datetime="2026-10-30T11:01:55+05:30">11:01</time>
           <span class="visually-hidden">passed</span></li></ol>
       <p class="hist__note">Each mark is a check we ran, at the time shown. A hollow mark is a failed check. No mark means no check logged.</p></section>
   </main>
