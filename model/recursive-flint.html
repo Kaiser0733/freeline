@@ -737,6 +737,7 @@ a:hover > .go, a:focus-visible > .go { transform: translateX(3px); }
 .risk__tag { font-size: 10.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); white-space: nowrap; }
 .risk__tag--ending-soon { color: var(--flag); }
 .risk__reason { margin-top: 4px; font-size: 12.5px; line-height: 1.5; color: var(--ink-3); }
+.switchline { margin-top: 10px; font-size: 13.5px; line-height: 1.6; color: var(--ink-2); max-width: 62ch; }
 .pill--live { color: var(--brass); border-color: var(--brass-soft); }
 .pill--expiring { color: var(--ink); border-color: var(--rule-strong); }
 .pill--dead { color: var(--ink-3); border-color: var(--rule); }
@@ -1884,6 +1885,7 @@ body.home .foot {
       <span class="check-kind">Checked by listing</span>
     </div>
     
+    
     <p class="headline">Maker reports 74.2% on SWE-bench Verified. No outside tests yet.</p>
     <p class="equals"><span class="equals__key">Same as</span> <span class="equals__val">Strong coder class, not yet tested outside</span></p>
     <p class="identity">May be the model once listed as ll-alpha-free. Not confirmed.</p>
@@ -1908,9 +1910,9 @@ body.home .foot {
           <span class="pill pill--live">Live</span>
         </div>
         <p class="mroute__note">Free on OpenRouter at $0.00 in and $0.00 out.</p>
-        <p class="mroute__stamp">Last checked 30 Oct 2026 at 11:01 IST by the probe</p>
+        <p class="mroute__stamp">Last checked 30 Oct 2026 at 11:36 IST by the probe</p>
         <p class="mroute__life">Live since 22 Oct 2026</p>
-        <p class="risk"><span class="risk__tag risk__tag--steady">Steady</span></p><p class="risk__reason">Steady, age 8 days, last checked 30 Oct 2026</p>
+        <p class="risk"><span class="risk__tag risk__tag--steady">Steady</span></p><p class="risk__reason">It is 8 days old.</p>
         <ul class="rroute__facts"><li>Up to 262K tokens in</li><li>65K tokens out</li></ul>
         <div class="use" data-kind="curl">
           <h4 class="use__title">Use it free in 1 minute</h4>
@@ -1927,9 +1929,9 @@ body.home .foot {
           <span class="pill pill--live">Live</span>
         </div>
         <p class="mroute__note">Listed as free on the OpenCode console models page.</p>
-        <p class="mroute__stamp">Last checked 30 Oct 2026 at 11:01 IST by the probe</p>
+        <p class="mroute__stamp">Last checked 30 Oct 2026 at 11:36 IST by the probe</p>
         <p class="mroute__life">Live since 22 Oct 2026</p>
-        <p class="risk"><span class="risk__tag risk__tag--steady">Steady</span></p><p class="risk__reason">Steady, age 8 days, last checked 30 Oct 2026</p>
+        <p class="risk"><span class="risk__tag risk__tag--steady">Steady</span></p><p class="risk__reason">This route is 8 days old.</p>
         <ul class="rroute__facts"><li>Up to 262K tokens in</li><li>65K tokens out</li></ul>
         <div class="use" data-kind="opencode">
           <h4 class="use__title">Use it free in 1 minute</h4>
@@ -1941,15 +1943,11 @@ model: flint-40b-free</code></pre>
     <h2 class="mpage__h">Route history</h2>
     <ol class="routehist"><li class="routehist__item"><span class="routehist__date">22 Oct 2026</span>Recursive Flint added — free on OpenRouter and OpenCode Zen</li></ol>
     <h2 class="mpage__h">History</h2>
-    <section class="hist" data-reveal data-model="recursive-flint" data-checks="164"><p class="hist__span">Checked since 21 Oct 2026</p><div class="hist__track" role="img" aria-label="164 listing checks since 22 Oct 2026 across its 2 routes; 164 found it on the free list, 0 did not">
+    <section class="hist" data-reveal data-model="recursive-flint" data-checks="166"><p class="hist__span">Checked since 21 Oct 2026</p><div class="hist__track" role="img" aria-label="166 listing checks since 22 Oct 2026 across its 2 routes; 166 found it on the free list, 0 did not">
         <span class="hist__bar" style="--fill: 100%"></span>
       </div>
-      <p class="hist__trackline"><b>164 listing checks since 22 Oct 2026 across its 2 routes</b> — 164 found it on the free list · last 20 shown</p>
-      <ol class="hist__marks" aria-label="Recent checks, oldest first"><li class="hist__mark hist__mark--ok" data-at="18:02 IST" title="29 Oct 2026 18:02 IST">
-          <time class="hist__time" datetime="2026-10-29T18:02:21+05:30">18:02</time>
-          <span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" data-at="18:02 IST" title="29 Oct 2026 18:02 IST">
-          <time class="hist__time" datetime="2026-10-29T18:02:21+05:30">18:02</time>
-          <span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" data-at="21:02 IST" title="29 Oct 2026 21:02 IST">
+      <p class="hist__trackline"><b>166 listing checks since 22 Oct 2026 across its 2 routes</b> — 166 found it on the free list · last 20 shown</p>
+      <ol class="hist__marks" aria-label="Recent checks, oldest first"><li class="hist__mark hist__mark--ok" data-at="21:02 IST" title="29 Oct 2026 21:02 IST">
           <time class="hist__time" datetime="2026-10-29T21:02:23+05:30">21:02</time>
           <span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" data-at="21:02 IST" title="29 Oct 2026 21:02 IST">
           <time class="hist__time" datetime="2026-10-29T21:02:23+05:30">21:02</time>
@@ -1985,6 +1983,10 @@ model: flint-40b-free</code></pre>
           <time class="hist__time" datetime="2026-10-30T11:01:55+05:30">11:01</time>
           <span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" data-at="11:01 IST" title="30 Oct 2026 11:01 IST">
           <time class="hist__time" datetime="2026-10-30T11:01:55+05:30">11:01</time>
+          <span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" data-at="11:36 IST" title="30 Oct 2026 11:36 IST">
+          <time class="hist__time" datetime="2026-10-30T11:36:06+05:30">11:36</time>
+          <span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" data-at="11:36 IST" title="30 Oct 2026 11:36 IST">
+          <time class="hist__time" datetime="2026-10-30T11:36:06+05:30">11:36</time>
           <span class="visually-hidden">passed</span></li></ol>
       <p class="hist__note">Each mark is a check we ran, at the time shown. A hollow mark is a failed check. No mark means no check logged.</p></section>
   </main>
