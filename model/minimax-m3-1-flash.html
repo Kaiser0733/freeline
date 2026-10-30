@@ -1340,6 +1340,7 @@ a:hover > .go, a:focus-visible > .go { transform: translateX(3px); }
   cursor: pointer;
   transition: border-color 160ms var(--e), background-color 160ms var(--e);
 }
+.copycode { margin-top: 10px; min-height: 36px; }
 .copy:hover { border-color: color-mix(in srgb, var(--ink) 45%, transparent); background: color-mix(in srgb, var(--ink) 6%, transparent); }
 .copy:active { transform: scale(0.98); }
 
@@ -1914,10 +1915,14 @@ body.home .foot {
         <p class="mroute__life">Live since 24 Oct 2026</p>
         <p class="risk"><span class="risk__tag risk__tag--watch-it">Watch it</span></p><p class="risk__reason">This route is 6 days old and checked on 24 Oct 2026.</p>
         
-        <div class="use" data-kind="steps">
+        <div class="use" data-kind="curl">
           <h4 class="use__title">Use it free in 1 minute</h4>
-          <ol class="use__steps"><li>Open NVIDIA Build.</li><li>Sign in.</li><li>Pick the model and send a test message.</li><li>If it asks for a key, add yours in place of YOUR_KEY.</li></ol>
-          
+          <pre class="use__code"><code>curl https://integrate.api.nvidia.com/v1/chat/completions \
+  -H &quot;Authorization: Bearer YOUR_KEY&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#39;{&quot;model&quot;:&quot;minimaxai/minimax-m3.1-flash&quot;,&quot;messages&quot;:[{&quot;role&quot;:&quot;user&quot;,&quot;content&quot;:&quot;hello&quot;}]}&#39;</code></pre>
+          <button class="copy copycode" type="button">Copy</button>
+          <p class="use__note">Get a key from NVIDIA Build, then paste it in place of YOUR_KEY.</p>
         </div>
       </section><section class="mroute" data-reveal data-provider="TokenRouter">
         <div class="mroute__head">
@@ -1936,7 +1941,7 @@ body.home .foot {
           <span class="pill pill--ended">Ended</span>
         </div>
         <p class="mroute__note">Free on OpenCode Go until it dropped off the free list on 23 Oct.</p>
-        <p class="mroute__stamp">Last checked 30 Oct 2026 at 11:36 IST by the probe</p>
+        <p class="mroute__stamp">Last checked 30 Oct 2026 at 11:40 IST by the probe</p>
         <p class="mroute__life">Ended 23 Oct 2026</p>
         
         
@@ -1947,7 +1952,7 @@ body.home .foot {
           <span class="pill pill--ended">Ended</span>
         </div>
         <p class="mroute__note">Free until 22 Oct. Now $0.15 per 1M input tokens and $0.60 per 1M output.</p>
-        <p class="mroute__stamp">Last checked 30 Oct 2026 at 11:36 IST by the probe</p>
+        <p class="mroute__stamp">Last checked 30 Oct 2026 at 11:40 IST by the probe</p>
         <p class="mroute__life">Ended 23 Oct 2026</p>
         
         
@@ -1958,7 +1963,7 @@ body.home .foot {
           <span class="pill pill--ended">Ended</span>
         </div>
         <p class="mroute__note">Free until 22 Oct. Now a paid route.</p>
-        <p class="mroute__stamp">Last checked 30 Oct 2026 at 11:36 IST by the probe</p>
+        <p class="mroute__stamp">Last checked 30 Oct 2026 at 11:40 IST by the probe</p>
         <p class="mroute__life">Ended 23 Oct 2026</p>
         
         
@@ -1977,17 +1982,11 @@ body.home .foot {
     <h2 class="mpage__h">Route history</h2>
     <ol class="routehist"><li class="routehist__item"><span class="routehist__date">24 Oct 2026</span>MiniMax M3.1 Flash&#39;s free route on Command Code ended</li><li class="routehist__item"><span class="routehist__date">24 Oct 2026</span>MiniMax M3.1 Flash is free on NVIDIA Build</li><li class="routehist__item"><span class="routehist__date">23 Oct 2026</span>minimax-m3.1-flash-free dropped off the free list</li><li class="routehist__item"><span class="routehist__date">23 Oct 2026</span>minimax/minimax-m3.1-flash:free dropped off the free list</li><li class="routehist__item"><span class="routehist__date">23 Oct 2026</span>minimax/minimax-m3.1-flash dropped off the free list</li></ol>
     <h2 class="mpage__h">History</h2>
-    <section class="hist" data-reveal data-model="minimax-m3.1-flash" data-checks="288"><p class="hist__span">Checked since 21 Oct 2026</p><div class="hist__track" role="img" aria-label="288 listing checks since 21 Oct 2026 across its 6 routes; 51 found it on the free list, 237 did not">
+    <section class="hist" data-reveal data-model="minimax-m3.1-flash" data-checks="291"><p class="hist__span">Checked since 21 Oct 2026</p><div class="hist__track" role="img" aria-label="291 listing checks since 21 Oct 2026 across its 6 routes; 51 found it on the free list, 240 did not">
         <span class="hist__bar" style="--fill: 18%"></span>
       </div>
-      <p class="hist__trackline"><b>288 listing checks since 21 Oct 2026 across its 6 routes</b> — 51 found it on the free list, 237 did not · last 20 shown</p>
-      <ol class="hist__marks" aria-label="Recent checks, oldest first"><li class="hist__mark hist__mark--bad" data-at="06:02 IST" title="30 Oct 2026 06:02 IST">
-          <time class="hist__time" datetime="2026-10-30T06:02:26+05:30">06:02</time>
-          <span class="visually-hidden">failed</span></li><li class="hist__mark hist__mark--bad" data-at="06:02 IST" title="30 Oct 2026 06:02 IST">
-          <time class="hist__time" datetime="2026-10-30T06:02:26+05:30">06:02</time>
-          <span class="visually-hidden">failed</span></li><li class="hist__mark hist__mark--bad" data-at="09:02 IST" title="30 Oct 2026 09:02 IST">
-          <time class="hist__time" datetime="2026-10-30T09:02:25+05:30">09:02</time>
-          <span class="visually-hidden">failed</span></li><li class="hist__mark hist__mark--bad" data-at="09:02 IST" title="30 Oct 2026 09:02 IST">
+      <p class="hist__trackline"><b>291 listing checks since 21 Oct 2026 across its 6 routes</b> — 51 found it on the free list, 240 did not · last 20 shown</p>
+      <ol class="hist__marks" aria-label="Recent checks, oldest first"><li class="hist__mark hist__mark--bad" data-at="09:02 IST" title="30 Oct 2026 09:02 IST">
           <time class="hist__time" datetime="2026-10-30T09:02:25+05:30">09:02</time>
           <span class="visually-hidden">failed</span></li><li class="hist__mark hist__mark--bad" data-at="09:02 IST" title="30 Oct 2026 09:02 IST">
           <time class="hist__time" datetime="2026-10-30T09:02:25+05:30">09:02</time>
@@ -2021,6 +2020,12 @@ body.home .foot {
           <time class="hist__time" datetime="2026-10-30T11:36:06+05:30">11:36</time>
           <span class="visually-hidden">failed</span></li><li class="hist__mark hist__mark--bad" data-at="11:36 IST" title="30 Oct 2026 11:36 IST">
           <time class="hist__time" datetime="2026-10-30T11:36:06+05:30">11:36</time>
+          <span class="visually-hidden">failed</span></li><li class="hist__mark hist__mark--bad" data-at="11:40 IST" title="30 Oct 2026 11:40 IST">
+          <time class="hist__time" datetime="2026-10-30T11:40:29+05:30">11:40</time>
+          <span class="visually-hidden">failed</span></li><li class="hist__mark hist__mark--bad" data-at="11:40 IST" title="30 Oct 2026 11:40 IST">
+          <time class="hist__time" datetime="2026-10-30T11:40:29+05:30">11:40</time>
+          <span class="visually-hidden">failed</span></li><li class="hist__mark hist__mark--bad" data-at="11:40 IST" title="30 Oct 2026 11:40 IST">
+          <time class="hist__time" datetime="2026-10-30T11:40:29+05:30">11:40</time>
           <span class="visually-hidden">failed</span></li></ol>
       <p class="hist__note">Each mark is a check we ran, at the time shown. A hollow mark is a failed check. No mark means no check logged.</p></section>
   </main>
@@ -2073,6 +2078,44 @@ body.home .foot {
       });
   }, { threshold: 0.15 });
   Array.prototype.forEach.call(targets, function (el) { io.observe(el); });
+})();
+</script>
+<script>
+(function () {
+  var btns = document.querySelectorAll(".copycode");
+  if (!btns.length) return;
+  Array.prototype.forEach.call(btns, function (btn) {
+    btn.addEventListener("click", function () {
+      var box = btn.closest(".use");
+      var code = box ? box.querySelector(".use__code code") : null;
+      if (!code) return;
+      var text = code.textContent;
+      var done = function () {
+        btn.textContent = "Copied";
+        setTimeout(function () { btn.textContent = "Copy"; }, 1500);
+      };
+      var fallback = function () {
+        try {
+          var ta = document.createElement("textarea");
+          ta.value = text;
+          ta.setAttribute("readonly", "");
+          ta.style.position = "absolute";
+          ta.style.left = "-9999px";
+          document.body.appendChild(ta);
+          ta.select();
+          var ok = false;
+          try { ok = document.execCommand("copy"); } catch (e) {}
+          ta.remove();
+          if (ok) done();
+        } catch (e) {}
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, fallback);
+      } else {
+        fallback();
+      }
+    });
+  });
 })();
 </script>
 </body>

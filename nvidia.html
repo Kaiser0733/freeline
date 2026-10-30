@@ -1340,6 +1340,7 @@ a:hover > .go, a:focus-visible > .go { transform: translateX(3px); }
   cursor: pointer;
   transition: border-color 160ms var(--e), background-color 160ms var(--e);
 }
+.copycode { margin-top: 10px; min-height: 36px; }
 .copy:hover { border-color: color-mix(in srgb, var(--ink) 45%, transparent); background: color-mix(in srgb, var(--ink) 6%, transparent); }
 .copy:active { transform: scale(0.98); }
 
@@ -2056,6 +2057,44 @@ body.home .foot {
       });
   }, { threshold: 0.15 });
   Array.prototype.forEach.call(targets, function (el) { io.observe(el); });
+})();
+</script>
+<script>
+(function () {
+  var btns = document.querySelectorAll(".copycode");
+  if (!btns.length) return;
+  Array.prototype.forEach.call(btns, function (btn) {
+    btn.addEventListener("click", function () {
+      var box = btn.closest(".use");
+      var code = box ? box.querySelector(".use__code code") : null;
+      if (!code) return;
+      var text = code.textContent;
+      var done = function () {
+        btn.textContent = "Copied";
+        setTimeout(function () { btn.textContent = "Copy"; }, 1500);
+      };
+      var fallback = function () {
+        try {
+          var ta = document.createElement("textarea");
+          ta.value = text;
+          ta.setAttribute("readonly", "");
+          ta.style.position = "absolute";
+          ta.style.left = "-9999px";
+          document.body.appendChild(ta);
+          ta.select();
+          var ok = false;
+          try { ok = document.execCommand("copy"); } catch (e) {}
+          ta.remove();
+          if (ok) done();
+        } catch (e) {}
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, fallback);
+      } else {
+        fallback();
+      }
+    });
+  });
 })();
 </script>
 </body>

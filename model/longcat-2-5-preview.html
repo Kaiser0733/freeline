@@ -1340,6 +1340,7 @@ a:hover > .go, a:focus-visible > .go { transform: translateX(3px); }
   cursor: pointer;
   transition: border-color 160ms var(--e), background-color 160ms var(--e);
 }
+.copycode { margin-top: 10px; min-height: 36px; }
 .copy:hover { border-color: color-mix(in srgb, var(--ink) 45%, transparent); background: color-mix(in srgb, var(--ink) 6%, transparent); }
 .copy:active { transform: scale(0.98); }
 
@@ -1910,7 +1911,7 @@ body.home .foot {
           <span class="pill pill--ended">Ended</span>
         </div>
         <p class="mroute__note">Dropped off the OpenCode Go free list on 25 Oct 2026, between 09:02 and 12:02 IST.</p>
-        <p class="mroute__stamp">Last checked 30 Oct 2026 at 11:36 IST by the probe</p>
+        <p class="mroute__stamp">Last checked 30 Oct 2026 at 11:40 IST by the probe</p>
         <p class="mroute__life">Ended 25 Oct 2026</p>
         
         
@@ -1918,13 +1919,11 @@ body.home .foot {
     <h2 class="mpage__h">Route history</h2>
     <ol class="routehist"><li class="routehist__item"><span class="routehist__date">25 Oct 2026</span>longcat-2.5-preview-free dropped off the free list</li></ol>
     <h2 class="mpage__h">History</h2>
-    <section class="hist" data-reveal data-model="longcat-2.5-preview" data-checks="93"><p class="hist__span">Checked since 21 Oct 2026</p><div class="hist__track" role="img" aria-label="93 listing checks since 21 Oct 2026 across its 1 route; 29 found it on the free list, 64 did not">
+    <section class="hist" data-reveal data-model="longcat-2.5-preview" data-checks="94"><p class="hist__span">Checked since 21 Oct 2026</p><div class="hist__track" role="img" aria-label="94 listing checks since 21 Oct 2026 across its 1 route; 29 found it on the free list, 65 did not">
         <span class="hist__bar" style="--fill: 31%"></span>
       </div>
-      <p class="hist__trackline"><b>93 listing checks since 21 Oct 2026 across its 1 route</b> — 29 found it on the free list, 64 did not · last 20 shown</p>
-      <ol class="hist__marks" aria-label="Recent checks, oldest first"><li class="hist__mark hist__mark--bad" data-at="21:02 IST" title="28 Oct 2026 21:02 IST">
-          <time class="hist__time" datetime="2026-10-28T21:02:21+05:30">21:02</time>
-          <span class="visually-hidden">failed</span></li><li class="hist__mark hist__mark--bad" data-at="00:02 IST" title="29 Oct 2026 00:02 IST">
+      <p class="hist__trackline"><b>94 listing checks since 21 Oct 2026 across its 1 route</b> — 29 found it on the free list, 65 did not · last 20 shown</p>
+      <ol class="hist__marks" aria-label="Recent checks, oldest first"><li class="hist__mark hist__mark--bad" data-at="00:02 IST" title="29 Oct 2026 00:02 IST">
           <time class="hist__time" datetime="2026-10-29T00:02:31+05:30">00:02</time>
           <span class="visually-hidden">failed</span></li><li class="hist__mark hist__mark--bad" data-at="03:02 IST" title="29 Oct 2026 03:02 IST">
           <time class="hist__time" datetime="2026-10-29T03:02:25+05:30">03:02</time>
@@ -1962,6 +1961,8 @@ body.home .foot {
           <time class="hist__time" datetime="2026-10-30T11:01:55+05:30">11:01</time>
           <span class="visually-hidden">failed</span></li><li class="hist__mark hist__mark--bad" data-at="11:36 IST" title="30 Oct 2026 11:36 IST">
           <time class="hist__time" datetime="2026-10-30T11:36:06+05:30">11:36</time>
+          <span class="visually-hidden">failed</span></li><li class="hist__mark hist__mark--bad" data-at="11:40 IST" title="30 Oct 2026 11:40 IST">
+          <time class="hist__time" datetime="2026-10-30T11:40:29+05:30">11:40</time>
           <span class="visually-hidden">failed</span></li></ol>
       <p class="hist__note">Each mark is a check we ran, at the time shown. A hollow mark is a failed check. No mark means no check logged.</p></section>
   </main>
@@ -2014,6 +2015,44 @@ body.home .foot {
       });
   }, { threshold: 0.15 });
   Array.prototype.forEach.call(targets, function (el) { io.observe(el); });
+})();
+</script>
+<script>
+(function () {
+  var btns = document.querySelectorAll(".copycode");
+  if (!btns.length) return;
+  Array.prototype.forEach.call(btns, function (btn) {
+    btn.addEventListener("click", function () {
+      var box = btn.closest(".use");
+      var code = box ? box.querySelector(".use__code code") : null;
+      if (!code) return;
+      var text = code.textContent;
+      var done = function () {
+        btn.textContent = "Copied";
+        setTimeout(function () { btn.textContent = "Copy"; }, 1500);
+      };
+      var fallback = function () {
+        try {
+          var ta = document.createElement("textarea");
+          ta.value = text;
+          ta.setAttribute("readonly", "");
+          ta.style.position = "absolute";
+          ta.style.left = "-9999px";
+          document.body.appendChild(ta);
+          ta.select();
+          var ok = false;
+          try { ok = document.execCommand("copy"); } catch (e) {}
+          ta.remove();
+          if (ok) done();
+        } catch (e) {}
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, fallback);
+      } else {
+        fallback();
+      }
+    });
+  });
 })();
 </script>
 </body>
