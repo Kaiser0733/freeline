@@ -6,7 +6,14 @@
     <atom:link href="https://freeline.vastraalabs.online/feed.xml" rel="self" type="application/rss+xml"/>
     <description>New free AI models, and free routes that ended. Only changes we recorded ourselves.</description>
     <language>en</language>
-    <lastBuildDate>Sun, 25 Oct 2026 06:32:22 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 31 Oct 2026 15:32:22 GMT</lastBuildDate>
+    <item>
+      <title>poolside/laguna-s-2.1:free dropped off the free list</title>
+      <link>https://freeline.vastraalabs.online/model/laguna-s-2-1.html</link>
+      <guid isPermaLink="false">freeline-list-change-2026-10-31T21:02:22+05:30-model/laguna-s-2-1.html</guid>
+      <pubDate>Sat, 31 Oct 2026 15:32:22 GMT</pubDate>
+      <description>OpenRouter, on laguna-s-2.1.</description>
+    </item>
     <item>
       <title>longcat-2.5-preview-free dropped off the free list</title>
       <link>https://freeline.vastraalabs.online/model/longcat-2-5-preview.html</link>
