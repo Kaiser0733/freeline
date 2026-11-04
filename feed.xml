@@ -6,7 +6,42 @@
     <atom:link href="https://freeline.vastraalabs.online/feed.xml" rel="self" type="application/rss+xml"/>
     <description>New free AI models, and free routes that ended. Only changes we recorded ourselves.</description>
     <language>en</language>
-    <lastBuildDate>Sat, 31 Oct 2026 15:32:22 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 04 Nov 2026 04:58:22 GMT</lastBuildDate>
+    <item>
+      <title>Glyph Cluster added — free</title>
+      <link>https://freeline.vastraalabs.online/model/glyph-cluster.html</link>
+      <guid isPermaLink="false">freeline-added-2026-11-04T10:28:22+05:30-model/glyph-cluster.html</guid>
+      <pubDate>Wed, 04 Nov 2026 04:58:22 GMT</pubDate>
+      <description>Free on Vercel AI Gateway, Command Code.</description>
+    </item>
+    <item>
+      <title>Nemotron 3.5 Lightning added — free</title>
+      <link>https://freeline.vastraalabs.online/model/nemotron-3-5-lightning.html</link>
+      <guid isPermaLink="false">freeline-added-2026-11-04T10:28:22+05:30-model/nemotron-3-5-lightning.html</guid>
+      <pubDate>Wed, 04 Nov 2026 04:58:22 GMT</pubDate>
+      <description>Free on OpenRouter, Vercel AI Gateway, OpenCode Zen.</description>
+    </item>
+    <item>
+      <title>Nemotron 3.5 Super Vl added — free</title>
+      <link>https://freeline.vastraalabs.online/model/nemotron-3-5-super-vl.html</link>
+      <guid isPermaLink="false">freeline-added-2026-11-04T10:28:22+05:30-model/nemotron-3-5-super-vl.html</guid>
+      <pubDate>Wed, 04 Nov 2026 04:58:22 GMT</pubDate>
+      <description>Free on OpenRouter, OpenCode Zen.</description>
+    </item>
+    <item>
+      <title>Crouton Alpha added — free</title>
+      <link>https://freeline.vastraalabs.online/model/crouton-alpha.html</link>
+      <guid isPermaLink="false">freeline-added-2026-11-04T10:19:45+05:30-model/crouton-alpha.html</guid>
+      <pubDate>Wed, 04 Nov 2026 04:49:45 GMT</pubDate>
+      <description>Free on OpenRouter, OpenCode Zen and Command Code.</description>
+    </item>
+    <item>
+      <title>Ornith 1.5 122B dropped off the free list</title>
+      <link>https://freeline.vastraalabs.online/model/ornith-1-5-122b.html</link>
+      <guid isPermaLink="false">freeline-list-change-2026-11-04T10:19:45+05:30-model/ornith-1-5-122b.html</guid>
+      <pubDate>Wed, 04 Nov 2026 04:49:45 GMT</pubDate>
+      <description>Nous Portal, ornith-1.5-122b.</description>
+    </item>
     <item>
       <title>poolside/laguna-s-2.1:free dropped off the free list</title>
       <link>https://freeline.vastraalabs.online/model/laguna-s-2-1.html</link>
