@@ -6,7 +6,21 @@
     <atom:link href="https://freeline.vastraalabs.online/feed.xml" rel="self" type="application/rss+xml"/>
     <description>New free AI models, and free routes that ended. Only changes we recorded ourselves.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 05 Nov 2026 09:10:47 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 05 Nov 2026 10:48:11 GMT</lastBuildDate>
+    <item>
+      <title>Gemma 4 31b It added — free</title>
+      <link>https://freeline.vastraalabs.online/model/gemma-4-31b-it.html</link>
+      <guid isPermaLink="false">freeline-added-2026-11-05T16:18:11+05:30-model/gemma-4-31b-it.html</guid>
+      <pubDate>Thu, 05 Nov 2026 10:48:11 GMT</pubDate>
+      <description>Free on OpenRouter.</description>
+    </item>
+    <item>
+      <title>Muse Glimmer 30b added — free</title>
+      <link>https://freeline.vastraalabs.online/model/muse-glimmer-30b.html</link>
+      <guid isPermaLink="false">freeline-added-2026-11-05T16:18:11+05:30-model/muse-glimmer-30b.html</guid>
+      <pubDate>Thu, 05 Nov 2026 10:48:11 GMT</pubDate>
+      <description>Free on NVIDIA Build.</description>
+    </item>
     <item>
       <title>Gemma 4 26b A4b It added — free</title>
       <link>https://freeline.vastraalabs.online/model/gemma-4-26b-a4b-it.html</link>
