@@ -6,7 +6,28 @@
     <atom:link href="https://freeline.vastraalabs.online/feed.xml" rel="self" type="application/rss+xml"/>
     <description>New free AI models, and free routes that ended. Only changes we recorded ourselves.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 05 Nov 2026 10:48:11 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 05 Nov 2026 10:54:53 GMT</lastBuildDate>
+    <item>
+      <title>Beam 1.0 501b A23b added — free</title>
+      <link>https://freeline.vastraalabs.online/model/beam-1-0-501b-a23b.html</link>
+      <guid isPermaLink="false">freeline-added-2026-11-05T16:24:53+05:30-model/beam-1-0-501b-a23b.html</guid>
+      <pubDate>Thu, 05 Nov 2026 10:54:53 GMT</pubDate>
+      <description>Free on Nous Portal.</description>
+    </item>
+    <item>
+      <title>Step 5 Preview added — free</title>
+      <link>https://freeline.vastraalabs.online/model/step-5-preview.html</link>
+      <guid isPermaLink="false">freeline-added-2026-11-05T16:24:53+05:30-model/step-5-preview.html</guid>
+      <pubDate>Thu, 05 Nov 2026 10:54:53 GMT</pubDate>
+      <description>Free on NVIDIA Build.</description>
+    </item>
+    <item>
+      <title>Xing4.0 29b A4b added — free</title>
+      <link>https://freeline.vastraalabs.online/model/xing4-0-29b-a4b.html</link>
+      <guid isPermaLink="false">freeline-added-2026-11-05T16:24:53+05:30-model/xing4-0-29b-a4b.html</guid>
+      <pubDate>Thu, 05 Nov 2026 10:54:53 GMT</pubDate>
+      <description>Free on OpenRouter.</description>
+    </item>
     <item>
       <title>Gemma 4 31b It added — free</title>
       <link>https://freeline.vastraalabs.online/model/gemma-4-31b-it.html</link>
