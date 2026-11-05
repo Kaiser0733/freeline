@@ -6,7 +6,84 @@
     <atom:link href="https://freeline.vastraalabs.online/feed.xml" rel="self" type="application/rss+xml"/>
     <description>New free AI models, and free routes that ended. Only changes we recorded ourselves.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 05 Nov 2026 00:32:23 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 05 Nov 2026 09:10:47 GMT</lastBuildDate>
+    <item>
+      <title>Gemma 4 26b A4b It added — free</title>
+      <link>https://freeline.vastraalabs.online/model/gemma-4-26b-a4b-it.html</link>
+      <guid isPermaLink="false">freeline-added-2026-11-05T14:40:47+05:30-model/gemma-4-26b-a4b-it.html</guid>
+      <pubDate>Thu, 05 Nov 2026 09:10:47 GMT</pubDate>
+      <description>Free on OpenRouter.</description>
+    </item>
+    <item>
+      <title>Kimi K3 1 Pro added — free</title>
+      <link>https://freeline.vastraalabs.online/model/kimi-k3-1-pro.html</link>
+      <guid isPermaLink="false">freeline-added-2026-11-05T14:40:47+05:30-model/kimi-k3-1-pro.html</guid>
+      <pubDate>Thu, 05 Nov 2026 09:10:47 GMT</pubDate>
+      <description>Free on NVIDIA Build.</description>
+    </item>
+    <item>
+      <title>Lfm 2.5 2.6b added — free</title>
+      <link>https://freeline.vastraalabs.online/model/lfm-2-5-2-6b.html</link>
+      <guid isPermaLink="false">freeline-added-2026-11-05T14:40:47+05:30-model/lfm-2-5-2-6b.html</guid>
+      <pubDate>Thu, 05 Nov 2026 09:10:47 GMT</pubDate>
+      <description>Free on OpenRouter.</description>
+    </item>
+    <item>
+      <title>Mimo V2.6 Flash added — free</title>
+      <link>https://freeline.vastraalabs.online/model/mimo-v2-6-flash.html</link>
+      <guid isPermaLink="false">freeline-added-2026-11-05T14:40:47+05:30-model/mimo-v2-6-flash.html</guid>
+      <pubDate>Thu, 05 Nov 2026 09:10:47 GMT</pubDate>
+      <description>Free on OpenCode Zen.</description>
+    </item>
+    <item>
+      <title>Mistral Large 4 1t A52b added — free</title>
+      <link>https://freeline.vastraalabs.online/model/mistral-large-4-1t-a52b.html</link>
+      <guid isPermaLink="false">freeline-added-2026-11-05T14:40:47+05:30-model/mistral-large-4-1t-a52b.html</guid>
+      <pubDate>Thu, 05 Nov 2026 09:10:47 GMT</pubDate>
+      <description>Free on NVIDIA Build.</description>
+    </item>
+    <item>
+      <title>Nemotron 3.5 Bolt E4b added — free</title>
+      <link>https://freeline.vastraalabs.online/model/nemotron-3-5-bolt-e4b.html</link>
+      <guid isPermaLink="false">freeline-added-2026-11-05T14:40:47+05:30-model/nemotron-3-5-bolt-e4b.html</guid>
+      <pubDate>Thu, 05 Nov 2026 09:10:47 GMT</pubDate>
+      <description>Free on NVIDIA Build.</description>
+    </item>
+    <item>
+      <title>Nemotron 3 Nano Omni 30b A3b Reasoning added — free</title>
+      <link>https://freeline.vastraalabs.online/model/nemotron-3-nano-omni-30b-a3b-reasoning.html</link>
+      <guid isPermaLink="false">freeline-added-2026-11-05T14:40:47+05:30-model/nemotron-3-nano-omni-30b-a3b-reasoning.html</guid>
+      <pubDate>Thu, 05 Nov 2026 09:10:47 GMT</pubDate>
+      <description>Free on OpenRouter.</description>
+    </item>
+    <item>
+      <title>Nemotron 3 Ultra 550b A55b added — free</title>
+      <link>https://freeline.vastraalabs.online/model/nemotron-3-ultra-550b-a55b.html</link>
+      <guid isPermaLink="false">freeline-added-2026-11-05T14:40:47+05:30-model/nemotron-3-ultra-550b-a55b.html</guid>
+      <pubDate>Thu, 05 Nov 2026 09:10:47 GMT</pubDate>
+      <description>Free on OpenRouter.</description>
+    </item>
+    <item>
+      <title>North Mini Code added — free</title>
+      <link>https://freeline.vastraalabs.online/model/north-mini-code.html</link>
+      <guid isPermaLink="false">freeline-added-2026-11-05T14:40:47+05:30-model/north-mini-code.html</guid>
+      <pubDate>Thu, 05 Nov 2026 09:10:47 GMT</pubDate>
+      <description>Free on OpenRouter.</description>
+    </item>
+    <item>
+      <title>Solar Mini4 added — free</title>
+      <link>https://freeline.vastraalabs.online/model/solar-mini4.html</link>
+      <guid isPermaLink="false">freeline-added-2026-11-05T14:40:47+05:30-model/solar-mini4.html</guid>
+      <pubDate>Thu, 05 Nov 2026 09:10:47 GMT</pubDate>
+      <description>Free on Nous Portal.</description>
+    </item>
+    <item>
+      <title>Step 3.7 Flash added — free</title>
+      <link>https://freeline.vastraalabs.online/model/step-3-7-flash.html</link>
+      <guid isPermaLink="false">freeline-added-2026-11-05T14:40:47+05:30-model/step-3-7-flash.html</guid>
+      <pubDate>Thu, 05 Nov 2026 09:10:47 GMT</pubDate>
+      <description>Free on Nous Portal.</description>
+    </item>
     <item>
       <title>free listing dropped off the free list</title>
       <link>https://freeline.vastraalabs.online/model/laguna-s-2-1.html</link>
