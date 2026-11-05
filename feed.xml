@@ -6,7 +6,14 @@
     <atom:link href="https://freeline.vastraalabs.online/feed.xml" rel="self" type="application/rss+xml"/>
     <description>New free AI models, and free routes that ended. Only changes we recorded ourselves.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 04 Nov 2026 04:58:22 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 05 Nov 2026 00:32:23 GMT</lastBuildDate>
+    <item>
+      <title>free listing dropped off the free list</title>
+      <link>https://freeline.vastraalabs.online/model/laguna-s-2-1.html</link>
+      <guid isPermaLink="false">freeline-list-change-2026-11-05T06:02:23+05:30-model/laguna-s-2-1.html</guid>
+      <pubDate>Thu, 05 Nov 2026 00:32:23 GMT</pubDate>
+      <description>Command Code, on laguna-s-2.1.</description>
+    </item>
     <item>
       <title>Glyph Cluster added — free</title>
       <link>https://freeline.vastraalabs.online/model/glyph-cluster.html</link>
