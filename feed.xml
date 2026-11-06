@@ -6,7 +6,14 @@
     <atom:link href="https://freeline.vastraalabs.online/feed.xml" rel="self" type="application/rss+xml"/>
     <description>New free AI models, and free routes that ended. Only changes we recorded ourselves.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 05 Nov 2026 10:54:53 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 06 Nov 2026 21:32:23 GMT</lastBuildDate>
+    <item>
+      <title>pulse-alpha-free dropped off the free list</title>
+      <link>https://freeline.vastraalabs.online/model/pulse-alpha.html</link>
+      <guid isPermaLink="false">freeline-list-change-2026-11-07T03:02:23+05:30-model/pulse-alpha.html</guid>
+      <pubDate>Fri, 06 Nov 2026 21:32:23 GMT</pubDate>
+      <description>OpenCode Zen, on pulse-alpha.</description>
+    </item>
     <item>
       <title>Beam 1.0 501b A23b added — free</title>
       <link>https://freeline.vastraalabs.online/model/beam-1-0-501b-a23b.html</link>
