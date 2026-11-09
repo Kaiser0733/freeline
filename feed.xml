@@ -6,7 +6,14 @@
     <atom:link href="https://freeline.vastraalabs.online/feed.xml" rel="self" type="application/rss+xml"/>
     <description>New free AI models, and free routes that ended. Only changes we recorded ourselves.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 09 Nov 2026 15:34:26 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 09 Nov 2026 21:32:35 GMT</lastBuildDate>
+    <item>
+      <title>free listing dropped off the free list</title>
+      <link>https://freeline.vastraalabs.online/model/beam-free.html</link>
+      <guid isPermaLink="false">freeline-list-change-2026-11-10T03:02:35+05:30-model/beam-free.html</guid>
+      <pubDate>Mon, 09 Nov 2026 21:32:35 GMT</pubDate>
+      <description>Command Code, on beam-free.</description>
+    </item>
     <item>
       <title>Longcat 2.5 added — free</title>
       <link>https://freeline.vastraalabs.online/model/longcat-2-5.html</link>
