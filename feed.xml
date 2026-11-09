@@ -6,7 +6,14 @@
     <atom:link href="https://freeline.vastraalabs.online/feed.xml" rel="self" type="application/rss+xml"/>
     <description>New free AI models, and free routes that ended. Only changes we recorded ourselves.</description>
     <language>en</language>
-    <lastBuildDate>Sat, 07 Nov 2026 03:34:07 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 09 Nov 2026 15:34:26 GMT</lastBuildDate>
+    <item>
+      <title>Longcat 2.5 added — free</title>
+      <link>https://freeline.vastraalabs.online/model/longcat-2-5.html</link>
+      <guid isPermaLink="false">freeline-added-2026-11-09T21:04:26+05:30-model/longcat-2-5.html</guid>
+      <pubDate>Mon, 09 Nov 2026 15:34:26 GMT</pubDate>
+      <description>Free on OpenCode Zen, Nous Portal.</description>
+    </item>
     <item>
       <title>Inkling 2 Small added — free</title>
       <link>https://freeline.vastraalabs.online/model/inkling-2-small.html</link>
