@@ -87,6 +87,24 @@ a { color: var(--brass); text-underline-offset: 2px; }
   text-decoration: none;
 }
 .skip:focus { top: 12px; }
+.pause-banner {
+  background: var(--brass);
+  color: #150f24;
+  padding: 20px;
+  text-align: center;
+}
+.pause-banner p {
+  margin: 0 auto;
+  max-width: 75ch;
+  font-size: 18px;
+  line-height: 1.5;
+  font-weight: 600;
+}
+.pause-banner a {
+  color: #150f24;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 
 :focus-visible {
   outline: none;
@@ -1947,17 +1965,11 @@ body.home .foot {
     <h2 class="mpage__h">Route history</h2>
     <ol class="routehist"><li class="routehist__item"><span class="routehist__date">10 Nov 2026</span>stealth/crouton-alpha dropped off the free list</li><li class="routehist__item"><span class="routehist__date">10 Nov 2026</span>crouton-alpha-free dropped off the free list</li><li class="routehist__item"><span class="routehist__date">4 Nov 2026</span>Crouton Alpha added — free</li></ol>
     <h2 class="mpage__h">History</h2>
-    <section class="hist" data-reveal data-model="crouton-alpha" data-checks="186"><p class="hist__span">Checked since 21 Oct 2026</p><div class="hist__track" role="img" aria-label="186 listing checks since 4 Nov 2026 across its 3 routes; 178 found it on the free list, 8 did not">
-        <span class="hist__bar" style="--fill: 96%"></span>
+    <section class="hist" data-reveal data-model="crouton-alpha" data-checks="189"><p class="hist__span">Checked since 21 Oct 2026</p><div class="hist__track" role="img" aria-label="189 listing checks since 4 Nov 2026 across its 3 routes; 179 found it on the free list, 10 did not">
+        <span class="hist__bar" style="--fill: 95%"></span>
       </div>
-      <p class="hist__trackline"><b>186 listing checks since 4 Nov 2026 across its 3 routes</b> — 178 found it on the free list, 8 did not · last 20 shown</p>
-      <ol class="hist__marks" aria-label="Recent checks, oldest first"><li class="hist__mark hist__mark--ok" data-at="21:02 IST" title="9 Nov 2026 21:02 IST">
-          <time class="hist__time" datetime="2026-11-09T21:02:24+05:30">21:02</time>
-          <span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" data-at="21:02 IST" title="9 Nov 2026 21:02 IST">
-          <time class="hist__time" datetime="2026-11-09T21:02:24+05:30">21:02</time>
-          <span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" data-at="00:02 IST" title="10 Nov 2026 00:02 IST">
-          <time class="hist__time" datetime="2026-11-10T00:02:42+05:30">00:02</time>
-          <span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" data-at="00:02 IST" title="10 Nov 2026 00:02 IST">
+      <p class="hist__trackline"><b>189 listing checks since 4 Nov 2026 across its 3 routes</b> — 179 found it on the free list, 10 did not · last 20 shown</p>
+      <ol class="hist__marks" aria-label="Recent checks, oldest first"><li class="hist__mark hist__mark--ok" data-at="00:02 IST" title="10 Nov 2026 00:02 IST">
           <time class="hist__time" datetime="2026-11-10T00:02:42+05:30">00:02</time>
           <span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" data-at="00:02 IST" title="10 Nov 2026 00:02 IST">
           <time class="hist__time" datetime="2026-11-10T00:02:42+05:30">00:02</time>
@@ -1991,6 +2003,12 @@ body.home .foot {
           <time class="hist__time" datetime="2026-11-10T10:50:59+05:30">10:50</time>
           <span class="visually-hidden">failed</span></li><li class="hist__mark hist__mark--ok" data-at="10:50 IST" title="10 Nov 2026 10:50 IST">
           <time class="hist__time" datetime="2026-11-10T10:50:59+05:30">10:50</time>
+          <span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--bad" data-at="10:53 IST" title="10 Nov 2026 10:53 IST">
+          <time class="hist__time" datetime="2026-11-10T10:53:39+05:30">10:53</time>
+          <span class="visually-hidden">failed</span></li><li class="hist__mark hist__mark--bad" data-at="10:53 IST" title="10 Nov 2026 10:53 IST">
+          <time class="hist__time" datetime="2026-11-10T10:53:39+05:30">10:53</time>
+          <span class="visually-hidden">failed</span></li><li class="hist__mark hist__mark--ok" data-at="10:53 IST" title="10 Nov 2026 10:53 IST">
+          <time class="hist__time" datetime="2026-11-10T10:53:39+05:30">10:53</time>
           <span class="visually-hidden">passed</span></li></ol>
       <p class="hist__note">Each mark is a check we ran, at the time shown. A hollow mark is a failed check. No mark means no check logged.</p></section>
   </main>

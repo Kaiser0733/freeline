@@ -87,6 +87,24 @@ a { color: var(--brass); text-underline-offset: 2px; }
   text-decoration: none;
 }
 .skip:focus { top: 12px; }
+.pause-banner {
+  background: var(--brass);
+  color: #150f24;
+  padding: 20px;
+  text-align: center;
+}
+.pause-banner p {
+  margin: 0 auto;
+  max-width: 75ch;
+  font-size: 18px;
+  line-height: 1.5;
+  font-weight: 600;
+}
+.pause-banner a {
+  color: #150f24;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 
 :focus-visible {
   outline: none;
@@ -1929,13 +1947,11 @@ body.home .foot {
     <h2 class="mpage__h">Route history</h2>
     <ol class="routehist"><li class="routehist__item"><span class="routehist__date">5 Nov 2026</span>Nemotron 3 Nano Omni 30b A3b Reasoning added — free</li></ol>
     <h2 class="mpage__h">History</h2>
-    <section class="hist" data-reveal data-model="nemotron-3-nano-omni-30b-a3b-reasoning" data-checks="45"><p class="hist__span">Checked since 21 Oct 2026</p><div class="hist__track" role="img" aria-label="45 listing checks since 5 Nov 2026 across its 1 route; 45 found it on the free list, 0 did not">
+    <section class="hist" data-reveal data-model="nemotron-3-nano-omni-30b-a3b-reasoning" data-checks="46"><p class="hist__span">Checked since 21 Oct 2026</p><div class="hist__track" role="img" aria-label="46 listing checks since 5 Nov 2026 across its 1 route; 46 found it on the free list, 0 did not">
         <span class="hist__bar" style="--fill: 100%"></span>
       </div>
-      <p class="hist__trackline"><b>45 listing checks since 5 Nov 2026 across its 1 route</b> — 45 found it on the free list · last 20 shown</p>
-      <ol class="hist__marks" aria-label="Recent checks, oldest first"><li class="hist__mark hist__mark--ok" data-at="09:02 IST" title="8 Nov 2026 09:02 IST">
-          <time class="hist__time" datetime="2026-11-08T09:02:23+05:30">09:02</time>
-          <span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" data-at="12:02 IST" title="8 Nov 2026 12:02 IST">
+      <p class="hist__trackline"><b>46 listing checks since 5 Nov 2026 across its 1 route</b> — 46 found it on the free list · last 20 shown</p>
+      <ol class="hist__marks" aria-label="Recent checks, oldest first"><li class="hist__mark hist__mark--ok" data-at="12:02 IST" title="8 Nov 2026 12:02 IST">
           <time class="hist__time" datetime="2026-11-08T12:02:23+05:30">12:02</time>
           <span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" data-at="15:02 IST" title="8 Nov 2026 15:02 IST">
           <time class="hist__time" datetime="2026-11-08T15:02:25+05:30">15:02</time>
@@ -1973,6 +1989,8 @@ body.home .foot {
           <time class="hist__time" datetime="2026-11-10T10:18:55+05:30">10:18</time>
           <span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" data-at="10:50 IST" title="10 Nov 2026 10:50 IST">
           <time class="hist__time" datetime="2026-11-10T10:50:59+05:30">10:50</time>
+          <span class="visually-hidden">passed</span></li><li class="hist__mark hist__mark--ok" data-at="10:53 IST" title="10 Nov 2026 10:53 IST">
+          <time class="hist__time" datetime="2026-11-10T10:53:39+05:30">10:53</time>
           <span class="visually-hidden">passed</span></li></ol>
       <p class="hist__note">Each mark is a check we ran, at the time shown. A hollow mark is a failed check. No mark means no check logged.</p></section>
   </main>
