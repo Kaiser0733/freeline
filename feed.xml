@@ -6,7 +6,21 @@
     <atom:link href="https://freeline.vastraalabs.online/feed.xml" rel="self" type="application/rss+xml"/>
     <description>New free AI models, and free routes that ended. Only changes we recorded ourselves.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 09 Nov 2026 21:32:35 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 10 Nov 2026 03:32:27 GMT</lastBuildDate>
+    <item>
+      <title>stealth/crouton-alpha dropped off the free list</title>
+      <link>https://freeline.vastraalabs.online/model/crouton-alpha.html</link>
+      <guid isPermaLink="false">freeline-list-change-2026-11-10T09:02:27+05:30-model/crouton-alpha.html</guid>
+      <pubDate>Tue, 10 Nov 2026 03:32:27 GMT</pubDate>
+      <description>OpenRouter, on crouton-alpha.</description>
+    </item>
+    <item>
+      <title>crouton-alpha-free dropped off the free list</title>
+      <link>https://freeline.vastraalabs.online/model/crouton-alpha.html</link>
+      <guid isPermaLink="false">freeline-list-change-2026-11-10T09:02:27+05:30-model/crouton-alpha.html</guid>
+      <pubDate>Tue, 10 Nov 2026 03:32:27 GMT</pubDate>
+      <description>OpenCode Zen, on crouton-alpha.</description>
+    </item>
     <item>
       <title>free listing dropped off the free list</title>
       <link>https://freeline.vastraalabs.online/model/beam-free.html</link>
